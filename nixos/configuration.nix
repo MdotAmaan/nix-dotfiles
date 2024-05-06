@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
     ];
   nix = let
-    flakeInputs = lib.filterAttrs (_:lib.istType "flake") inputs;
+    flakeInputs = lib.filterAttrs (_:lib.isType "flake") inputs;
   in {
     settings = {
       experimental-features = "nix-command flakes";
@@ -77,7 +77,7 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
