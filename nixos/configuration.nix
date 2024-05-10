@@ -121,13 +121,7 @@
     fish
     fishPlugins.autopair
   ];
-  services.flatpak.enable = true;
-
-  services.flatpak.packages = [
-    "io.mrarm.mcpelauncher" # Minecraft Bedrock Launcher
-  ];
-
-   programs.gnupg.agent = {
+    programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
    };
@@ -144,7 +138,14 @@
     fi
   '';
    };
+
   # List services that you want to enable:
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "io.mrarm.mcpelauncher" # Minecraft Bedrock Launcher
+    ];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

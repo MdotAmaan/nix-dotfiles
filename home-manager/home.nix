@@ -20,7 +20,12 @@
 
     nh # Nix CLI Helper
     git-crypt
+    # Stuff for homelab
     ansible
+    python311Packages.passlib
+    just
+    pwgen
+
     element-desktop
     qbittorrent
     android-tools
@@ -61,7 +66,7 @@
                 { name = "query"; value = "{searchTerms}"; }
               ];
               updateInterval = 24 * 60 * 60 * 1000; # every day
-              definedAliases = [ "@np" ];
+              definedAliases = "@np";
             }];
           };
         };
@@ -212,14 +217,8 @@
   services.syncthing.enable = true;
   systemd.user.startServices = "sd-switch";
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
+    ".config/nvim/".source = ./nvim;
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
