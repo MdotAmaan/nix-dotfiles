@@ -110,10 +110,11 @@
     ripgrep
     fd
     clang
+    sshfs
+
     # Fonts
     nerdfonts
     google-fonts
-
     cargo
     firefox
     thunderbird

@@ -20,6 +20,7 @@
 
     nh # Nix CLI Helper
     git-crypt
+
     # Stuff for homelab
     ansible
     python311Packages.passlib
@@ -152,6 +153,7 @@
       "ksmserver"."Lock Session" = ["Meta+Shift+L" "Screensaver"];
       "kwin"."Overview" = "Meta+Shift+W";
       "kwin"."view_zoom_in" = ["Meta+Shift++" "Meta+Shift+="];
+      "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
 
       # Desktop Management
       "kwin"."Switch to Next Desktop" = "Meta+PgUp";
@@ -191,8 +193,8 @@
       "kwin"."karousel-window-move-down" = "Meta+Down";
       "kwin"."karousel-window-move-up" = "Meta+Up";
       "kwin"."karousel-window-move-right" = "Meta+Right";
-      "kwin"."karousel-column-width-decrease" = "Meta+-";
-      "kwin"."karousel-column-width-increase" = "Meta+=";
+      "kwin"."karousel-column-width-decrease" = "Meta+[";
+      "kwin"."karousel-column-width-increase" = "Meta+]";
       "kwin"."karousel-window-toggle-floating" = "Meta+W";
 
       
