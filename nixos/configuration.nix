@@ -111,10 +111,6 @@
     fd
     clang
     sshfs
-
-    # Fonts
-    nerdfonts
-    google-fonts
     cargo
     firefox
     thunderbird
@@ -122,6 +118,14 @@
     fish
     fishPlugins.autopair
   ];
+
+  fonts.packages = with pkgs; [
+    nerdfonts
+    liberation_ttf
+    google-fonts
+    corefonts
+  ];
+
     programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
