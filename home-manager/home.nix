@@ -211,7 +211,9 @@
     configFile = {
       "kwinrc"."Desktops"."Number"."value" = 5;
       "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
-      "kdeglobals"."KDE"."SingleClick" = "false";
+      "kwinrc"."Windows"."NextFocusPrefersMouse" = "true";
+      "kdeglobals"."KDE"."SingleClick" = "false"; # Double click to open
+      "kscreenlockerrc"."Daemon"."Timeout" = 20; # Set screen timeout to 20 minutes
     };
   };
   

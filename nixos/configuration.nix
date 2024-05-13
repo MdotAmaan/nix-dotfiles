@@ -123,7 +123,7 @@
     nerdfonts
     liberation_ttf
     google-fonts
-    corefonts
+    vistafonts
   ];
 
     programs.gnupg.agent = {
