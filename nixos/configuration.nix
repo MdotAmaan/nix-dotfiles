@@ -48,7 +48,7 @@
   hardware.bluetooth.powerOnBoot = true;
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "Asia/Dubai";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -56,13 +56,13 @@
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
     LC_MONETARY = "en_US.UTF-8";
     LC_NAME = "en_US.UTF-8";
     LC_NUMERIC = "en_US.UTF-8";
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_DK.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -114,6 +114,7 @@
     cargo
     firefox
     thunderbird
+    kdePackages.kdeconnect-kde
     # fish stuff
     fish
     fishPlugins.autopair
@@ -125,7 +126,7 @@
     google-fonts
     vistafonts
   ];
-
+  programs.kdeconnect.enable = true;
     programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
@@ -155,11 +156,15 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  networking.firewall = {
+    allowedTCPPorts = [ 47984 47989 47990 48010 ]; # Sunshine
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect 
+    ]; 
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect 
+      { from = 8000; to = 8010; } # Sunshine
+    ];
+  };
+  system.stateVersion = "23.11"; 
 }

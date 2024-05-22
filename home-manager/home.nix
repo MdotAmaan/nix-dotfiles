@@ -31,7 +31,9 @@
     qbittorrent
     android-tools
     vlc
-    #sunshine
+   # kicad
+    vscodium
+    sunshine
     filelight
     lazygit
     logseq
@@ -71,6 +73,9 @@
             }];
           };
         };
+      };
+      settings = {
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
          bitwarden 
