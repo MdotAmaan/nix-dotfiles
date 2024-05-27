@@ -18,20 +18,25 @@
     inkscape
     krita
 
-    nh # Nix CLI Helper
-    git-crypt
-
+    nh
+    git-crypt 
+   libcxxStdenv
     # Stuff for homelab
     ansible
     python311Packages.passlib
     just
     pwgen
-
     element-desktop
     qbittorrent
     android-tools
     vlc
+   # Keyboard
+   # python311Packages.west
    # kicad
+    clang-tools
+   clang
+    cmake
+    libgcc
     vscodium
     sunshine
     filelight
@@ -39,9 +44,9 @@
     logseq
     nextcloud-client 
     fastfetch
-    obs-studio
+    obs-studio 
     unzip
-
+    distrobox
     prismlauncher
     jdk17
     alvr
@@ -59,7 +64,7 @@
     profiles.mdot = {
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "Brave Search";
         engines = {
           "Nix Packages" = {
             urls = [{
@@ -70,6 +75,16 @@
               ];
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = "@np";
+            }];
+          };
+          "Brave Search" = {
+            urls = [{
+              template = "https://search.brave.com/search";
+              params = [
+                { name = "type"; value = "packages"; }
+                { name = "q"; value = "{searchTerms}"; }
+              ];
+              updateInterval = 24 * 60 * 60 * 1000; # every day
             }];
           };
         };
@@ -181,11 +196,11 @@
       "kwin"."Switch Window Up" = "Meta+I";
 
       # Polonium
-     # "kwin"."PoloniumInsertAbove" = "Meta+Up";
-     # "kwin"."PoloniumInsertBelow" = "Meta+Down";
-     # "kwin"."PoloniumInsertRight" = "Meta+Right";
-     # "kwin"."PoloniumInsertLeft" = "Meta+Left";
-     # "kwin"."PoloniumRetileWindow" = "Meta+H";
+      # "kwin"."PoloniumInsertAbove" = "Meta+Up";
+      # "kwin"."PoloniumInsertBelow" = "Meta+Down";
+      # "kwin"."PoloniumInsertRight" = "Meta+Right";
+      # "kwin"."PoloniumInsertLeft" = "Meta+Left";
+      # "kwin"."PoloniumRetileWindow" = "Meta+H";
       # Disable Polonium
       "kwin"."PoloniumInsertAbove" = "";
       "kwin"."PoloniumInsertBelow" = "";
@@ -227,7 +242,7 @@
   systemd.user.startServices = "sd-switch";
 
   home.file = {
-    ".config/nvim/".source = ./nvim;
+    #".config/nvim/".source = ./nvim;
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
