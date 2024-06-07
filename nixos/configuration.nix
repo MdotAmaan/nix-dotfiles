@@ -32,9 +32,12 @@
   };
 
   programs.nix-ld.enable = true;
- # programs.nix-ld.libraries = with pkgs; [
- #   # Add missing dynamic libraries here instead of system
- # ];
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    libGL
+    # Add missing dynamic libraries here instead of system
+  ];
  
  # Docker
   virtualisation.docker.enable = true;
@@ -116,6 +119,7 @@
     firefox
     thunderbird
     kdePackages.kdeconnect-kde
+    sunshine
     # fish stuff
     fish
     fishPlugins.autopair
@@ -168,6 +172,13 @@
     ];
     allowedUDPPorts = [ 51820 ];
   };
+  
+  security.wrappers.sunshine = {
+      owner = "root";
+      group = "root";
+      capabilities = "cap_sys_admin+p";
+      source = "${pkgs.sunshine}/bin/sunshine";
+    }
   # Enable WireGuard
 #  networking.wireguard.interfaces = {
 #    # "wg0" is the network interface name. You can name the interface arbitrarily.

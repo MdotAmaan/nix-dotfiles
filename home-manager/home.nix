@@ -30,15 +30,17 @@
     qbittorrent
     android-tools
     vlc
+    pureref
+    libsForQt5.partitionmanager
    # Keyboard
    # python311Packages.west
    # kicad
     clang-tools
-   clang
+    clang
     cmake
     libgcc
+    ungoogled-chromium
     vscodium
-    sunshine
     filelight
     lazygit
     logseq
