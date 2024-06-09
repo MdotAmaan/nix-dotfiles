@@ -169,6 +169,7 @@
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect 
       { from = 8000; to = 8010; } # Sunshine
+      { from = 47998; to = 48000; }
     ];
     allowedUDPPorts = [ 51820 ];
   };
@@ -178,7 +179,7 @@
       group = "root";
       capabilities = "cap_sys_admin+p";
       source = "${pkgs.sunshine}/bin/sunshine";
-    }
+  };
   # Enable WireGuard
 #  networking.wireguard.interfaces = {
 #    # "wg0" is the network interface name. You can name the interface arbitrarily.
