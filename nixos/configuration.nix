@@ -120,6 +120,7 @@
     thunderbird
     kdePackages.kdeconnect-kde
     sunshine
+    hunspell # dictionary
     # fish stuff
     fish
     fishPlugins.autopair
