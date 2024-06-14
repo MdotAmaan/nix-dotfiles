@@ -39,6 +39,7 @@
     clang
     cmake
     libgcc
+    lunarvim
     ungoogled-chromium
     vscodium
     filelight
@@ -123,7 +124,7 @@
       enable = true;
       shellAbbrs = {
         ls = "ls -f";
-        nc = "cd ~/dotfiles/ && nvim .";
+        nc = "cd ~/dotfiles/ && lnvim .";
       };
       interactiveShellInit = "set -U fish_greeting";
   };
@@ -241,6 +242,7 @@
   
   # Services
   services.syncthing.enable = true;
+
   systemd.user.startServices = "sd-switch";
 
   home.file = {
