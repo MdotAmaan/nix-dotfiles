@@ -1,5 +1,4 @@
 { inputs, lib, config, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -134,15 +133,19 @@
     google-fonts
     vistafonts
   ];
+
   programs.kdeconnect.enable = true;
     programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
    };
+
    programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
    };
+
+  # Set fish as the default shell
    programs.bash = {
      interactiveShellInit = ''
     if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -150,10 +153,35 @@
       shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
       exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
     fi
-  '';
+    '';
    };
+
   services.zerotierone.enable = true;
-  # List services that you want to enable:
+
+  services.sunshine = {
+    autoStart = true;
+    enable = true;
+    applications.apps = [
+      {
+        name = "Desktop";
+        exclude-global-prep-cmd = "false";
+        auto-detach = "true";
+      }
+      {
+        name = "Drawing";
+        prep-cmd = [
+          {
+            do = "''${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.HDMI-A-1.mode.2304x1440@120";
+            undo = "''${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.HDMI-A-1.mode.3440x1440@100";
+          }
+        ];
+        exclude-global-prep-cmd = "false";
+        auto-detach = "true";
+      }
+    ];
+  };
+
+  # Flatpak applications 
   services.flatpak = {
     enable = true;
     packages = [
@@ -164,6 +192,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.resolved.enable = true;
+
   # Open ports in the firewall.
   networking.firewall = {
     allowedTCPPorts = [ 53 47984 47989 47990 48010 ]; # Sunshine
@@ -210,35 +239,35 @@
 #      ];
 #    };
 #  };
- networking.wireguard.interfaces = {
-   # "wg0" is the network interface name. You can name the interface arbitrarily.
-   wg0 = {
-     # Determines the IP address and subnet of the client's end of the tunnel interface.
-     ips = [ "10.8.0.5/24" ];
-     listenPort = 51820; # to match firewall allowedUDPPorts (without this wg uses random port numbers)
- 
-     privateKeyFile = "/root/wireguard-keys/privatekey";
- 
-     peers = [
-       # For a client configuration, one peer entry for the server will suffice.
- 
-       {
-         # Public key of the server (not a file path).
-         publicKey = "QuOFuAyzDbKjiA87Asjff3VwBBlrEdb24wJQVHRU9nM";
- 
-         # Forward all the traffic via VPN.
-         allowedIPs = [ "0.0.0.0/0" ];
-         # Or forward only particular subnets
-         #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
- 
-         # Set this to the server IP and port.
-         endpoint = "t.amaanlab.com:51820"; # ToDo: route to endpoint not automatically configured https://wiki.archlinux.org/index.php/WireGuard#Loop_routing https://discourse.nixos.org/t/solved-minimal-firewall-setup-for-wireguard-client/7577
- 
-         # Send keepalives every 25 seconds. Important to keep NAT tables alive.
-         persistentKeepalive = 25;
-       }
-     ];
-   };
- };
+ # networking.wireguard.interfaces = {
+ #   # "wg0" is the network interface name. You can name the interface arbitrarily.
+ #   wg0 = {
+ #     # Determines the IP address and subnet of the client's end of the tunnel interface.
+ #     ips = [ "10.8.0.5/24" ];
+ #     listenPort = 51820; # to match firewall allowedUDPPorts (without this wg uses random port numbers)
+ # 
+ #     privateKeyFile = "/root/wireguard-keys/privatekey";
+ # 
+ #     peers = [
+ #       # For a client configuration, one peer entry for the server will suffice.
+ # 
+ #       {
+ #         # Public key of the server (not a file path).
+ #         publicKey = "QuOFuAyzDbKjiA87Asjff3VwBBlrEdb24wJQVHRU9nM";
+ # 
+ #         # Forward all the traffic via VPN.
+ #         allowedIPs = [ "0.0.0.0/0" ];
+ #         # Or forward only particular subnets
+ #         #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
+ # 
+ #         # Set this to the server IP and port.
+ #         endpoint = "t.amaanlab.com:51820"; # ToDo: route to endpoint not automatically configured https://wiki.archlinux.org/index.php/WireGuard#Loop_routing https://discourse.nixos.org/t/solved-minimal-firewall-setup-for-wireguard-client/7577
+ # 
+ #         # Send keepalives every 25 seconds. Important to keep NAT tables alive.
+ #         persistentKeepalive = 25;
+ #       }
+ #     ];
+ #   };
+ # };
   system.stateVersion = "23.11"; 
 }

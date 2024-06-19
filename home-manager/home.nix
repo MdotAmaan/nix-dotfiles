@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, config, ... }:
+{ pkgs, pkgs-personal,inputs, lib, config, ... }:
 {
   nixpkgs = {
     overlays = [
@@ -7,52 +7,63 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
+      #permittedInsecurePackages = [
+      #  "electron"
+      #];
     };
   };
+
   home.username = "mdot";
   home.homeDirectory = "/home/mdot";
   home.stateVersion = "23.11"; # Please read the comment before changing.
   home.packages = with pkgs; [
     # Creative Stuff
-    blender-hip
-    inkscape
-    krita
+      blender-hip
+      inkscape
+      krita
+
+    # Game stuff
+      prismlauncher
+      jdk17
+      alvr
+
+    # TODO: Remove later and replace with dev shells
+      libcxxStdenv
+      clang-tools
+      clang
+      cmake
+      libgcc
+      android-tools
+
+    # Stuff for homelab
+      ansible
+      python311Packages.passlib
+      just
+      pwgen
+
+    # Keyboard
+    #  python311Packages.west
+    #  kicad
 
     nh
-    git-crypt 
-   libcxxStdenv
-    # Stuff for homelab
-    ansible
-    python311Packages.passlib
-    just
-    pwgen
     element-desktop
     qbittorrent
-    android-tools
     vlc
     pureref
     libsForQt5.partitionmanager
-   # Keyboard
-   # python311Packages.west
-   # kicad
-    clang-tools
-    clang
-    cmake
-    libgcc
-    lunarvim
     ungoogled-chromium
     vscodium
+    lunarvim
     filelight
     lazygit
-    logseq
+    # logseq
     nextcloud-client 
     fastfetch
     obs-studio 
     unzip
     distrobox
-    prismlauncher
-    jdk17
-    alvr
+  ] ++ [
+    pkgs-personal.logseq
   ];
 
   programs.firefox = {
@@ -124,14 +135,16 @@
       enable = true;
       shellAbbrs = {
         ls = "ls -f";
-        nc = "cd ~/dotfiles/ && lnvim .";
+        nc = "cd ~/dotfiles/ && lvim .";
       };
       interactiveShellInit = "set -U fish_greeting";
   };
+
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
   };
+
   programs.lf = {
     enable = true;
 
@@ -204,6 +217,7 @@
       # "kwin"."PoloniumInsertRight" = "Meta+Right";
       # "kwin"."PoloniumInsertLeft" = "Meta+Left";
       # "kwin"."PoloniumRetileWindow" = "Meta+H";
+
       # Disable Polonium
       "kwin"."PoloniumInsertAbove" = "";
       "kwin"."PoloniumInsertBelow" = "";
@@ -220,7 +234,6 @@
       "kwin"."karousel-column-width-increase" = "Meta+]";
       "kwin"."karousel-window-toggle-floating" = "Meta+W";
 
-      
       # Application Launchers
       "logseq.desktop"."_launch" = "Meta+L";
       "firefox.desktop"."_launch" = "Meta+F";
