@@ -56,14 +56,12 @@
     lunarvim
     filelight
     lazygit
-    # logseq
+    logseq
     nextcloud-client 
     fastfetch
     obs-studio 
     unzip
     distrobox
-  ] ++ [
-    pkgs-personal.logseq
   ];
 
   programs.firefox = {

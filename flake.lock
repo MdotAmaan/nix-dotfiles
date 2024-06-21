@@ -30,11 +30,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1718788631,
-        "narHash": "sha256-H+hAebjUl3tP6F/pv2h5RZzxrdsI+yoq4fbgG1KwzLU=",
+        "lastModified": 1718942615,
+        "narHash": "sha256-V2l7QSaOBOFjn8AEBj+f2V6aPd5tbgAvX34A4I5PK6I=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "16295f7d58065a9091eb16bbc3ce1dbc5cfccffc",
+        "rev": "56ed74bf4f492a38ec7c0a7748f5787d93b900a9",
         "type": "gitlab"
       },
       "original": {
@@ -114,11 +114,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1718530797,
-        "narHash": "sha256-pup6cYwtgvzDpvpSCFh1TEUjw2zkNpk8iolbKnyFmmU=",
+        "lastModified": 1718714799,
+        "narHash": "sha256-FUZpz9rg3gL8NVPKbqU8ei1VkPLsTIfAJ2fdAf5qjak=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b60ebf54c15553b393d144357375ea956f89e9a9",
+        "rev": "c00d587b1a1afbf200b1d8f0b0e4ba9deb1c7f0e",
         "type": "github"
       },
       "original": {
@@ -130,16 +130,14 @@
     },
     "nixpkgs-personal": {
       "locked": {
-        "dirtyRev": "219ca58153d25cd5be7ac179ff941e7f0d3547c2-dirty",
-        "dirtyShortRev": "219ca58153d2-dirty",
         "lastModified": 1718794249,
         "narHash": "sha256-e3Z8sLzgyTDtVPeeuDJPJNd073BEZt7Ly9IeXghNVT0=",
-        "type": "git",
-        "url": "file:///home/mdot/gitrepos/nixpkgs"
+        "path": "/nix/store/8266l8f1g5hwnwlxrcrwlxv70d1idj8d-source",
+        "type": "path"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/mdot/gitrepos/nixpkgs"
+        "id": "nixpkgs-personal",
+        "type": "indirect"
       }
     },
     "plasma-manager": {
@@ -152,11 +150,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1718567165,
-        "narHash": "sha256-nhg4r4Kn3deooPiNao8oH/K7CcvRotDzBtg00MXiZkU=",
+        "lastModified": 1718956312,
+        "narHash": "sha256-iH+ilQbskYuwoOgN1w3sTgkEcVuuFPIJZ1HCGdgeh70=",
         "owner": "pjones",
         "repo": "plasma-manager",
-        "rev": "b906c67581fa12ad2821f295b37b5733fcc76926",
+        "rev": "6f182700ad78f13f367fdfff2b0a4062e70eeea8",
         "type": "github"
       },
       "original": {
