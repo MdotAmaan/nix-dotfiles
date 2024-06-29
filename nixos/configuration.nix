@@ -156,10 +156,13 @@
     '';
    };
 
-  services.zerotierone.enable = true;
+  services.zerotierone = {
+    enable = true;
+    localConf.settings.softwareUpdate = "disable";
+  };
 
   services.sunshine = {
-    autoStart = true;
+    autoStart = false;
     enable = true;
     applications.apps = [
       {

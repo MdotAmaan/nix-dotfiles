@@ -43,7 +43,7 @@
 
     # Keyboard
     #  python311Packages.west
-    #  kicad
+     kicad
 
     nh
     element-desktop
@@ -56,12 +56,14 @@
     lunarvim
     filelight
     lazygit
-    logseq
+    # logseq
     nextcloud-client 
     fastfetch
     obs-studio 
     unzip
     distrobox
+  ] ++ [
+    pkgs-personal.logseq
   ];
 
   programs.firefox = {
