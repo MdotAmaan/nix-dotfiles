@@ -45,6 +45,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "dotPC"; # Define your hostname.
 
+  #TODO: remove later
+  hardware.keyboard.qmk.enable = true;
   # Enable networking
   networking.networkmanager.enable = true;
 

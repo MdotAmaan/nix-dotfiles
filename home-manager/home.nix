@@ -7,9 +7,9 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      #permittedInsecurePackages = [
-      #  "electron"
-      #];
+      permittedInsecurePackages = [
+       "electron_28.3.3"
+      ];
     };
   };
 
@@ -44,7 +44,8 @@
     # Keyboard
     #  python311Packages.west
      kicad
-
+      freecad
+    libreoffice-qt
     nh
     element-desktop
     qbittorrent
@@ -56,15 +57,15 @@
     lunarvim
     filelight
     lazygit
-    # logseq
+    logseq
     nextcloud-client 
     fastfetch
     obs-studio 
     unzip
     distrobox
-  ] ++ [
-    pkgs-personal.logseq
-  ];
+  ]; #++ [
+    #pkgs-personal.logseq
+  #];
 
   programs.firefox = {
     enable = true;
