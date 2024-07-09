@@ -8,7 +8,7 @@
       allowUnfree = true;
       allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
-       "electron_28.3.3"
+       "electron-27.3.11"
       ];
     };
   };
@@ -193,14 +193,16 @@
       "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
 
       # Desktop Management
-      "kwin"."Switch to Next Desktop" = "Meta+PgUp";
-      "kwin"."Switch to Previous Desktop" = "Meta+PgDown";
+      "kwin"."Switch to Next Desktop" = "Meta+.";
+      "kwin"."Switch to Previous Desktop" = "Meta+,";
       "kwin"."Window to Desktop 1" = "Ctrl+Alt+Shift+a";
       "kwin"."Window to Desktop 2" = "Ctrl+Alt+Shift+r";
       "kwin"."Window to Desktop 3" = "Ctrl+Alt+Shift+s";
       "kwin"."Window to Desktop 4" = "Ctrl+Alt+Shift+t";
       "kwin"."Window to Desktop 5" = "Ctrl+Alt+Shift+g";
-      
+      "kwin"."Window to Next Desktop" = "Meta+>";
+      "kwin"."Window to Previous Desktop" = "Meta+<";
+
       "kwin"."Window Quick Tile Left" = "";
       "kwin"."Window Quick Tile Right" = "";
       "kwin"."Window Quick Tile Top" = "";
