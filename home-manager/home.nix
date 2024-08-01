@@ -1,4 +1,4 @@
-{ pkgs, pkgs-personal,inputs, lib, config, ... }:
+{ pkgs, pkgs-stable,inputs, lib, config, ... }:
 {
   nixpkgs = {
     overlays = [
@@ -23,8 +23,7 @@
       krita
 
     # Game stuff
-      prismlauncher
-      jdk17
+
       alvr
 
     # TODO: Remove later and replace with dev shells
@@ -43,8 +42,8 @@
 
     # Keyboard
     #  python311Packages.west
-     kicad
-      freecad
+     # kicad
+      # freecad
     libreoffice-qt
     nh
     element-desktop
@@ -63,9 +62,18 @@
     obs-studio 
     unzip
     distrobox
-  ]; #++ [
-    #pkgs-personal.logseq
-  #];
+    prusa-slicer
+    audacity
+    kdenlive
+    qtcreator
+  ] ++ [
+    # pkgs-stable.cura 
+    # pkgs-stable.prusa-slicer 
+    pkgs-stable.prismlauncher
+    pkgs-stable.freecad
+    pkgs-stable.jdk17
+    pkgs-stable.yt-dlg
+  ];
 
   programs.firefox = {
     enable = true;

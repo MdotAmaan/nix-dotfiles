@@ -88,7 +88,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -102,7 +101,7 @@
   users.users.mdot = {
     isNormalUser = true;
     description = "Amaan";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "kvm"];
     openssh.authorizedKeys.keys = [
       # SSH public Keys
     ];
@@ -135,6 +134,8 @@
     google-fonts
     vistafonts
   ];
+  
+  programs.adb.enable = true;
 
   programs.kdeconnect.enable = true;
     programs.gnupg.agent = {
@@ -191,6 +192,7 @@
     enable = true;
     packages = [
       "io.mrarm.mcpelauncher" # Minecraft Bedrock Launcher
+      "com.ultimaker.cura" 
     ];
   };
 

@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-   nixpkgs-personal.url = "/home/mdot/gitrepos/nixpkgs/";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +36,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-personal,
+    nixpkgs-stable,
     home-manager,
     plasma-manager,
     nix-flatpak,
@@ -71,7 +71,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs outputs;
-          pkgs-personal = import nixpkgs-personal {
+          pkgs-stable = import nixpkgs-stable {
             system = "x86_64-linux";
             config.allowUnfree = true;
           };
