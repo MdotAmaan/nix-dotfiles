@@ -1,9 +1,13 @@
 { pkgs, pkgs-stable,inputs, lib, config, ... }:
 {
   nixpkgs = {
-    overlays = [
-      "/home/mdot/dotfiles/home-manager/logseq.nix"
-    ];
+    overlays = [(
+      final: prev: {
+        logseq = prev.logseq.override {
+          electron = prev.electron_27;
+        };
+      }
+    )];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
@@ -76,7 +80,6 @@ home.packages = with pkgs; [
     pkgs-stable.freecad
     pkgs-stable.jdk21
   ];
-  logseq.override { electron = pkgs.electron_27; };
   programs.firefox = {
     enable = true;
     policies = {
