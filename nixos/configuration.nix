@@ -1,8 +1,9 @@
-{ inputs, lib, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, pkgs-stable, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.nix-minecraft.nixosModules.minecraft-servers
     ];
   nix = let
     flakeInputs = lib.filterAttrs (_:lib.isType "flake") inputs;
@@ -23,12 +24,13 @@
 
   nixpkgs = {
     overlays = [
-
+      inputs.nix-minecraft.overlay
     ];
     config = {
       allowUnfree = true;
     };
   };
+  
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -54,7 +56,7 @@
   hardware.bluetooth.powerOnBoot = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Dubai";
+  time.timeZone = "America/Detroit";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -79,9 +81,9 @@
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -101,7 +103,7 @@
   users.users.mdot = {
     isNormalUser = true;
     description = "Amaan";
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "kvm"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "kvm" "minecraft"];
     openssh.authorizedKeys.keys = [
       # SSH public Keys
     ];
@@ -120,13 +122,13 @@
     thunderbird
     kdePackages.kdeconnect-kde
     sunshine
-    zerotierone
     hunspell # dictionary
+    zerotierone
     hunspellDicts.en_US
     # fish stuff
     fish
     fishPlugins.autopair
-  ];
+  ]; 
 
   fonts.packages = with pkgs; [
     nerdfonts
@@ -160,7 +162,7 @@
    };
 
   services.zerotierone = {
-    enable = true;
+    enable = false;
     localConf.settings.softwareUpdate = "disable";
   };
 
@@ -200,9 +202,14 @@
   services.openssh.enable = true;
   services.resolved.enable = true;
 
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   # Open ports in the firewall.
   networking.firewall = {
-    allowedTCPPorts = [ 53 47984 47989 47990 48010 ]; # Sunshine
+    allowedTCPPorts = [ 53 47984 47989 47990 48010 25565 19132]; # Sunshine
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect 
     ]; 
@@ -211,7 +218,7 @@
       { from = 8000; to = 8010; } # Sunshine
       { from = 47998; to = 48000; }
     ];
-    allowedUDPPorts = [ 53 51820 ];
+    allowedUDPPorts = [ 53 51820 25565 19132];
   };
 
   networking.nat = {

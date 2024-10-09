@@ -2,7 +2,7 @@
 {
   nixpkgs = {
     overlays = [
-
+      "/home/mdot/dotfiles/home-manager/logseq.nix"
     ];
     config = {
       allowUnfree = true;
@@ -13,17 +13,16 @@
     };
   };
 
-  home.username = "mdot";
-  home.homeDirectory = "/home/mdot";
-  home.stateVersion = "23.11"; # Please read the comment before changing.
-  home.packages = with pkgs; [
-    # Creative Stuff
-      blender-hip
-      inkscape
-      krita
+home.username = "mdot";
+home.homeDirectory = "/home/mdot";
+home.stateVersion = "23.11"; # Please read the comment before changing.
+home.packages = with pkgs; [
+  # Creative Stuff
+    blender-hip
+    inkscape
+    krita
 
     # Game stuff
-
       alvr
 
     # TODO: Remove later and replace with dev shells
@@ -42,18 +41,19 @@
 
     # Keyboard
     #  python311Packages.west
-     # kicad
+     kicad
       # freecad
     libreoffice-qt
     nh
     element-desktop
+    yubikey-manager-qt
     qbittorrent
     vlc
     pureref
     libsForQt5.partitionmanager
+    kdePackages.qtwebsockets
     ungoogled-chromium
     vscodium
-    lunarvim
     filelight
     lazygit
     logseq
@@ -62,19 +62,21 @@
     obs-studio 
     unzip
     distrobox
-    prusa-slicer
     audacity
     kdenlive
     qtcreator
+    yt-dlp
+    tmux
+    krdc
   ] ++ [
     # pkgs-stable.cura 
     # pkgs-stable.prusa-slicer 
+    pkgs-stable.lunarvim
     pkgs-stable.prismlauncher
     pkgs-stable.freecad
-    pkgs-stable.jdk17
-    pkgs-stable.yt-dlg
+    pkgs-stable.jdk21
   ];
-
+  logseq.override { electron = pkgs.electron_27; };
   programs.firefox = {
     enable = true;
     policies = {
@@ -87,7 +89,7 @@
     profiles.mdot = {
       search = {
         force = true;
-        default = "Brave Search";
+        default = "DuckDuckGo";
         engines = {
           "Nix Packages" = {
             urls = [{
