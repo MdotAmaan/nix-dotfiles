@@ -1,13 +1,13 @@
 { pkgs, pkgs-stable,inputs, lib, config, ... }:
 {
   nixpkgs = {
-    overlays = [(
-      final: prev: {
-        logseq = prev.logseq.override {
-          electron = prev.electron_27;
-        };
-      }
-    )];
+    # overlays = [(
+    #   final: prev: {
+    #     logseq = prev.logseq.override {
+    #       electron = prev.electron_27;
+    #     };
+    #   }
+    # )];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
@@ -46,6 +46,7 @@ home.packages = with pkgs; [
     # Keyboard
     #  python311Packages.west
      kicad
+     hyperhdr
       # freecad
     libreoffice-qt
     nh
@@ -53,8 +54,8 @@ home.packages = with pkgs; [
     yubikey-manager-qt
     qbittorrent
     vlc
-    pureref
-    libsForQt5.partitionmanager
+    # pureref
+    kdePackages.partitionmanager
     kdePackages.qtwebsockets
     ungoogled-chromium
     vscodium
@@ -72,6 +73,7 @@ home.packages = with pkgs; [
     yt-dlp
     tmux
     krdc
+    orcaslicer
   ] ++ [
     # pkgs-stable.cura 
     # pkgs-stable.prusa-slicer 
