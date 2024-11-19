@@ -2,7 +2,7 @@
 {
   nixpkgs = {
     overlays = [
-      ./renderdoc-overlay.nix
+      ./renderdoc.nix
     ];
     config = {
       allowUnfree = true;
