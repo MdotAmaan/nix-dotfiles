@@ -1,13 +1,9 @@
-{ pkgs, pkgs-stable,inputs, lib, config, ... }:
+{ pkgs, pkgs-unstable,inputs, lib, config, ... }:
 {
   nixpkgs = {
-    # overlays = [(
-    #   final: prev: {
-    #     logseq = prev.logseq.override {
-    #       electron = prev.electron_27;
-    #     };
-    #   }
-    # )];
+    overlays = [
+      ./renderdoc-overlay.nix
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
@@ -22,36 +18,38 @@ home.homeDirectory = "/home/mdot";
 home.stateVersion = "23.11"; # Please read the comment before changing.
 home.packages = with pkgs; [
   # Creative Stuff
-    blender-hip
     inkscape
     krita
+    blender-hip
+    # kicad
+    freecad
+    audacity
+    kdenlive
+    renderdoc
 
-    # Game stuff
-      alvr
+  # Game stuff
+    alvr
+    prismlauncher
 
-    # TODO: Remove later and replace with dev shells
-      libcxxStdenv
-      clang-tools
-      clang
-      cmake
-      libgcc
-      android-tools
+  # TODO: Remove later and replace with dev shells
+    libcxxStdenv
+    clang-tools
+    clang
+    cmake
+    libgcc
+    android-tools
 
-    # Stuff for homelab
-      ansible
-      python311Packages.passlib
-      just
-      pwgen
+    lunarvim
+    zathura
+    texliveMedium
+    jdk21
 
     # Keyboard
     #  python311Packages.west
-     kicad
-     hyperhdr
-      # freecad
+    hyperhdr
     libreoffice-qt
     nh
     element-desktop
-    yubikey-manager-qt
     qbittorrent
     vlc
     # pureref
@@ -67,20 +65,15 @@ home.packages = with pkgs; [
     obs-studio 
     unzip
     distrobox
-    audacity
-    kdenlive
     qtcreator
     yt-dlp
     tmux
     krdc
-    orcaslicer
+
   ] ++ [
     # pkgs-stable.cura 
-    # pkgs-stable.prusa-slicer 
-    pkgs-stable.lunarvim
-    pkgs-stable.prismlauncher
-    pkgs-stable.freecad
-    pkgs-stable.jdk21
+    # pkgs-unstable.orca-slicer
+    # pkgs-unstable.kicad
   ];
   programs.firefox = {
     enable = true;

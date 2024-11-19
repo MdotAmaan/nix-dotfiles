@@ -125,6 +125,7 @@
     hunspell # dictionary
     zerotierone
     hunspellDicts.en_US
+    orca-slicer
     # fish stuff
     fish
     fishPlugins.autopair
@@ -209,16 +210,22 @@
 
   # Open ports in the firewall.
   networking.firewall = {
-    allowedTCPPorts = [ 53 47984 47989 47990 48010 25565 19132]; # Sunshine
+    extraCommands = ''
+    iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
+    iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
+    iptables -I INPUT -p udp -m udp --match multiport --dports 1990,2021 -j ACCEPT
+    '';
+    allowedTCPPorts = [ 53 47984 47989 47990 48010 25565 19132 8883 990 322 6000 123]; # Sunshine, Orcaslicer 
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect 
+      { from = 50000; to = 50100; } # Orcaslicer
     ]; 
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect 
       { from = 8000; to = 8010; } # Sunshine
       { from = 47998; to = 48000; }
     ];
-    allowedUDPPorts = [ 53 51820 25565 19132];
+    allowedUDPPorts = [ 53 51820 25565 19132 123];
   };
 
   networking.nat = {
@@ -234,54 +241,5 @@
       capabilities = "cap_sys_admin+p";
       source = "${pkgs.sunshine}/bin/sunshine";
   };
-# Enable WireGuard
-# wg-easy
-#  networking.wg-quick.interfaces = {
-#    wg0 = {
-#      address = [ "10.0.0.2/24" "fdc9:281f:04d7:9ee9::2/64" ];
-#      dns = [ "10.0.0.1" "fdc9:281f:04d7:9ee9::1" ];
-#      privateKeyFile = "MCLNgQQ5ShT2R9tSX0QBY28Qp314wgiUZa6BBCl9bXQ=";
-#      
-#      peers = [
-#        {
-#          publicKey = "QuOFuAyzDbKjiA87Asjff3VwBBlrEdb24wJQVHRU9nM=";
-#          presharedKeyFile = "cQl1s+99E/t/RBSLcMbTTU+ciEMp4utAKAqoJTF6JkI=";
-#          allowedIPs = [ "0.0.0.0/0" "::/0" ];
-#          endpoint = "t.amaanlab.com:51820";
-#          persistentKeepalive = 25;
-#        }
-#      ];
-#    };
-#  };
- # networking.wireguard.interfaces = {
- #   # "wg0" is the network interface name. You can name the interface arbitrarily.
- #   wg0 = {
- #     # Determines the IP address and subnet of the client's end of the tunnel interface.
- #     ips = [ "10.8.0.5/24" ];
- #     listenPort = 51820; # to match firewall allowedUDPPorts (without this wg uses random port numbers)
- # 
- #     privateKeyFile = "/root/wireguard-keys/privatekey";
- # 
- #     peers = [
- #       # For a client configuration, one peer entry for the server will suffice.
- # 
- #       {
- #         # Public key of the server (not a file path).
- #         publicKey = "QuOFuAyzDbKjiA87Asjff3VwBBlrEdb24wJQVHRU9nM";
- # 
- #         # Forward all the traffic via VPN.
- #         allowedIPs = [ "0.0.0.0/0" ];
- #         # Or forward only particular subnets
- #         #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
- # 
- #         # Set this to the server IP and port.
- #         endpoint = "t.amaanlab.com:51820"; # ToDo: route to endpoint not automatically configured https://wiki.archlinux.org/index.php/WireGuard#Loop_routing https://discourse.nixos.org/t/solved-minimal-firewall-setup-for-wireguard-client/7577
- # 
- #         # Send keepalives every 25 seconds. Important to keep NAT tables alive.
- #         persistentKeepalive = 25;
- #       }
- #     ];
- #   };
- # };
   system.stateVersion = "23.11"; 
 }
