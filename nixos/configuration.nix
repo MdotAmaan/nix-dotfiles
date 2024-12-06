@@ -3,7 +3,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.nix-minecraft.nixosModules.minecraft-servers
+      # inputs.nix-minecraft.nixosModules.minecraft-servers
     ];
   nix = let
     flakeInputs = lib.filterAttrs (_:lib.isType "flake") inputs;
@@ -24,7 +24,7 @@
 
   nixpkgs = {
     overlays = [
-      inputs.nix-minecraft.overlay
+      # inputs.nix-minecraft.overlay
     ];
     config = {
       allowUnfree = true;
@@ -125,7 +125,7 @@
     hunspell # dictionary
     zerotierone
     hunspellDicts.en_US
-    orca-slicer
+    # orca-slicer
     # fish stuff
     fish
     fishPlugins.autopair

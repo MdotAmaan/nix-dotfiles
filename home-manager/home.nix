@@ -2,7 +2,18 @@
 {
   nixpkgs = {
     overlays = [
-      ./renderdoc.nix
+      (final: prev: 
+      {
+        renderdoc = prev.renderdoc.overrideAttrs (old: {
+          version = "1.31";
+          src = prev.fetchFromGitHub {
+            owner = "baldurk";
+            repo = "renderdoc";
+            rev = "v1.31";
+            sha256 = "sha256-R9TMkq9bFRyA7oaPPp0zcUf+ovveLCcuxrm7EokyTbc=";
+          };
+        });
+      })
     ];
     config = {
       allowUnfree = true;
@@ -25,8 +36,10 @@ home.packages = with pkgs; [
     freecad
     audacity
     kdenlive
-    renderdoc
+    # renderdoc
+    orca-slicer
 
+    easyeffects
   # Game stuff
     alvr
     prismlauncher
