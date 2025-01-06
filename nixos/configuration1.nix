@@ -1,30 +1,26 @@
+{ inputs, lib, config, pkgs, pkgs-stable, ... }:
 {
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-{
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-  nix =
-    let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in
-    {
-      settings = {
-        experimental-features = "nix-command flakes";
-        nix-path = config.nix.nixPath;
-      };
-      channel.enable = false;
-
-      # Opinionated: make flake registry and nix path match flake inputs
-      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      # inputs.nix-minecraft.nixosModules.minecraft-servers
+    ];
+  nix = let
+    flakeInputs = lib.filterAttrs (_:lib.isType "flake") inputs;
+  in {
+    settings = {
+      experimental-features = "nix-command flakes";
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
     };
+    channel.enable = false;
+
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
 
   nixpkgs = {
     overlays = [
@@ -34,6 +30,7 @@
       allowUnfree = true;
     };
   };
+  
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -42,14 +39,16 @@
     libGL
     # Add missing dynamic libraries here instead of system
   ];
-
-  # Docker
+ 
+ # Docker
   virtualisation.docker.enable = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "dotPC"; # Define your hostname.
 
+  #TODO: remove later
+  hardware.keyboard.qmk.enable = true;
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -57,7 +56,7 @@
   hardware.bluetooth.powerOnBoot = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Dubai";
+  time.timeZone = "America/Detroit";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -101,17 +100,10 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.fish;
   users.users.mdot = {
     isNormalUser = true;
     description = "Amaan";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-      "adbusers"
-      "kvm"
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "kvm" "minecraft"];
     openssh.authorizedKeys.keys = [
       # SSH public Keys
     ];
@@ -130,12 +122,13 @@
     thunderbird
     kdePackages.kdeconnect-kde
     sunshine
-    orca-slicer
     hunspell # dictionary
+    zerotierone
     hunspellDicts.en_US
     # fish stuff
+    fish
     fishPlugins.autopair
-  ];
+  ]; 
 
   fonts.packages = with pkgs; [
     nerdfonts
@@ -143,94 +136,77 @@
     google-fonts
     vistafonts
   ];
-
+  
   programs.adb.enable = true;
 
-  programs.fish = {
-    enable = true;
-    shellAbbrs = {
-      ls = "ls -f";
-      nc = "lvim ~/dotfiles/.";
-      nco = "lvim ~/dotfiles/nixos/configuration.nix";
-      nch = "lvim ~/dotfiles/home-manager/home.nix";
-    };
-    interactiveShellInit = "set -U fish_greeting";
-  };
-
   programs.kdeconnect.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+    programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+   };
 
-  # programs.orca-slicer = {
-  #   enable = true;
-  #   openFirewall = true;
-  # };
+    programs.orca-slicer = {
+      enable = true;
+      openFirewall = true;
+    };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
+   programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+   };
 
   # Set fish as the default shell
-  # programs.bash = {
-  #   interactiveShellInit = ''
-  #     if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-  #     then
-  #       shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-  #       exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-  #     fi
-  #   '';
-  # };
+   programs.bash = {
+     interactiveShellInit = ''
+    if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+    then
+      shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+      exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+    fi
+    '';
+   };
 
   services.zerotierone = {
-    enable = true;
+    enable = false;
     localConf.settings.softwareUpdate = "disable";
   };
 
   services.sunshine = {
-    autoStart = true;
-    capSysAdmin = true;
+    autoStart = false;
     enable = true;
     openFirewall = true;
     applications.apps = [
       {
-        name = "Tab Session";
-        prep-cmd = [
-          {
-            do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1680x1050@160";
-            undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
-          }
-        ];
+        name = "Desktop";
         exclude-global-prep-cmd = "false";
         auto-detach = "true";
-      }      
+      }
       {
-        name = "Unscaled";
+        name = "Drawing";
+        prep-cmd = [
+          {
+            do = "''${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.HDMI-A-1.mode.2304x1440@120";
+            undo = "''${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.HDMI-A-1.mode.3440x1440@100";
+          }
+        ];
         exclude-global-prep-cmd = "false";
         auto-detach = "true";
       }
     ];
   };
 
-  # Flatpak applications
+  # Flatpak applications 
   services.flatpak = {
     enable = true;
     packages = [
       "io.mrarm.mcpelauncher" # Minecraft Bedrock Launcher
+      "com.ultimaker.cura" 
     ];
   };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.resolved.enable = true;
-
-  services.tailscale.enable = true;
-
-  # Enabled for Sunshine
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
 
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
@@ -239,46 +215,36 @@
 
   # Open ports in the firewall.
   networking.firewall = {
-    extraCommands = ''
-      iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
-      iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
-      iptables -I INPUT -p udp -m udp --match multiport --dports 1989,2021 -j ACCEPT
-    '';
-    checkReversePath = false; 
-   # extraStopCommands = ''
-   #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-   #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
-   # '';
-    allowedTCPPorts = [
-      53
-      25565
-      19132
+    # extraCommands = ''
+    # iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
+    # iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
+    # iptables -I INPUT -p udp -m udp --match multiport --dports 1990,2021 -j ACCEPT
+    # '';
+    allowedTCPPorts = [ 53 47984 47989 47990 48010 25565 19132 ]; # Sunshine, Orcaslicer 123 322 6000 8883 990
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect 
+      # { from = 50000; to = 50100; } # Orcaslicer
     ]; 
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect 
+      # { from = 8000; to = 8010; } # Sunshine
+      { from = 47998; to = 48000; }
     ];
-    allowedUDPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-    ];
-    allowedUDPPorts = [
-      53
-      51820
-      25565
-      19132
-    ]; 
+    allowedUDPPorts = [ 53 51820 25565 19132 ]; # 123 
   };
 
   networking.nat = {
     enable = true;
     enableIPv6 = true;
     externalInterface = "eth0";
+    internalInterfaces = [ "wg0" ];
   };
 
-  system.stateVersion = "23.11";
+  security.wrappers.sunshine = {
+      owner = "root";
+      group = "root";
+      capabilities = "cap_sys_admin+p";
+      source = "${pkgs.sunshine}/bin/sunshine";
+  };
+  system.stateVersion = "23.11"; 
 }

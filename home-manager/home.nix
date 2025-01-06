@@ -2,18 +2,18 @@
 {
   nixpkgs = {
     overlays = [
-      (final: prev: 
-      {
-        renderdoc = prev.renderdoc.overrideAttrs (old: {
-          version = "1.31";
-          src = prev.fetchFromGitHub {
-            owner = "baldurk";
-            repo = "renderdoc";
-            rev = "v1.31";
-            sha256 = "sha256-R9TMkq9bFRyA7oaPPp0zcUf+ovveLCcuxrm7EokyTbc=";
-          };
-        });
-      })
+      # (final: prev: 
+      # {
+      #   renderdoc = prev.renderdoc.overrideAttrs (old: {
+      #     version = "1.31";
+      #     src = prev.fetchFromGitHub {
+      #       owner = "baldurk";
+      #       repo = "renderdoc";
+      #       rev = "v1.31";
+      #       sha256 = "sha256-R9TMkq9bFRyA7oaPPp0zcUf+ovveLCcuxrm7EokyTbc=";
+      #     };
+      #   });
+      # })
     ];
     config = {
       allowUnfree = true;
@@ -37,8 +37,6 @@ home.packages = with pkgs; [
     audacity
     kdenlive
     # renderdoc
-    orca-slicer
-
     easyeffects
   # Game stuff
     alvr
@@ -52,7 +50,8 @@ home.packages = with pkgs; [
     libgcc
     android-tools
 
-    lunarvim
+    # lunarvim
+    neovide
     zathura
     texliveMedium
     jdk21
@@ -62,7 +61,9 @@ home.packages = with pkgs; [
     hyperhdr
     libreoffice-qt
     nh
+
     element-desktop
+
     qbittorrent
     vlc
     # pureref
@@ -87,15 +88,20 @@ home.packages = with pkgs; [
     # pkgs-stable.cura 
     # pkgs-unstable.orca-slicer
     # pkgs-unstable.kicad
+	pkgs-unstable.lunarvim
   ];
   programs.firefox = {
     enable = true;
     policies = {
       DontCheckDefaultBrowser = true;
       DisablePocket = true;
+      DisableFirefoxStudies = true;
       OfferToSaveLogins = false;
       DisableFirefoxScreenshots = true;
       NoDefaultBookmarks = true;
+      DNSOverHTTPS = {
+        Enabled = true;
+      };
     };
     profiles.mdot = {
       search = {
@@ -127,6 +133,7 @@ home.packages = with pkgs; [
       };
       settings = {
         "widget.use-xdg-desktop-portal.file-picker" = 1;
+        "browser.compactmode.show" = true;
       };
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
          bitwarden 
@@ -145,22 +152,13 @@ home.packages = with pkgs; [
     };
   };
 
-  programs.neovim = {
-    enable = true;
+  # programs.lazyvim = {
+  #   enable = true;
 
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
-
-  programs.fish = {
-      enable = true;
-      shellAbbrs = {
-        ls = "ls -f";
-        nc = "cd ~/dotfiles/ && lvim .";
-      };
-      interactiveShellInit = "set -U fish_greeting";
-  };
+  #   # viAlias = true;
+  #   # vimAlias = true;
+  #   # vimdiffAlias = true;
+  # };
 
   programs.starship = {
     enable = true;
@@ -184,23 +182,9 @@ home.packages = with pkgs; [
   };
   programs.plasma = {
     enable = true;
-  #  panels = [
-  #    {
-  #      location = "top";
-  #      widgets = [
-  #        {
-  #          name = "org.kde.plasma.kickoff";
-  #          config = {
-  #            General.icon = "nix-snowflake";
-  #          };
-  #        }
-  #        "org.kde.plasma.icontasks"
-  #        "org.kde.plasma.marginsseparator"
-  #        "org.kde.plasma.systemtray"
-  #        "org.kde.plasma.digitalclock"
-  #      ];
-  #    }
-  #  ];
+    kwin = {
+      # scripts.krohnkite.enable = true;
+    };
 
     workspace = {
       #iconTheme = "Papirus-Dark";
@@ -235,20 +219,6 @@ home.packages = with pkgs; [
       "kwin"."Switch Window Right" = "Meta+O";
       "kwin"."Switch Window Up" = "Meta+I";
 
-      # Polonium
-      # "kwin"."PoloniumInsertAbove" = "Meta+Up";
-      # "kwin"."PoloniumInsertBelow" = "Meta+Down";
-      # "kwin"."PoloniumInsertRight" = "Meta+Right";
-      # "kwin"."PoloniumInsertLeft" = "Meta+Left";
-      # "kwin"."PoloniumRetileWindow" = "Meta+H";
-
-      # Disable Polonium
-      "kwin"."PoloniumInsertAbove" = "";
-      "kwin"."PoloniumInsertBelow" = "";
-      "kwin"."PoloniumInsertRight" = "";
-      "kwin"."PoloniumInsertLeft" = "";
-      "kwin"."PoloniumRetileWindow" = "";
-
       # Karousel
       "kwin"."karousel-window-move-left" = "Meta+Left";
       "kwin"."karousel-window-move-down" = "Meta+Down";
@@ -257,6 +227,10 @@ home.packages = with pkgs; [
       "kwin"."karousel-column-width-decrease" = "Meta+[";
       "kwin"."karousel-column-width-increase" = "Meta+]";
       "kwin"."karousel-window-toggle-floating" = "Meta+W";
+      "kwin"."karousel-focus-end" = "Meta+/";
+      "kwin"."karousel-focus-start" = "Meta+H";
+      "kwin"."karousel-window-move-start" = "Meta+Home";
+      "kwin"."karousel-window-move-end" = "Meta+End";
 
       # Application Launchers
       "logseq.desktop"."_launch" = "Meta+L";
@@ -284,11 +258,7 @@ home.packages = with pkgs; [
 
   home.file = {
     #".config/nvim/".source = ./nvim;
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+
   };
 
   # Home Manager can also manage your environment variables through
@@ -303,7 +273,7 @@ home.packages = with pkgs; [
   #  /etc/profiles/per-user/mdot/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-     EDITOR = "nvim";
+     EDITOR = "lvim";
      FLAKE = "/home/mdot/dotfiles/";
   };
   # Let Home Manager install and manage itself.
