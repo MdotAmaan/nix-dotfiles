@@ -34,6 +34,7 @@
       enableExtraDiagnostics = true;
 
       nix.enable = true;
+      rust.enable = true;
       markdown.enable = true;
       bash.enable = true;
       clang.enable = true;
@@ -41,11 +42,11 @@
       html.enable = true;
       sql.enable = true;
       java.enable = true;
-      kotlin.enable = true;
+      # kotlin.enable = true;
       ts.enable = true;
       go.enable = true;
       lua.enable = true;
-      zig.enable = true;
+      # zig.enable = true;
       python.enable = true;
       typst.enable = true;
     };
