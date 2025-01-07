@@ -50,7 +50,7 @@
   } @ inputs: let inherit (self) outputs;
   in {
 
-    packges."x86_64-linux".default = 
+    packages."x86_64-linux".default = 
       (nvf.lib.neovimConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [./neovim/nvf-configuration.nix];
