@@ -3,13 +3,13 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Plasma Manager 
+    # Plasma Manager
     plasma-manager = {
       url = "github:pjones/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +20,7 @@
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak/?ref=v0.5.0";
     };
-    
+
     nvf.url = "github:notashelf/nvf";
 
     # Firefox addons
@@ -34,7 +34,6 @@
       url = "github:ezKEa/aagl-gtk-on-nix/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = {
@@ -47,14 +46,15 @@
     nix-flatpak,
     aagl,
     ...
-  } @ inputs: let inherit (self) outputs;
+  } @ inputs: let
+    inherit (self) outputs;
   in {
-
-    packages."x86_64-linux".default = 
+    packages."x86_64-linux".default =
       (nvf.lib.neovimConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [./neovim/nvf-configuration.nix];
-      }).neovim;
+      })
+      .neovim;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -66,7 +66,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           ./nixos/configuration.nix
           {
-            imports = [ aagl.nixosModules.default ];
+            imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
             programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
             programs.honkers-railway-launcher.enable = true;
@@ -91,6 +91,7 @@
         modules = [
           ./home-manager/home.nix
           inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.nvf.homeManagerModules.default
         ];
       };
     };

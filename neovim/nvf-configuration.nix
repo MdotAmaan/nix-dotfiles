@@ -1,12 +1,87 @@
-{ pkgs, lib, ... }: {
+{
   config.vim = {
-    theme.enable = true;
-    theme.name = "gruvbox";
-    theme.style = "dark";
+    viAlias = true;
+    vimAlias = true;
 
-    spellcheck = {
+    enableLuaLoader = true;
+    useSystemClipboard = true;
+    telescope.enable = true;
+
+    autopairs.nvim-autopairs.enable = true;
+
+    autocomplete.nvim-cmp.enable = true;
+    snippets.luasnip.enable = true;
+
+    treesitter.context.enable = true;
+
+    projects.project-nvim.enable = true;
+
+    notify.nvim-notify.enable = true;
+
+    theme = {
       enable = true;
+      name = "gruvbox";
+      style = "dark";
     };
+
+    visuals = {
+      nvim-scrollbar.enable = true;
+      nvim-web-devicons.enable = true;
+      nvim-cursorline.enable = true;
+      cinnamon-nvim.enable = true;
+      fidget-nvim.enable = true;
+
+      highlight-undo.enable = true;
+      indent-blankline.enable = true;
+    };
+
+    tabline = {
+      nvimBufferline.enable = true;
+    };
+
+    binds = {
+      cheatsheet.enable = true;
+      whichKey.enable = true;
+    };
+
+    keymaps = [
+      # Base Keybinds
+      {
+        key = "<C-s>";
+        mode = ["n"];
+        action = ":w<CR>";
+        silent = true;
+        desc = "Save file";
+      }
+      {
+        key = "<PageUp>";
+        mode = ["n"];
+        action = "<C-u>zz";
+        silent = true;
+        desc = "Go up half a page";
+      }
+      {
+        key = "<PageDown>";
+        mode = ["n"];
+        action = "<C-d>zz";
+        silent = true;
+        desc = "Go down half a page";
+      }
+      {
+        key = "<C-h>";
+        mode = ["n"];
+        action = ":nohlsearch<CR>";
+        silent = true;
+        desc = "Clear highlights";
+      }
+      {
+        key = "<leader>e";
+        mode = ["n"];
+        action = ":Neotree toggle<CR>";
+        silent = true;
+        desc = "Toggle Neo-tree";
+      }
+    ];
 
     lsp = {
       formatOnSave = true;
@@ -58,14 +133,12 @@
       };
     };
 
-    autopairs.nvim-autopairs.enable = true;
-
-    autocomplete.nvim-cmp.enable = true;
-    snippets.luasnip.enable = true;
-
     filetree = {
       neo-tree = {
         enable = true;
+        setupOpts = {
+          setupOpts.enable_cursor_hijack = true;
+        };
       };
     };
 
@@ -86,6 +159,7 @@
         enable = true;
         navbuddy.enable = true;
       };
+
       smartcolumn = {
         enable = true;
         setupOpts.custom_colorcolumn = {
@@ -99,8 +173,32 @@
       fastaction.enable = true;
     };
 
+    git = {
+      enable = true;
+      gitsigns.enable = true;
+    };
+
+    utility = {
+      ccc.enable = false;
+      vim-wakatime.enable = false;
+      icon-picker.enable = true;
+      surround.enable = true;
+      diffview-nvim.enable = true;
+      motion = {
+        hop.enable = true;
+        leap.enable = true;
+        precognition.enable = true;
+      };
+    };
+
     comments = {
-      comment-nvim.enable = true;
+      comment-nvim = {
+        enable = true;
+        mappings = {
+          toggleCurrentLine = "<leader>/";
+          toggleCurrentBlock = "<leader>\\";
+        };
+      };
     };
   };
 }
