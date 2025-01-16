@@ -44,6 +44,7 @@
     networkmanager.enable = true;
 
     firewall = {
+      # Enable multicast ports to discover local devices
       extraCommands = ''
         iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
         iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -92,7 +93,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Dubai";
+  time.timeZone = "America/Detroit";
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -205,13 +206,13 @@
       remotePlay.openFirewall = true;
     };
 
+    # Awaiting PR #362630
     # orca-slicer = {
     #   enable = true;
     #   openFirewall = true;
     # };
   };
 
-  # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -252,6 +253,9 @@
   ];
 
   fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     nerdfonts
     liberation_ttf
     google-fonts

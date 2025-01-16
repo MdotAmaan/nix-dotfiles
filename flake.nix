@@ -29,9 +29,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hoyoverse Launchers
+    # Hyvrse Launchers
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -44,12 +49,25 @@
     home-manager,
     plasma-manager,
     nix-flatpak,
+    nix-on-droid,
     aagl,
     ...
   } @ inputs: let
     inherit (self) outputs;
   in {
+    nixOnDroidConfigurations.dotTab = nix-on-droid.lib.nixOnDroidConfiguration {
+      modules = [./nix-on-droid/dotTab-configuration.nix];
+    };
+
+    # NVF-configured Neovim
     packages."x86_64-linux".default =
+      (nvf.lib.neovimConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [./neovim/nvf-configuration.nix];
+      })
+      .neovim;
+
+    packages."aarch64-linux".default =
       (nvf.lib.neovimConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [./neovim/nvf-configuration.nix];
