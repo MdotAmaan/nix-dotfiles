@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-unstable,
-  pkgs-pr,
   inputs,
   ...
 }: {
@@ -74,11 +73,11 @@
       ]
       ++ [
         pkgs-unstable.lunarvim
-        pkgs-pr.alvr
+        # pkgs-unstable.alvr
       ];
 
     sessionVariables = {
-      EDITOR = "lvim";
+      EDITOR = "neovide";
       FLAKE = "/home/mdot/dotfiles/";
     };
   };
@@ -164,14 +163,67 @@
             "gapsOuterLeft" = 9;
             "gapsOuterRight" = 9;
             "gapsOuterTop" = 9;
-            "manualResizeStep" = 9;
+            "manualResizeStep" = 300;
 
-            "windowRules" = ''[\n    {\n        "class": "ksmserver-logout-greeter",\n        "tile": false\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?plasmashell",\n        "tile": false\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?kded6",\n        "tile": false\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?kcalc",\n        "tile": false\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?kfind",\n        "tile": true\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?kruler",\n        "tile": false\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?krunner",\n        "tile": false\n    },\n    {\n        "class": "(org\\\\.kde\\\\.)?yakuake",\n        "tile": false\n    },\n    {\n        "class": "zoom",\n        "caption": "Zoom Cloud Meetings|zoom|zoom <2>",\n        "tile": false\n    },\n    {\n        "class": "jetbrains-idea",\n        "caption": "splash",\n        "tile": false\n    },\n    {\n        "class": "jetbrains-studio",\n        "caption": "splash",\n        "tile": false\n    },\n    {\n        "class": "jetbrains-idea",\n        "caption": "Unstash Changes|Paths Affected by stash@.*",\n        "tile": true\n    },\n    {\n        "class": "jetbrains-studio",\n        "caption": "Unstash Changes|Paths Affected by stash@.*",\n        "tile": true\n    },\n    {\n        "class": "moe.launcher.the-honkers-railway-launcher",\n        "title": false\n    },\n    {\n        "class": "moe.launcher.an-anime-game-launcher",\n        "title": false\n    },\n    {\n        "class": "io.mrarm.mcpelauncher-ui-qt",\n        "title": false\n    },\n    {\n        "class": "firefox",\n        "caption": "Picture-in-Picture",\n        "title": true\n    },\n    {\n        "class": "plasma-emojier org.kde.plasma.emojier",\n        "caption": "Picture-in-Picture",\n        "title": true\n    }\n]'';
+            "windowRules" = ''                 
+              [{        
+                "class": "ksmserver-logout-greeter",
+                "tile": false
+              },
+              {
+                "class": "org.kde.plasmashell",
+                "tile": false
+              },
+              {        
+                "class": "org.kde.kded6",
+                "tile": false
+              },
+              {
+                "class": "org.kde.kcalc",
+                "tile": false
+              },
+              {
+                "class": "org.kde.kfind",
+                "tile": true
+              },
+              {
+                "class": "org.kde.kruler",
+                "tile": false
+              },
+              {
+                "class": "org.kde.krunner",
+                "tile": false
+              },
+              {
+                "class": "org.kde.yakuake",
+                "tile": false
+              },
+              {
+                "class": "moe.launcher.the-honkers-railway-launcher",
+                "tile": false
+              },
+              {
+                "class": "moe.launcher.an-anime-game-launcher",
+                "tile": false
+              },
+              {
+                "class": "io.mrarm.mcpelauncher-ui-qt",
+                "tile": false
+              },
+              {
+                "class": "firefox",
+                "caption": "Picture-in-Picture",
+                "tile": false
+              },    
+              {
+                "class": "org.kde.plasma.emojier",
+                "tile": false 
+              }]'';
           };
-
-          "kdeglobals"."KDE"."SingleClick" = "false"; # Double click to open
-          "kscreenlockerrc"."Daemon"."Timeout" = 20; # Set screen timeout to 20 minutes
         };
+
+        "kdeglobals"."KDE"."SingleClick" = "false"; # Double click to open
+        "kscreenlockerrc"."Daemon"."Timeout" = 20; # Set screen timeout to 20 minutes
       };
     };
 
@@ -266,6 +318,18 @@
               mkdir $DIR
              }}
         '';
+      };
+
+      keybindings = {
+        D = "trash";
+        <delete> = "trash";
+        gh = "cd ~";
+        r = "push :rename<space>";
+        nd = "push :mkdir<space>";
+        nf = " push :mkfile<space>";
+        o = "&mimeopen $f";
+        O = " $mimeopen --ask $f";
+        xt = "extract";
       };
     };
   };
