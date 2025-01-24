@@ -8,44 +8,21 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./default.nix
+    ../../nixos/default.nix
   ];
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      nix-path = config.nix.nixPath;
-    };
-    channel.enable = false;
+  config = {
+    alvr.enable = true;
+    sunshine.enable = true;
+    zerotier.enable = false;
+    tailscale.enable = true;
+  };
 
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
-  nixpkgs = {
-    overlays = [
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
   # Docker
   virtualisation.docker.enable = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPatches = [
-  #   {
-  #     name = "amdgpu-ignore-ctx-privileges";
-  #     patch = pkgs.fetchpatch {
-  #       name = "cap_sys_nice_begone.patch";
-  #       url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
-  #       hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
-  #     };
-  #   }
-  # ];
 
   networking = {
     hostName = "dotPC";
@@ -60,10 +37,6 @@
         iptables -I INPUT -p udp -m udp --match multiport --dports 1989,2021 -j ACCEPT
       '';
       checkReversePath = false;
-      # extraStopCommands = ''
-      #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-      #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
-      # '';
       allowedTCPPorts = [
         9943
         9944
@@ -108,19 +81,6 @@
   # Set your time zone.
   time.timeZone = "America/Detroit";
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
 
   services = {
     xserver = {
@@ -137,47 +97,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-    };
-
-    sunshine = {
-      autoStart = true;
-      capSysAdmin = true;
-      enable = true;
-      openFirewall = true;
-      applications.apps = [
-        {
-          name = "Tab Session";
-          prep-cmd = [
-            {
-              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1680x1050@160";
-              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
-            }
-          ];
-          exclude-global-prep-cmd = "false";
-          auto-detach = "true";
-        }
-        {
-          name = "Unscaled";
-          exclude-global-prep-cmd = "false";
-          auto-detach = "true";
-        }
-      ];
-    };
-    avahi.publish.enable = true;
-    avahi.publish.userServices = true;
-
-    zerotierone = {
-      enable = false;
-      localConf.settings.softwareUpdate = "disable";
-    };
-
-    tailscale.enable = true;
-
-    flatpak = {
-      enable = true;
-      packages = [
-        "io.mrarm.mcpelauncher" # Minecraft Bedrock Edition Launcher
-      ];
     };
 
     openssh.enable = true;
@@ -213,22 +132,6 @@
 
     adb.enable = true;
     kdeconnect.enable = true;
-
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-    };
-
-    # alvr = {
-    # enable = true;
-    # openFirewall = true;
-    #};
-
-    # Awaiting PR #362630
-    # orca-slicer = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
   };
 
   hardware.pulseaudio.enable = false;
@@ -243,26 +146,13 @@
     fd
     sshfs
     cargo
-    firefox
     thunderbird
     kdePackages.kdeconnect-kde
-    sunshine
     orca-slicer
     hunspell # dictionary
     hunspellDicts.en_US
     # fish stuff
     fishPlugins.autopair
-  ];
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    nerdfonts
-    fira-code
-    liberation_ttf
-    google-fonts
-    vistafonts
   ];
 
   systemd.targets = {

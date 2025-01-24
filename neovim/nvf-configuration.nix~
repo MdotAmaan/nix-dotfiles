@@ -1,4 +1,4 @@
-{
+{nvf, ...}: {
   config.vim = {
     viAlias = true;
     vimAlias = true;
@@ -8,6 +8,7 @@
     telescope.enable = true;
 
     undoFile.enable = true;
+    undoFile.path = mkLuaInline "os.getenv('XDG_DATA_HOME') .. '/nvf/undo'";
     autopairs.nvim-autopairs.enable = true;
 
     autocomplete.nvim-cmp.enable = true;
@@ -152,6 +153,7 @@
       # zig.enable = true;
       python.enable = true;
       typst.enable = true;
+      dart.enable = true;
     };
 
     statusline = {

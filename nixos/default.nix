@@ -1,13 +1,16 @@
 {
   inputs,
-  lib,
   config,
   pkgs,
   ...
 }: {
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
+  imports = [
+    ./programs/default.nix
+    ./services/default.nix
+    ./fonts.nix
+  ];
+
+  nix = {
     settings = {
       experimental-features = "nix-command flakes";
       nix-path = config.nix.nixPath;
@@ -15,7 +18,7 @@
     channel.enable = false;
   };
 
-  users.defaultUserShell = pkgs.fish;
+  users.defaultUserShell = pkgs.zsh;
   users.users.mdot = {
     isNormalUser = true;
     description = "Amaan";
@@ -37,5 +40,19 @@
     config = {
       allowUnfree = true;
     };
+  };
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
   };
 }

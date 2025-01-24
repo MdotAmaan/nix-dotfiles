@@ -8,6 +8,7 @@
     telescope.enable = true;
 
     undoFile.enable = true;
+    undoFile.path = mkLuaInline "os.getenv('XDG_DATA_HOME') .. '/nvf/undo'";
     autopairs.nvim-autopairs.enable = true;
 
     autocomplete.nvim-cmp.enable = true;
