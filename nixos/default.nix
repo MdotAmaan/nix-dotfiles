@@ -55,4 +55,18 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
+
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/mdot/dotfiles/";
+    };
+  };
 }

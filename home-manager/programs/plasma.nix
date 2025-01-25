@@ -88,7 +88,7 @@
             "gapsOuterTop" = 9;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                 
+            "windowRules" = ''               
               [{        
                 "class": "ksmserver-logout-greeter",
                 "tile": false

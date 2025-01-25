@@ -1,22 +1,17 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../nixos/default.nix
   ];
 
-  config = {
-    alvr.enable = true;
-    sunshine.enable = true;
-    zerotier.enable = false;
-    tailscale.enable = true;
-  };
+  # Custom Modules
+  sunshine.enable = true;
+  zerotier.enable = false;
+  tailscale.enable = true;
+
+  orca-slicer.enable = false;
+
+  alvr.enable = false;
 
   # Docker
   virtualisation.docker.enable = true;
@@ -125,11 +120,6 @@
       interactiveShellInit = "set -u fish_greeting";
     };
 
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-
     adb.enable = true;
     kdeconnect.enable = true;
   };
@@ -150,8 +140,6 @@
     orca-slicer
     hunspell # dictionary
     hunspellDicts.en_US
-    # fish stuff
-    fishPlugins.autopair
   ];
 
   systemd.targets = {

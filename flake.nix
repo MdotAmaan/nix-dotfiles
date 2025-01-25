@@ -5,7 +5,6 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
-    nixpkgs-pr.url = "github:cything/nixpkgs/alvr";
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +44,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-pr,
     nixpkgs-unstable,
     nvf,
     home-manager,
@@ -58,7 +56,7 @@
     inherit (self) outputs;
   in {
     nixOnDroidConfigurations.dotTab = nix-on-droid.lib.nixOnDroidConfiguration {
-      modules = [./nix-on-droid/dotTab-configuration.nix];
+      modules = [./hosts/sm-x710/dotTab-configuration.nix];
     };
 
     # NVF-configured Neovim
@@ -71,7 +69,7 @@
 
     packages."aarch64-linux".default =
       (nvf.lib.neovimConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        pkgs = nixpkgs.legacyPackages."aarch64-linux";
         modules = [./neovim/nvf-configuration.nix];
       })
       .neovim;
@@ -84,7 +82,24 @@
         # > Our main nixos configuration file <
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
-          ./nixos/configuration.nix
+          ./nixos/default.nix
+          ./hosts/dotPC/configuration.nix
+          {
+            imports = [aagl.nixosModules.default];
+            nix.settings = aagl.nixConfig; # Set up Cachix
+            programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+            programs.honkers-railway-launcher.enable = true;
+          }
+        ];
+      };
+
+      dotFW = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        # > Our main nixos configuration file <
+        modules = [
+          nix-flatpak.nixosModules.nix-flatpak
+          ./nixos/default.nix
+          ./hosts/framework-13/configuration.nix
           {
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
@@ -106,31 +121,34 @@
             system = "x86_64-linux";
             config.allowUnfree = true;
             overlays = [
-              (final: prev: {
-                alvr = prev.alvr.overrideAttrs (old: {
-                  version = "20.12.0";
-                  src = prev.fetchFromGitHub {
-                    owner = "alvr-org";
-                    repo = "ALVR";
-                    rev = "v20.12.0";
-                    fetchSubmodules = true;
-                    hash = "sha256-4tilgZCUY5PehR0SQDOBahLaPVH4n5cgE7Ghw+SCgQk=";
-                  };
-                  cargoLock = null;
-                  useFetchCargoVendor = true;
-                  cargoHash = "sha256-ocwNVdozZeF0hYDhYMshSbRHKfBFawIcO7UbTwk10xc=";
-                });
-              })
             ];
           };
-          pkgs-pr = import nixpkgs-pr {
+        };
+
+        # > Our main home-manager configuration file <
+        modules = [
+          ./home-manager/default.nix
+          ./hosts/dotPC/home.nix
+          inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.nvf.homeManagerModules.default
+        ];
+      };
+
+      "mdot@dotFW" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          pkgs-unstable = import nixpkgs-unstable {
             system = "x86_64-linux";
             config.allowUnfree = true;
+            overlays = [
+            ];
           };
         };
         # > Our main home-manager configuration file <
         modules = [
-          ./home-manager/home.nix
+          ./home-manager/default.nix
+          ./hosts/dotFW/home.nix
           inputs.plasma-manager.homeManagerModules.plasma-manager
           inputs.nvf.homeManagerModules.default
         ];

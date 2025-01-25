@@ -1,12 +1,13 @@
 {
   pkgs,
   # pkgs-unstable,
+  config,
   ...
 }: {
   home = {
     username = "mdot";
     homeDirectory = "/home/mdot";
-    stateVersion = "23.11";
+    stateVersion = "24.11";
 
     packages = with pkgs; [
       inkscape
@@ -18,7 +19,6 @@
       anytype
 
       kdenlive
-      easyeffects
       # Game stuff
       prismlauncher
 
@@ -35,7 +35,6 @@
       jdk21
       #  python311Packages.west
       thunderbird
-      hyperhdr
       libreoffice-qt
       element-desktop
       qbittorrent
@@ -50,7 +49,6 @@
       nextcloud-client
       fastfetch
       obs-studio
-      libcap
       unzip
       distrobox
       yt-dlp
@@ -68,8 +66,11 @@
     };
   };
 
-  programs = {
-  };
+  programs =
+    {
+    }
+    // config.programs;
+
   # Services
   services.syncthing.enable = true;
 }
