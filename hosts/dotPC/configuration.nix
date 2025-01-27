@@ -125,7 +125,6 @@
     fd
     sshfs
     cargo
-    kdePackages.kdeconnect-kde
     orca-slicer
     hunspell # dictionary
     hunspellDicts.en_US

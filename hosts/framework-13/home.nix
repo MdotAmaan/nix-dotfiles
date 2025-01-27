@@ -59,11 +59,9 @@
       yt-dlp
       tmux
       krdc
-      kitty
     ];
     # ++ [
     #   pkgs-unstable.lunarvim
-    #   # pkgs-unstable.alvr
     # ];
 
     sessionVariables = {
