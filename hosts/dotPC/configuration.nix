@@ -20,7 +20,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
-    hostName = "dotPC";
+    hostName = "dotFW";
     networkmanager.enable = true;
 
     firewall = {

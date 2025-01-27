@@ -10,6 +10,7 @@
       background_opacity = 0.75;
       background_blur = 2;
     };
+
     environment = {
       "DEFAULT_USER" = "mdot";
     };

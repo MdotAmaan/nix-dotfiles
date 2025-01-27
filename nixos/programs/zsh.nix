@@ -7,7 +7,7 @@
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = ["git" "thefuck"];
+      plugins = ["git" "thefuck" "autojump"];
       theme = "agnoster";
     };
   };
@@ -18,5 +18,6 @@
 
   environment.systemPackages = with pkgs; [
     thefuck
+    autojump
   ];
 }
