@@ -141,7 +141,7 @@
         # > Our main home-manager configuration file <
         modules = [
           ./home-manager/default.nix
-          ./hosts/dotFW/home.nix
+          ./hosts/framework-13/home.nix
           inputs.plasma-manager.homeManagerModules.plasma-manager
           inputs.nvf.homeManagerModules.default
         ];
