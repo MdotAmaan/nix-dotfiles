@@ -67,13 +67,6 @@
       })
       .neovim;
 
-    packages."aarch64-linux".default =
-      (nvf.lib.neovimConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-linux";
-        modules = [./neovim/nvf-configuration.nix];
-      })
-      .neovim;
-
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {

@@ -9,7 +9,7 @@
   zerotier.enable = false;
   tailscale.enable = true;
 
-  orca-slicer.enable = false;
+  # orca-slicer.enable = false;
 
   alvr.enable = false;
 

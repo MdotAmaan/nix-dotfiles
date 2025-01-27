@@ -4,7 +4,7 @@
     ./programs/neovim.nix
     ./programs/firefox.nix
     ./programs/lf/lf.nix
-    ./programs/zsh.nix
+    ./programs/kitty.nix
   ];
 
   nixpkgs = {
@@ -30,10 +30,9 @@
         init.defaultBranch = "main";
       };
     };
-  };
-
-  starship = {
-    enable = true;
+    starship = {
+      enable = true;
+    };
   };
 
   systemd.user.startServices = "sd-switch";

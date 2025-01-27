@@ -8,8 +8,8 @@
   sunshine.enable = true;
   zerotier.enable = false;
   tailscale.enable = true;
-
-  orca-slicer.enable = false;
+  steam.enable = true;
+  # orca-slicer.enable = false;
 
   alvr.enable = false;
 
@@ -108,17 +108,6 @@
       libGL
       # add missing dynamic libraries here instead of system
     ];
-
-    fish = {
-      enable = true;
-      shellAbbrs = {
-        ls = "ls -f";
-        nc = "nvim ~/dotfiles/.";
-        nco = "nvim ~/dotfiles/nixos/configuration.nix";
-        nch = "nvim ~/dotfiles/home-manager/home.nix";
-      };
-      interactiveShellInit = "set -u fish_greeting";
-    };
 
     adb.enable = true;
     kdeconnect.enable = true;

@@ -8,7 +8,8 @@
   };
 
   config = lib.mkIf config.neovim.enable {
-    home.sessionVariables = {EDITOR = "neovide";} // (config.home.sessionVariables or {});
+    # TODO: Figure out a way to append session variables via modules
+    # home.sessionVariables = {EDITOR = "neovide";} // config.home.sessionVariables;
 
     programs = {
       neovide = {
@@ -21,7 +22,7 @@
 
       nvf = {
         enable = true;
-        settings = import ../neovim/nvf-configuration.nix;
+        settings = import ../../neovim/nvf-configuration.nix;
       };
     };
   };

@@ -3,6 +3,10 @@
   # pkgs-unstable,
   ...
 }: {
+  plasma.enable = true;
+  neovim.enable = true;
+  firefox.enable = true;
+
   home = {
     username = "mdot";
     homeDirectory = "/home/mdot";
@@ -47,6 +51,7 @@
       filelight
       lazygit
       logseq
+      obsidian
       nextcloud-client
       fastfetch
       obs-studio
@@ -56,7 +61,6 @@
       yt-dlp
       tmux
       krdc
-      kitty
     ];
     # ++ [
     #   pkgs-unstable.lunarvim
@@ -65,11 +69,11 @@
 
     sessionVariables = {
       FLAKE = "/home/mdot/dotfiles/";
+      EDITOR = "neovide";
+      OBSIDIAN_USE_WAYLAND = 1;
     };
   };
 
-  programs = {
-  };
   # Services
   services.syncthing.enable = true;
 }

@@ -4,6 +4,10 @@
   config,
   ...
 }: {
+  neovim.enable = true;
+  firefox.enable = true;
+  plasma.enable = true;
+
   home = {
     username = "mdot";
     homeDirectory = "/home/mdot";
@@ -46,6 +50,7 @@
       filelight
       lazygit
       logseq
+      obsidian
       nextcloud-client
       fastfetch
       obs-studio

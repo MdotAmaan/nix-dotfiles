@@ -1,6 +1,9 @@
 {
-  services.flatpak.packages = [
-    "com.usebottles.bottles"
-    "io.mrarm.mcpelauncher"
-  ];
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "com.usebottles.bottles"
+      "io.mrarm.mcpelauncher"
+    ];
+  };
 }
