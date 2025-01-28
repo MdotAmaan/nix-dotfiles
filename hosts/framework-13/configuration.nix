@@ -68,6 +68,12 @@
   };
 
   hardware = {
+    framework = {
+      enableKmod = true;
+      # TODO: Remove after kernel 6.7
+      amd-7040.preventWakeOnAC = true;
+    };
+
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
   };
@@ -77,6 +83,8 @@
   # Select internationalisation properties.
 
   services = {
+    fwupd.enable = true;
+
     xserver = {
       enable = true;
       xkb.layout = "us";

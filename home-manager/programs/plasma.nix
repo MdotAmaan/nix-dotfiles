@@ -66,7 +66,7 @@
         # Application Launchers
         "logseq.desktop"."_launch" = "Meta+L";
         "firefox.desktop"."_launch" = "Meta+F";
-        "services/org.kde.konsole.desktop"."_launch" = "Meta+T";
+        "services/kitty.desktop"."_launch" = "Meta+T";
         "org.kde.dolphin.desktop"."_launch" = "Meta+X";
         "systemsettings.desktop"."_launch" = ["Tools" "Meta+S"];
         "thunderbird.desktop"."_launch" = "Meta+C";
@@ -88,7 +88,7 @@
             "gapsOuterTop" = 9;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''             
+            "windowRules" = ''                         
               [{        
                 "class": "ksmserver-logout-greeter",
                 "tile": false

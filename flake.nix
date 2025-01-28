@@ -16,6 +16,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Declarative Flatpaks
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak/?ref=v0.5.0";
@@ -44,6 +49,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixos-hardware,
     nixpkgs-unstable,
     nvf,
     home-manager,
@@ -91,8 +97,10 @@
         # > Our main nixos configuration file <
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
+          nixos-hardware.nixosModules.framework-13-inch-7040-amd
           ./nixos/default.nix
           ./hosts/framework-13/configuration.nix
+
           {
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
