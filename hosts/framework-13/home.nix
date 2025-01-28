@@ -40,6 +40,7 @@
       #  python311Packages.west
       thunderbird
       libreoffice-qt
+      ksshaskpass
       element-desktop
       qbittorrent
       vlc

@@ -55,10 +55,19 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
+  environment.variables = {
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
+
   programs = {
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
+      # enableSSHSupport = true;
+    };
+    ssh = {
+      startAgent = true;
+      enableAskPassword = true;
+      askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
     };
 
     nh = {
