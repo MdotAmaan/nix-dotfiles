@@ -65,14 +65,9 @@
     # ];
 
     sessionVariables = {
-      FLAKE = "/home/mdot/dotfiles/";
+      FLAKE = "/home/mdot/nix-dotfiles/";
     };
   };
-
-  programs =
-    {
-    }
-    // config.programs;
 
   # Services
   services.syncthing.enable = true;

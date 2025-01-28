@@ -16,8 +16,38 @@
   # Docker
   virtualisation.docker.enable = true;
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    plymouth = {
+      enable = true;
+      # theme = "rings";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        breeze-plymouth
+      ];
+    };
+
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
 
   networking = {
     hostName = "dotFW";
@@ -71,7 +101,7 @@
     framework = {
       enableKmod = true;
       # TODO: Remove after kernel 6.7
-      amd-7040.preventWakeOnAC = true;
+      #amd-7040.preventWakeOnAC = true;
     };
 
     bluetooth.enable = true;
@@ -93,6 +123,8 @@
 
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
+    # displayManager.autoLogin.enable = true;
+    # displayManager.autoLogin.user = "mdot";
 
     pipewire = {
       enable = true;
@@ -141,5 +173,5 @@
     hybrid-sleep.enable = false;
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
 }

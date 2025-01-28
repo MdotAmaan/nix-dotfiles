@@ -18,7 +18,6 @@
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Declarative Flatpaks
@@ -97,7 +96,7 @@
         # > Our main nixos configuration file <
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
-          nixos-hardware.nixosModules.framework-13-inch-7040-amd
+          nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/default.nix
           ./hosts/framework-13/configuration.nix
 
