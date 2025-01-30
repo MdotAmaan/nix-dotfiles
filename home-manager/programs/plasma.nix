@@ -75,7 +75,7 @@
 
       configFile = {
         "kwinrc" = {
-          "Desktops"."Number"."value" = 8;
+          "Desktops"."Number"."value" = 6;
           "Windows"."FocusPolicy" = "FocusFollowsMouse";
           "Windows"."NextFocusPrefersMouse" = "true";
 
@@ -88,7 +88,7 @@
             "gapsOuterTop" = 9;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                         
+            "windowRules" = ''                       
               [{        
                 "class": "ksmserver-logout-greeter",
                 "tile": false
