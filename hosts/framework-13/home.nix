@@ -20,7 +20,6 @@
       # kicad
       freecad
       audacity
-      anytype
 
       kdenlive
       # Game stuff

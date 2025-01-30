@@ -75,9 +75,10 @@
 
   # Set your time zone.
   time.timeZone = "America/Detroit";
-  # Select internationalisation properties.
 
   services = {
+    fwupd.enable = true;
+    power-profiles-daemon.enable = true;
     xserver = {
       enable = true;
       xkb.layout = "us";

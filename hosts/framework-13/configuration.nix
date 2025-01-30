@@ -160,17 +160,17 @@
     fd
     sshfs
     cargo
-    kdePackages.kdeconnect-kde
     orca-slicer
+    bitwarden-desktop
     hunspell # dictionary
     hunspellDicts.en_US
   ];
 
   systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
+    # sleep.enable = false;
+    # suspend.enable = false;
+    # hibernate.enable = false;
+    # hybrid-sleep.enable = false;
   };
 
   system.stateVersion = "24.11";
