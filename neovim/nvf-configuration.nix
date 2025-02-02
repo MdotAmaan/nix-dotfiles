@@ -25,15 +25,11 @@
       shiftwidth = 2;
     };
 
-    # luaConfigPre = ''
-    #   if vim.g.neovide then
-    #       vim.keymap.set({ "n", "v" }, "<C-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
-    #       vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
-    #       vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
-    #
-    #       vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-    #   end
-    # '';
+    luaConfigPre = ''
+      if vim.g.neovide then
+        vim.g.neovide_scale_factor = 0.9
+      end
+    '';
 
     theme = {
       enable = true;

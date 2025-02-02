@@ -3,7 +3,9 @@
   # pkgs-unstable,
   config,
   ...
-}: {
+}: let
+  host = "dotFW";
+in {
   neovim.enable = true;
   firefox.enable = true;
   plasma.enable = true;
