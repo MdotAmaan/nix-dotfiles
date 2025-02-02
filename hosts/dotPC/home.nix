@@ -1,6 +1,6 @@
 {
   pkgs,
-  # pkgs-unstable,
+  pkgs-unstable,
   ...
 }: {
   plasma.enable = true;
