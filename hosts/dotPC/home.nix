@@ -62,9 +62,10 @@
         yt-dlp
         tmux
         krdc
+        orca-slicer
       ]
       ++ [
-        pkgs-unstable.orca-slicer
+        # pkgs-unstable.orca-slicer
         #   # pkgs-unstable.alvr
       ];
 
