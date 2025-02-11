@@ -6,6 +6,7 @@
 
   # Custom Modules
   sunshine.enable = false;
+  steam.enable = true;
   zerotier.enable = false;
   tailscale.enable = true;
 
@@ -54,7 +55,7 @@
     networkmanager.enable = true;
 
     firewall = {
-      enable = false;
+      enable = true;
       # Enable multicast ports to discover local devices
       extraCommands = ''
         iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -99,7 +100,7 @@
 
   hardware = {
     framework = {
-      enableKmod = true;
+      # enableKmod = true;
       # TODO: Remove after kernel 6.7
       #amd-7040.preventWakeOnAC = true;
     };
@@ -165,13 +166,6 @@
     hunspell # dictionary
     hunspellDicts.en_US
   ];
-
-  systemd.targets = {
-    # sleep.enable = false;
-    # suspend.enable = false;
-    # hibernate.enable = false;
-    # hybrid-sleep.enable = false;
-  };
 
   system.stateVersion = "24.11";
 }
