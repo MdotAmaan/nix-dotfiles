@@ -1,4 +1,8 @@
-{...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./programs/plasma.nix
     ./programs/neovim.nix

@@ -150,7 +150,7 @@
       # zig.enable = true;
       python.enable = true;
       typst.enable = true;
-      dart.enable = true;
+      # dart.enable = true;
     };
 
     statusline = {

@@ -16,6 +16,8 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    lightly.url = "github:Bali10050/Darkly";
+
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };

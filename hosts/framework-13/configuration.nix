@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -153,6 +157,9 @@
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
+    inputs.lightly.packages.${pkgs.system}.darkly-qt5
+    inputs.lightly.packages.${pkgs.system}.darkly-qt6
+    libsForQt5.qt5ct
     git
     wget
     wl-clipboard
