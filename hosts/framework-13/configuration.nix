@@ -168,7 +168,6 @@
     fd
     sshfs
     cargo
-    orca-slicer
     bitwarden-desktop
     hunspell # dictionary
     hunspellDicts.en_US
