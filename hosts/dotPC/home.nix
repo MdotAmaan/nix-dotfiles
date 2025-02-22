@@ -21,9 +21,8 @@
         freecad
         audacity
         anytype
-
+        localsend
         kdenlive
-        easyeffects
         # Game stuff
         prismlauncher
 
@@ -53,7 +52,7 @@
         lazygit
         logseq
         obsidian
-        nextcloud-client
+        # nextcloud-client
         fastfetch
         obs-studio
         libcap
@@ -62,11 +61,11 @@
         yt-dlp
         tmux
         krdc
-        orca-slicer
+        # orca-slicer
       ]
       ++ [
-        # pkgs-unstable.orca-slicer
-        #   # pkgs-unstable.alvr
+        pkgs-unstable.orca-slicer
+        # pkgs-unstable.seafile-client
       ];
 
     sessionVariables = {

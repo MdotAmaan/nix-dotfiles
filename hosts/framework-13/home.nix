@@ -22,6 +22,7 @@ in {
       # kicad
       freecad
       audacity
+      localsend
 
       kdenlive
       # Game stuff
