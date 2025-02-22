@@ -157,8 +157,8 @@
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
-    inputs.lightly.packages.${pkgs.system}.darkly-qt5
-    inputs.lightly.packages.${pkgs.system}.darkly-qt6
+    # inputs.lightly.packages.${pkgs.system}.darkly-qt5
+    # inputs.lightly.packages.${pkgs.system}.darkly-qt6
     libsForQt5.qt5ct
     git
     wget
