@@ -72,6 +72,7 @@
         9944
         53
         25565
+        53317 # Localsend
         19132
       ];
       allowedTCPPortRanges = [
@@ -91,6 +92,7 @@
         9944
         53
         51820
+        53317 # Localsend
         25565
         19132
       ];
