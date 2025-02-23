@@ -3,6 +3,7 @@
   pkgs-unstable,
   ...
 }: {
+  # Custom Modules
   plasma.enable = true;
   neovim.enable = true;
   firefox.enable = true;
@@ -21,7 +22,6 @@
         freecad
         audacity
         anytype
-        localsend
         kdenlive
         # Game stuff
         prismlauncher

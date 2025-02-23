@@ -13,51 +13,44 @@
 
   alvr.enable = false;
 
-  # Docker
-  virtualisation.docker.enable = true;
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  virtualisation.docker.enable = true;
 
   networking = {
     hostName = "dotPC";
     networkmanager.enable = true;
 
     firewall = {
-      enable = false;
+      enable = true;
       # Enable multicast ports to discover local devices
       extraCommands = ''
         iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
         iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
         iptables -I INPUT -p udp -m udp --match multiport --dports 1989,2021 -j ACCEPT
       '';
-      checkReversePath = false;
+      checkReversePath = false; # Get wireguard to work
       allowedTCPPorts = [
         9943
         9944
         53
-        25565
-        19132
+        25565 # Minecraft Java
       ];
       allowedTCPPortRanges = [
         {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        }
       ];
       allowedUDPPortRanges = [
         {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        }
       ];
       allowedUDPPorts = [
         9943
         9944
         53
         51820
-        25565
-        19132
+        19132 # Minecraft Server
       ];
     };
 
@@ -131,8 +124,8 @@
   ];
 
   systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
+    sleep.enable = true;
+    suspend.enable = true;
     hibernate.enable = false;
     hybrid-sleep.enable = false;
   };

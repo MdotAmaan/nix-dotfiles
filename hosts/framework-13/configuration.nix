@@ -1,26 +1,20 @@
 {
   pkgs,
-  inputs,
+  # inputs,
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
   # Custom Modules
-  sunshine.enable = false;
   steam.enable = true;
-  zerotier.enable = false;
   tailscale.enable = true;
 
-  # orca-slicer.enable = false;
+  # orca-slicer.enable = true;
 
-  alvr.enable = false;
-
-  # Docker
   virtualisation.docker.enable = true;
-  # Bootloader.
+
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -48,9 +42,6 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
     ];
-    # Hide the OS choice for bootloaders.
-    # It's still possible to open the bootloader list by pressing any key
-    # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
   };
 
@@ -60,7 +51,7 @@
 
     firewall = {
       enable = true;
-      # Enable multicast ports to discover local devices
+      # Enable multicast ports to discover local printers
       extraCommands = ''
         iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
         iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -71,30 +62,20 @@
         9943
         9944
         53
-        25565
-        53317 # Localsend
-        19132
       ];
       allowedTCPPortRanges = [
         {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        }
       ];
       allowedUDPPortRanges = [
         {
-          from = 1714;
-          to = 1764;
-        } # KDE Connect
+        }
       ];
       allowedUDPPorts = [
         9943
         9944
         53
         51820
-        53317 # Localsend
-        25565
-        19132
       ];
     };
 
@@ -130,8 +111,6 @@
 
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
-    # displayManager.autoLogin.enable = true;
-    # displayManager.autoLogin.user = "mdot";
 
     pipewire = {
       enable = true;
@@ -155,13 +134,13 @@
       # add missing dynamic libraries here instead of system
     ];
   };
+
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
     # inputs.lightly.packages.${pkgs.system}.darkly-qt5
     # inputs.lightly.packages.${pkgs.system}.darkly-qt6
-    libsForQt5.qt5ct
     git
     wget
     wl-clipboard
@@ -171,6 +150,7 @@
     sshfs
     cargo
     bitwarden-desktop
+    kdePackages.plymouth-kcm
     hunspell # dictionary
     hunspellDicts.en_US
   ];
