@@ -68,6 +68,7 @@
       startAgent = true;
       enableAskPassword = true;
       askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+      addKeysToAgent = "yes";
     };
 
     nh = {
