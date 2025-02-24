@@ -37,14 +37,14 @@
         53
         25565 # Minecraft Java
       ];
-      allowedTCPPortRanges = [
-        {
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-        }
-      ];
+      # allowedTCPPortRanges = [
+      #   {
+      #   }
+      # ];
+      # allowedUDPPortRanges = [
+      #   {
+      #   }
+      # ];
       allowedUDPPorts = [
         9943
         9944

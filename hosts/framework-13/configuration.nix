@@ -63,14 +63,14 @@
         9944
         53
       ];
-      allowedTCPPortRanges = [
-        {
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-        }
-      ];
+      # allowedTCPPortRanges = [
+      #   {
+      #   }
+      # ];
+      # allowedUDPPortRanges = [
+      #   {
+      #   }
+      # ];
       allowedUDPPorts = [
         9943
         9944
