@@ -103,6 +103,7 @@
       # add missing dynamic libraries here instead of system
     ];
 
+    partition-manager.enable = true;
     adb.enable = true;
     kdeconnect.enable = true;
   };

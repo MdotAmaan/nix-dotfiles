@@ -45,7 +45,6 @@
         qbittorrent
         vlc
         # pureref
-        kdePackages.partitionmanager
         kdePackages.qtwebsockets
         ungoogled-chromium
         filelight

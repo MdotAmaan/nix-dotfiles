@@ -47,7 +47,6 @@ in {
         qbittorrent
         vlc
         # pureref
-        kdePackages.partitionmanager
         kdePackages.qtwebsockets
         ungoogled-chromium
         filelight
@@ -62,10 +61,11 @@ in {
         yt-dlp
         tmux
         krdc
+        orca-slicer
       ]
       ++ [
         # pkgs-unstable.lunarvim
-        pkgs-unstable.orca-slicer
+        # pkgs-unstable.orca-slicer
       ];
 
     sessionVariables = {

@@ -133,6 +133,7 @@
       libGL
       # add missing dynamic libraries here instead of system
     ];
+    partition-manager.enable = true;
   };
 
   hardware.pulseaudio.enable = false;
