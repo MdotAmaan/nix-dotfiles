@@ -120,6 +120,7 @@
     fd
     sshfs
     cargo
+    orca-slicer
     hunspell # dictionary
     hunspellDicts.en_US
   ];

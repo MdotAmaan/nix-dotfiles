@@ -13,6 +13,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       nix-path = config.nix.nixPath;
+      always-allow-substitutes = true;
     };
     channel.enable = false;
   };
