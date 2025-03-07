@@ -64,7 +64,7 @@
         };
 
         # Application Launchers
-        "logseq.desktop"."_launch" = "Meta+L";
+        "obsidian.desktop"."_launch" = "Meta+L";
         "firefox.desktop"."_launch" = "Meta+F";
         "services/kitty.desktop"."_launch" = "Meta+T";
         "org.kde.dolphin.desktop"."_launch" = "Meta+X";
@@ -88,7 +88,7 @@
             "gapsOuterTop" = 9;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                       
+            "windowRules" = ''                     
               [{        
                 "class": "ksmserver-logout-greeter",
                 "tile": false

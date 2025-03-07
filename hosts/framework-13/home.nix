@@ -21,7 +21,7 @@ in {
         krita
         blender-hip
         # kicad
-        freecad
+        freecad-wayland
         audacity
 
         kdenlive

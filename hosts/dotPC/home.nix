@@ -19,13 +19,12 @@
         krita
         blender-hip
         # kicad
-        freecad
+        freecad-wayland
         audacity
         anytype
         kdenlive
         # Game stuff
         prismlauncher
-
         # TODO: Remove later and replace with dev shells
         libcxxStdenv
         clang-tools
@@ -65,10 +64,11 @@
       ++ [
         # pkgs-unstable.orca-slicer
         # pkgs-unstable.seafile-client
+        # pkgs-unstable.freecad
       ];
 
     sessionVariables = {
-      FLAKE = "/home/mdot/dotfiles/";
+      FLAKE = "/home/mdot/nix-dotfiles/";
       EDITOR = "neovide";
       OBSIDIAN_USE_WAYLAND = 1;
     };
