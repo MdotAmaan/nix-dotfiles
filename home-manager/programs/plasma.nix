@@ -10,10 +10,6 @@
   config = lib.mkIf config.plasma.enable {
     programs.plasma = {
       enable = true;
-      kwin = {
-        # scripts.krohnkite.enable = true;
-      };
-
       workspace = {
         #iconTheme = "Papirus-Dark";
         #lookAndFeel = "org.kde.breezedark.desktop";
@@ -66,7 +62,7 @@
         # Application Launchers
         "obsidian.desktop"."_launch" = "Meta+L";
         "firefox.desktop"."_launch" = "Meta+F";
-        "services/kitty.desktop"."_launch" = "Meta+T";
+        "services/konsole.desktop"."_launch" = "Meta+T";
         "org.kde.dolphin.desktop"."_launch" = "Meta+X";
         "systemsettings.desktop"."_launch" = ["Tools" "Meta+S"];
         "thunderbird.desktop"."_launch" = "Meta+C";
@@ -80,15 +76,15 @@
           "Windows"."NextFocusPrefersMouse" = "true";
 
           "Script-karousel" = {
-            "gapsInnerHorizontal" = 9;
-            "gapsInnerVertical" = 9;
-            "gapsOuterBottom" = 9;
-            "gapsOuterLeft" = 9;
-            "gapsOuterRight" = 9;
-            "gapsOuterTop" = 9;
+            "gapsInnerHorizontal" = 7;
+            "gapsInnerVertical" = 7;
+            "gapsOuterBottom" = 7;
+            "gapsOuterLeft" = 7;
+            "gapsOuterRight" = 7;
+            "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                     
+            "windowRules" = ''                       
               [{        
                 "class": "ksmserver-logout-greeter",
                 "tile": false
