@@ -10,6 +10,7 @@
   # Custom Modules
   steam.enable = true;
   tailscale.enable = true;
+  sunshine.enable = true;
 
   # orca-slicer.enable = true;
 
@@ -134,6 +135,11 @@
       # add missing dynamic libraries here instead of system
     ];
     partition-manager.enable = true;
+    weylus = {
+      enable = true;
+      openFirewall = true;
+      users = ["mdot"];
+    };
   };
 
   hardware.pulseaudio.enable = false;
