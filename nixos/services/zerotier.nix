@@ -9,7 +9,7 @@
 
   config = lib.mkIf config.zerotier.enable {
     services.zerotierone = {
-      enable = false;
+      enable = true;
       localConf.settings.softwareUpdate = "disable";
     };
   };
