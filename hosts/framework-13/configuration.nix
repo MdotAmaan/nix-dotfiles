@@ -152,8 +152,10 @@
     cargo
     bitwarden-desktop
     kdePackages.plymouth-kcm
-    hunspell # dictionary
-    hunspellDicts.en_US
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
   ];
 
   system.stateVersion = "24.11";
