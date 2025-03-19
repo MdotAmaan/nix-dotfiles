@@ -99,6 +99,7 @@
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
         modules = [
+          nur.modules.nixos.default
           nix-flatpak.nixosModules.nix-flatpak
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/default.nix

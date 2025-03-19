@@ -99,7 +99,6 @@
 
   # Set your time zone.
   time.timeZone = "America/Detroit";
-  # Select internationalisation properties.
 
   services = {
     fwupd.enable = true;
@@ -148,7 +147,6 @@
   environment.systemPackages = with pkgs; [
     # inputs.lightly.packages.${pkgs.system}.darkly-qt5
     # inputs.lightly.packages.${pkgs.system}.darkly-qt6
-    git
     wget
     wl-clipboard
     home-manager
@@ -156,8 +154,8 @@
     fd
     sshfs
     cargo
-    bitwarden-desktop
     kdePackages.plymouth-kcm
+    nur.repos.shadowrz.klassy-qt6
     aspell
     aspellDicts.en
     aspellDicts.en-computers
