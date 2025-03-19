@@ -23,7 +23,7 @@
     networkmanager.enable = true;
 
     firewall = {
-      enable = false;
+      enable = true;
       # Enable multicast ports to discover local devices
       extraCommands = ''
         iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -32,7 +32,6 @@
       '';
       checkReversePath = false; # Get wireguard to work
       allowedTCPPorts = [
-        11434 #Ollama
         9943
         9944
         53
@@ -47,7 +46,6 @@
       #   }
       # ];
       allowedUDPPorts = [
-        11434
         9943
         9944
         53
@@ -121,6 +119,7 @@
     sshfs
     cargo
     orca-slicer
+    nur.repos.shadowrz.klassy-qt6
     aspell
     aspellDicts.en
     aspellDicts.en-computers
