@@ -6,8 +6,8 @@
 
   # Custom Modules
   sunshine.enable = true;
-  zerotier.enable = false;
-  tailscale.enable = true;
+  zerotier.enable = true;
+  tailscale.enable = false;
   steam.enable = true;
   # orca-slicer.enable = false;
 
@@ -23,7 +23,7 @@
     networkmanager.enable = true;
 
     firewall = {
-      enable = true;
+      enable = false;
       # Enable multicast ports to discover local devices
       extraCommands = ''
         iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -32,6 +32,7 @@
       '';
       checkReversePath = false; # Get wireguard to work
       allowedTCPPorts = [
+        11434 #Ollama
         9943
         9944
         53
@@ -46,6 +47,7 @@
       #   }
       # ];
       allowedUDPPorts = [
+        11434
         9943
         9944
         53
@@ -66,10 +68,22 @@
     bluetooth.powerOnBoot = true;
   };
 
-  # Set your time zone.
   time.timeZone = "America/Detroit";
 
   services = {
+    ollama = {
+      enable = true;
+      acceleration = "rocm";
+      loadModels = ["mistral-small"];
+      host = "0.0.0.0";
+      port = 11434;
+      environmentVariables = {
+        HCC_AMDGPU_TARGET = "gfx1031";
+      };
+      rocmOverrideGfx = "10.3.1";
+    };
+    # open-webui.enable = true;
+
     fwupd.enable = true;
     power-profiles-daemon.enable = true;
     xserver = {
