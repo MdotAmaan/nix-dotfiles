@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./programs/plasma.nix
     ./programs/neovim.nix
@@ -32,6 +28,7 @@
       userEmail = "mdotamaan@protonmail.com";
       extraConfig = {
         init.defaultBranch = "main";
+        pull.rebase = false;
       };
     };
     starship = {

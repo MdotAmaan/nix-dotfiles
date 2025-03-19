@@ -9,6 +9,11 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Plasma Manager
     plasma-manager = {
       url = "github:pjones/plasma-manager";
@@ -53,19 +58,15 @@
     nixos-hardware,
     nixpkgs-unstable,
     nvf,
+    nur,
     home-manager,
     plasma-manager,
     nix-flatpak,
-    nix-on-droid,
     aagl,
     ...
   } @ inputs: let
     inherit (self) outputs;
   in {
-    nixOnDroidConfigurations.dotTab = nix-on-droid.lib.nixOnDroidConfiguration {
-      modules = [./hosts/sm-x710/dotTab-configuration.nix];
-    };
-
     # NVF-configured Neovim
     packages."x86_64-linux".default =
       (nvf.lib.neovimConfiguration {
@@ -81,6 +82,7 @@
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
         modules = [
+          nur.modules.nixos.default
           nix-flatpak.nixosModules.nix-flatpak
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix

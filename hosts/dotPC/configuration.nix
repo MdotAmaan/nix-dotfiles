@@ -71,20 +71,6 @@
   time.timeZone = "America/Detroit";
 
   services = {
-    ollama = {
-      enable = true;
-      acceleration = "rocm";
-      loadModels = ["mistral-small"];
-      host = "0.0.0.0";
-      port = 11434;
-      environmentVariables = {
-        HCC_AMDGPU_TARGET = "gfx1031";
-      };
-      rocmOverrideGfx = "10.3.1";
-    };
-    # open-webui.enable = true;
-
-    fwupd.enable = true;
     power-profiles-daemon.enable = true;
     xserver = {
       enable = true;
@@ -135,8 +121,11 @@
     sshfs
     cargo
     orca-slicer
-    hunspell # dictionary
-    hunspellDicts.en_US
+    nur.repos.shadowrz.klassy-qt6
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
   ];
 
   systemd.targets = {
