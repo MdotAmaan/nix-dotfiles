@@ -3,6 +3,7 @@
     ./programs/plasma.nix
     ./programs/neovim.nix
     ./programs/firefox.nix
+    ./programs/floorp.nix
     ./programs/lf/lf.nix
     ./programs/kitty.nix
   ];
