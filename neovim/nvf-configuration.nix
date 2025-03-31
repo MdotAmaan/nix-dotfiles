@@ -139,7 +139,10 @@
       rust.enable = true;
       markdown.enable = true;
       bash.enable = true;
-      clang.enable = true;
+      clang = {
+        enable = true;
+        dap.enable = true;
+      };
       css.enable = true;
       html.enable = true;
       sql.enable = true;
