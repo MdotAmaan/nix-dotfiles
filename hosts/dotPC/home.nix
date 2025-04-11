@@ -62,8 +62,7 @@
         # orca-slicer
       ]
       ++ [
-        # pkgs-unstable.orca-slicer
-        # pkgs-unstable.seafile-client
+        pkgs-unstable.orca-slicer
         # pkgs-unstable.freecad
       ];
 

@@ -61,11 +61,11 @@ in {
         yt-dlp
         tmux
         krdc
-        orca-slicer
+        # orca-slicer
       ]
       ++ [
         # pkgs-unstable.lunarvim
-        # pkgs-unstable.orca-slicer
+        pkgs-unstable.orca-slicer
       ];
 
     sessionVariables = {

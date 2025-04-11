@@ -119,7 +119,6 @@
     fd
     sshfs
     cargo
-    orca-slicer
     nur.repos.shadowrz.klassy-qt6
     aspell
     aspellDicts.en
