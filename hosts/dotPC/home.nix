@@ -1,6 +1,6 @@
 {
   pkgs,
-  # pkgs-unstable,
+  pkgs-unstable,
   ...
 }: {
   # Custom Modules
@@ -14,23 +14,24 @@
     homeDirectory = "/home/mdot";
     stateVersion = "23.11";
 
-    packages = with pkgs; [
-      inkscape
-      krita
-      blender-hip
-      # kicad
-      freecad-wayland
-      audacity
-      anytype
-      kdenlive
-      # Game stuff
-      prismlauncher
-      # TODO: Remove later and replace with dev shells
-      libcxxStdenv
-      clang-tools
-      clang
-      cmake
-      libgcc
+    packages = with pkgs;
+      [
+        inkscape
+        krita
+        blender-hip
+        # kicad
+        freecad-wayland
+        audacity
+        anytype
+        kdenlive
+        # Game stuff
+        prismlauncher
+        # TODO: Remove later and replace with dev shells
+        libcxxStdenv
+        clang-tools
+        clang
+        cmake
+        libgcc
 
         android-tools
         zathura

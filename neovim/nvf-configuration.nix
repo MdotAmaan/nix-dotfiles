@@ -1,8 +1,8 @@
 {
   config.vim = {
     # TODO: Uncomment when this is fixed upstream
-    # viAlias = true;
-    # vimAlias = true;
+    viAlias = true;
+    vimAlias = true;
 
     enableLuaLoader = true;
     useSystemClipboard = true;
