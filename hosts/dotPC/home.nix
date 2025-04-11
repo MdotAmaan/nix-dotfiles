@@ -1,36 +1,36 @@
 {
   pkgs,
-  pkgs-unstable,
+  # pkgs-unstable,
   ...
 }: {
   # Custom Modules
   plasma.enable = true;
   neovim.enable = true;
   firefox.enable = true;
+  floorp.enable = true;
 
   home = {
     username = "mdot";
     homeDirectory = "/home/mdot";
     stateVersion = "23.11";
 
-    packages = with pkgs;
-      [
-        inkscape
-        krita
-        blender-hip
-        # kicad
-        freecad-wayland
-        audacity
-        anytype
-        kdenlive
-        # Game stuff
-        prismlauncher
-        # TODO: Remove later and replace with dev shells
-        libcxxStdenv
-        clang-tools
-        clang
-        cmake
-        libgcc
+    packages = with pkgs; [
+      inkscape
+      krita
+      blender-hip
+      # kicad
+      freecad-wayland
+      audacity
+      anytype
+      kdenlive
+      # Game stuff
+      prismlauncher
+      # TODO: Remove later and replace with dev shells
+      libcxxStdenv
+      clang-tools
+      clang
+      cmake
+      libgcc
 
         android-tools
         zathura

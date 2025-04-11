@@ -8,6 +8,7 @@
 in {
   neovim.enable = true;
   firefox.enable = true;
+  floorp.enable = true;
   plasma.enable = true;
 
   home = {
