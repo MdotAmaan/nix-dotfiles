@@ -120,6 +120,7 @@
     sshfs
     cargo
     nur.repos.shadowrz.klassy-qt6
+    qalculate-qt
     aspell
     aspellDicts.en
     aspellDicts.en-computers

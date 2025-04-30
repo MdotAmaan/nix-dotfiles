@@ -25,6 +25,7 @@ in {
         freecad-wayland
         audacity
 
+        python3
         kdenlive
         # Game stuff
         prismlauncher
