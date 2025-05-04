@@ -9,6 +9,7 @@
   zerotier.enable = true;
   tailscale.enable = false;
   steam.enable = true;
+  protonmail-bridge.enable = true;
   # orca-slicer.enable = false;
 
   alvr.enable = false;

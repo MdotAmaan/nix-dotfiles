@@ -11,7 +11,7 @@
   steam.enable = true;
   tailscale.enable = true;
   sunshine.enable = true;
-
+  protonmail-bridge.enable = true;
   # orca-slicer.enable = true;
 
   virtualisation.docker.enable = true;
