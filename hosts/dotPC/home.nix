@@ -51,7 +51,6 @@
         lazygit
         logseq
         obsidian
-        # nextcloud-client
         fastfetch
         obs-studio
         libcap
@@ -64,6 +63,7 @@
       ]
       ++ [
         pkgs-unstable.orca-slicer
+        pkgs-unstable.grayjay
         # pkgs-unstable.freecad
       ];
 

@@ -55,7 +55,6 @@ in {
         lazygit
         logseq
         obsidian
-        # nextcloud-client
         fastfetch
         obs-studio
         unzip
@@ -66,7 +65,7 @@ in {
         # orca-slicer
       ]
       ++ [
-        # pkgs-unstable.lunarvim
+        pkgs-unstable.grayjay
         pkgs-unstable.orca-slicer
       ];
 
