@@ -84,8 +84,12 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                       
+            "windowRules" = ''                 
               [{        
+                "class": "Gnuplot",
+                "tile": false
+              },
+              {        
                 "class": "ksmserver-logout-greeter",
                 "tile": false
               },
