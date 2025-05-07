@@ -6,7 +6,7 @@
 
   # Custom Modules
   sunshine.enable = true;
-  zerotier.enable = true;
+  zerotier.enable = false;
   tailscale.enable = false;
   steam.enable = true;
   protonmail-bridge.enable = true;

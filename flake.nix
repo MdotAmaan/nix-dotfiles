@@ -89,8 +89,7 @@
           {
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
-            programs.honkers-railway-launcher.enable = true;
+            programs.anime-games-launcher.enable = true;
           }
         ];
       };
@@ -104,12 +103,10 @@
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/default.nix
           ./hosts/framework-13/configuration.nix
-
           {
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
-            programs.honkers-railway-launcher.enable = true;
+            programs.anime-games-launcher.enable = true;
           }
         ];
       };

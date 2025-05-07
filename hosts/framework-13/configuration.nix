@@ -9,6 +9,7 @@
 
   # Custom Modules
   steam.enable = true;
+  zerotier.enable = false;
   tailscale.enable = true;
   sunshine.enable = true;
   protonmail-bridge.enable = true;
