@@ -2,6 +2,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # ./vfio.nix
   ];
 
   # Custom Modules
@@ -109,7 +110,7 @@
     kdeconnect.enable = true;
   };
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -120,7 +121,7 @@
     fd
     sshfs
     cargo
-    nur.repos.shadowrz.klassy-qt6
+    # nur.repos.shadowrz.klassy-qt6
     qalculate-qt
     aspell
     aspellDicts.en

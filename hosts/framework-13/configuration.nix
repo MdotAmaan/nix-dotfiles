@@ -156,7 +156,7 @@
     sshfs
     cargo
     kdePackages.plymouth-kcm
-    nur.repos.shadowrz.klassy-qt6
+    # nur.repos.shadowrz.klassy-qt6
     qalculate-qt
     aspell
     aspellDicts.en

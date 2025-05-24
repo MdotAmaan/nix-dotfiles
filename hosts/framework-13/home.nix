@@ -26,7 +26,7 @@ in {
         audacity
 
         python3
-        kdenlive
+        kdePackages.kdenlive
         # Game stuff
         prismlauncher
 
@@ -44,14 +44,14 @@ in {
         #  python311Packages.west
         thunderbird
         libreoffice-qt
-        ksshaskpass
+        kdePackages.ksshaskpass
         element-desktop
         qbittorrent
         vlc
         # pureref
         kdePackages.qtwebsockets
         ungoogled-chromium
-        filelight
+        kdePackages.filelight
         lazygit
         logseq
         obsidian
@@ -61,7 +61,7 @@ in {
         distrobox
         yt-dlp
         tmux
-        krdc
+        kdePackages.krdc
         # orca-slicer
       ]
       ++ [
