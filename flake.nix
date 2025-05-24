@@ -3,10 +3,10 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur = {
@@ -29,7 +29,7 @@
 
     # Declarative Flatpaks
     nix-flatpak = {
-      url = "github:gmodena/nix-flatpak/?ref=v0.5.0";
+      url = "github:gmodena/nix-flatpak/?ref=v0.6.0";
     };
 
     nvf.url = "github:notashelf/nvf";
@@ -42,12 +42,7 @@
 
     # Hyvrse Launchers
     aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
+      url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -89,7 +84,8 @@
           {
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.anime-games-launcher.enable = true;
+            programs.honkers-railway-launcher.enable = true;
+            programs.anime-game-launcher.enable = true;
           }
         ];
       };
@@ -106,7 +102,8 @@
           {
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.anime-games-launcher.enable = true;
+            programs.anime-game-launcher.enable = true;
+            programs.honkers-railway-launcher.enable = true;
           }
         ];
       };

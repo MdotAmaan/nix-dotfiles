@@ -23,7 +23,7 @@
         freecad-wayland
         audacity
         anytype
-        kdenlive
+        kdePackages.kdenlive
         # Game stuff
         prismlauncher
         # TODO: Remove later and replace with dev shells
@@ -47,7 +47,7 @@
         # pureref
         kdePackages.qtwebsockets
         ungoogled-chromium
-        filelight
+        kdePackages.filelight
         lazygit
         logseq
         obsidian
@@ -58,7 +58,7 @@
         distrobox
         yt-dlp
         tmux
-        krdc
+        kdePackages.krdc
         # orca-slicer
       ]
       ++ [
