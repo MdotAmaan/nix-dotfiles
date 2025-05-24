@@ -13,7 +13,7 @@
   # orca-slicer.enable = false;
 
   alvr.enable = false;
-
+  boot.kernelParams = ["intel_iommu=on"];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
