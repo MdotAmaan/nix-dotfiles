@@ -10,9 +10,9 @@
   # Custom Modules
   steam.enable = true;
   zerotier.enable = false;
-  tailscale.enable = true;
-  sunshine.enable = true;
-  protonmail-bridge.enable = true;
+  tailscale.enable = false;
+  sunshine.enable = false;
+  protonmail-bridge.enable = false;
   # orca-slicer.enable = true;
 
   virtualisation.docker.enable = true;
@@ -28,7 +28,7 @@
       # theme = "rings";
       themePackages = with pkgs; [
         # By default we would install all themes
-        breeze-plymouth
+        kdePackages.breeze-plymouth
       ];
     };
 
@@ -142,7 +142,7 @@
     };
   };
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
