@@ -61,7 +61,7 @@
 
         # Application Launchers
         "obsidian.desktop"."_launch" = "Meta+L";
-        "firefox.desktop"."_launch" = "Meta+F";
+        "floorp.desktop"."_launch" = "Meta+F";
         "services/konsole.desktop"."_launch" = "Meta+T";
         "org.kde.dolphin.desktop"."_launch" = "Meta+X";
         "systemsettings.desktop"."_launch" = ["Tools" "Meta+S"];
@@ -84,7 +84,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                 
+            "windowRules" = ''                     
               [{        
                 "class": "Gnuplot",
                 "tile": false
