@@ -14,9 +14,12 @@
   # orca-slicer.enable = false;
 
   alvr.enable = false;
-  boot.kernelParams = ["intel_iommu=on"];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelParams = ["intel_iommu=on"];
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    loader.timeout = 0;
+  };
 
   virtualisation.docker.enable = true;
 
@@ -81,6 +84,7 @@
     };
 
     displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
     desktopManager.plasma6.enable = true;
 
     pipewire = {
