@@ -16,9 +16,11 @@
   alvr.enable = false;
   boot = {
     kernelParams = ["intel_iommu=on"];
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.timeout = 0;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
+    };
   };
 
   virtualisation.docker.enable = true;
@@ -92,6 +94,34 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+
+      extraConfig.pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 32;
+          "default.clock.min-quantum" = 32;
+          "default.clock.max-quantum" = 32;
+        };
+      };
+    };
+
+    extraConfig.pipewire-pulse."92-low-latency" = {
+      context.modules = [
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args.pulse = {
+            min.req = "32/48000";
+            default.req = "32/48000";
+            max.req = "32/48000";
+            min.quantum = "32/48000";
+            max.quantum = "32/48000";
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
     };
 
     openssh.enable = true;
