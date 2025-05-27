@@ -103,24 +103,23 @@
           "default.clock.max-quantum" = 32;
         };
       };
-    };
-
-    extraConfig.pipewire-pulse."92-low-latency" = {
-      context.modules = [
-        {
-          name = "libpipewire-module-protocol-pulse";
-          args.pulse = {
-            min.req = "32/48000";
-            default.req = "32/48000";
-            max.req = "32/48000";
-            min.quantum = "32/48000";
-            max.quantum = "32/48000";
-          };
-        }
-      ];
-      stream.properties = {
-        node.latency = "32/48000";
-        resample.quality = 1;
+      extraConfig.pipewire-pulse."92-low-latency" = {
+        context.modules = [
+          {
+            name = "libpipewire-module-protocol-pulse";
+            args.pulse = {
+              min.req = "32/48000";
+              default.req = "32/48000";
+              max.req = "32/48000";
+              min.quantum = "32/48000";
+              max.quantum = "32/48000";
+            };
+          }
+        ];
+        stream.properties = {
+          node.latency = "32/48000";
+          resample.quality = 1;
+        };
       };
     };
 
