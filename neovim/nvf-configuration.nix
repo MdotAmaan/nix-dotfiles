@@ -5,7 +5,6 @@
     vimAlias = true;
 
     enableLuaLoader = true;
-    useSystemClipboard = true;
     telescope.enable = true;
 
     undoFile.enable = true;
@@ -25,6 +24,10 @@
       tabstop = 2;
       shiftwidth = 2;
       autochdir = true;
+    };
+
+    clipboard = {
+      registers = "unnamedplus";
     };
 
     luaConfigPre = ''
