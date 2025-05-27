@@ -121,7 +121,8 @@
     fd
     sshfs
     cargo
-    # nur.repos.shadowrz.klassy-qt6
+    darkly
+    nur.repos.shadowrz.klassy-qt6
     qalculate-qt
     aspell
     aspellDicts.en
