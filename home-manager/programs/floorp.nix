@@ -25,6 +25,7 @@
         search = {
           force = true;
           default = "ddg";
+          privateDefault = "ddg";
           engines = {
             "Nix Packages" = {
               urls = [

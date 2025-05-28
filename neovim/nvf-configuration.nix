@@ -28,6 +28,7 @@
 
     clipboard = {
       registers = "unnamedplus";
+      providers.wl-copy.enable = true;
     };
 
     luaConfigPre = ''
