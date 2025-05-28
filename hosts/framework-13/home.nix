@@ -1,11 +1,8 @@
 {
   pkgs,
   pkgs-unstable,
-  config,
   ...
-}: let
-  host = "dotFW";
-in {
+}: {
   neovim.enable = true;
   firefox.enable = true;
   floorp.enable = true;
@@ -53,7 +50,7 @@ in {
         ungoogled-chromium
         kdePackages.filelight
         lazygit
-        logseq
+        # logseq
         obsidian
         fastfetch
         obs-studio
@@ -70,7 +67,6 @@ in {
       ];
 
     sessionVariables = {
-      FLAKE = "/home/mdot/nix-dotfiles/";
     };
   };
 

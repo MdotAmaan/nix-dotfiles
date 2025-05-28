@@ -34,13 +34,7 @@
 
     nvf.url = "github:notashelf/nvf";
 
-    # Firefox addons
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Hyvrse Launchers
+    # Hoyo Launchers
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,49 +65,57 @@
       .neovim;
 
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       dotPC = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        # > Our main nixos configuration file <
+
         modules = [
           nur.modules.nixos.default
           nix-flatpak.nixosModules.nix-flatpak
+          aagl.nixosModules.default
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix
           {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.honkers-railway-launcher.enable = true;
-            programs.anime-game-launcher.enable = true;
+            hoyo.enable = true;
+            sunshine.enable = true;
+            zerotier.enable = false;
+            tailscale.enable = false;
+            steam.enable = true;
+            protonmail-bridge.enable = true;
+            alvr.enable = true;
+            # orca-slicer.enable = false;
           }
         ];
       };
 
       dotFW = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        # > Our main nixos configuration file <
+
         modules = [
           nur.modules.nixos.default
           nix-flatpak.nixosModules.nix-flatpak
           nixos-hardware.nixosModules.framework-13-7040-amd
+          aagl.nixosModules.default
           ./nixos/default.nix
           ./hosts/framework-13/configuration.nix
           {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.anime-game-launcher.enable = true;
-            programs.honkers-railway-launcher.enable = true;
+            hoyo.enable = true;
+            steam.enable = true;
+            zerotier.enable = false;
+            tailscale.enable = false;
+            sunshine.enable = false;
+            protonmail-bridge.enable = false;
+            # orca-slicer.enable = true;
           }
         ];
       };
     };
 
     # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "mdot@dotPC" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
         extraSpecialArgs = {
           inherit inputs outputs;
           pkgs-unstable = import nixpkgs-unstable {
@@ -124,7 +126,6 @@
           };
         };
 
-        # > Our main home-manager configuration file <
         modules = [
           ./home-manager/default.nix
           ./hosts/dotPC/home.nix
@@ -134,7 +135,8 @@
       };
 
       "mdot@dotFW" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
         extraSpecialArgs = {
           inherit inputs outputs;
           pkgs-unstable = import nixpkgs-unstable {
@@ -144,7 +146,7 @@
             ];
           };
         };
-        # > Our main home-manager configuration file <
+
         modules = [
           ./home-manager/default.nix
           ./hosts/framework-13/home.nix

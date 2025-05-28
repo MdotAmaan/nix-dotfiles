@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   # inputs,
   ...
 }: {
@@ -7,13 +8,7 @@
     ./hardware-configuration.nix
   ];
 
-  # Custom Modules
-  steam.enable = true;
-  zerotier.enable = false;
-  tailscale.enable = false;
-  sunshine.enable = false;
-  protonmail-bridge.enable = false;
-  # orca-slicer.enable = true;
+  config.host = "dotFW";
 
   virtualisation.docker.enable = true;
 
@@ -48,7 +43,7 @@
   };
 
   networking = {
-    hostName = "dotFW";
+    hostName = config.host;
     networkmanager.enable = true;
 
     firewall = {
@@ -88,17 +83,11 @@
   };
 
   hardware = {
-    framework = {
-      # enableKmod = true;
-      # TODO: Remove after kernel 6.7
-      #amd-7040.preventWakeOnAC = true;
-    };
-
+    framework.laptop13.audioEnhancement = true;
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
   };
 
-  # Set your time zone.
   time.timeZone = "America/Detroit";
 
   services = {
@@ -146,8 +135,6 @@
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # inputs.lightly.packages.${pkgs.system}.darkly-qt5
-    # inputs.lightly.packages.${pkgs.system}.darkly-qt6
     wget
     wl-clipboard
     home-manager

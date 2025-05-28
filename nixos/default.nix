@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   ...
@@ -9,77 +10,69 @@
     ./fonts.nix
   ];
 
-  nix = {
-    settings = {
-      experimental-features = "nix-command flakes";
-      nix-path = config.nix.nixPath;
-      always-allow-substitutes = true;
-    };
-    channel.enable = false;
-  };
-
-  users.defaultUserShell = pkgs.zsh;
-  users.users.mdot = {
-    isNormalUser = true;
-    description = "Amaan";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-      "adbusers"
-      "kvm"
-    ];
-    openssh.authorizedKeys.keys = [
-      # SSH public Keys
-    ];
-  };
-
-  nixpkgs = {
-    overlays = [
-    ];
-    config = {
-      allowUnfree = true;
+  options = {
+    host = lib.mkOption {
+      type = lib.types.string;
     };
   };
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
-
-  environment.variables = {
-    SSH_ASKPASS_REQUIRE = "prefer";
-  };
-
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      # enableSSHSupport = true;
-    };
-    ssh = {
-      startAgent = true;
-      enableAskPassword = true;
-      askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
-      extraConfig = ''
-        Host github.com
-        IdentityFile ~/.ssh/key2
-      '';
+  config = {
+    nix = {
+      settings = {
+        experimental-features = "nix-command flakes";
+        nix-path = config.nix.nixPath;
+        always-allow-substitutes = true;
+      };
+      channel.enable = false;
     };
 
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/mdot/nix-dotfiles/";
+    users.defaultUserShell = pkgs.zsh;
+    users.users.mdot = {
+      isNormalUser = true;
+      description = "Amaan";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+        "adbusers"
+        "kvm"
+      ];
+      openssh.authorizedKeys.keys = [
+        # SSH public Keys
+      ];
+    };
+
+    nixpkgs = {
+      overlays = [
+      ];
+      config = {
+        allowUnfree = true;
+      };
+    };
+
+    i18n.defaultLocale = "en_US.UTF-8";
+
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
+
+    environment.variables = {
+      SSH_ASKPASS_REQUIRE = "prefer";
+    };
+
+    programs = {
+      gnupg.agent = {
+        enable = true;
+        # enableSSHSupport = true;
+      };
     };
   };
 }

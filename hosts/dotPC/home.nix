@@ -49,7 +49,7 @@
         ungoogled-chromium
         kdePackages.filelight
         lazygit
-        logseq
+        # logseq
         obsidian
         fastfetch
         obs-studio
@@ -68,7 +68,6 @@
       ];
 
     sessionVariables = {
-      FLAKE = "/home/mdot/nix-dotfiles/";
       EDITOR = "neovide";
       OBSIDIAN_USE_WAYLAND = 1;
     };
