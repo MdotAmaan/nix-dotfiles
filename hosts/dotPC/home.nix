@@ -26,6 +26,7 @@
         kdePackages.kdenlive
         # Game stuff
         prismlauncher
+
         # TODO: Remove later and replace with dev shells
         libcxxStdenv
         clang-tools
@@ -75,4 +76,8 @@
 
   # Services
   services.syncthing.enable = true;
+
+  services.easyeffects = {
+    enable = true;
+  };
 }
