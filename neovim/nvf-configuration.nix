@@ -24,10 +24,10 @@
       tabstop = 2;
       shiftwidth = 2;
       autochdir = true;
+      clipboard = "unnamedplus";
     };
 
     clipboard = {
-      registers = "unnamedplus";
       providers.wl-copy.enable = true;
     };
 
