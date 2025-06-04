@@ -5,6 +5,7 @@
     ./programs/firefox.nix
     ./programs/floorp.nix
     ./programs/lf/lf.nix
+    ./programs/okular.nix
     ./programs/kitty.nix
   ];
 

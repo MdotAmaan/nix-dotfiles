@@ -22,7 +22,6 @@
         # kicad
         freecad-wayland
         audacity
-        anytype
         kdePackages.kdenlive
         # Game stuff
         prismlauncher
