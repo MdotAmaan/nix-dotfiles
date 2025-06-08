@@ -32,6 +32,7 @@
       description = "Amaan";
       extraGroups = [
         "networkmanager"
+        "dialout"
         "wheel"
         "docker"
         "adbusers"
