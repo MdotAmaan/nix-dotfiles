@@ -21,6 +21,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lightly.url = "github:Bali10050/Darkly";
 
     nixos-hardware = {

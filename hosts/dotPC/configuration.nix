@@ -11,6 +11,7 @@
 
   config = {
     host = "dotPC";
+    gui = "kde";
 
     boot = {
       kernelParams = ["intel_iommu=on"];
@@ -20,7 +21,7 @@
         timeout = 0;
       };
 
-      # Force older kernel to prevent AMDGPU crash. Remove once fix is applied uupstream
+      # Force older kernel to prevent AMDGPU crash. Remove once fix is applied upstream
       kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_14.override {
         argsOverride = rec {
           src = pkgs.fetchurl {
@@ -40,7 +41,7 @@
       networkmanager.enable = true;
 
       firewall = {
-        enable = false;
+        enable = true;
         # Enable multicast ports to discover local devices
         extraCommands = ''
           iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -49,7 +50,6 @@
         '';
         checkReversePath = false; # Get wireguard to work
         allowedTCPPorts = [
-          11434 #Ollama
           9943
           9944
           53
@@ -64,7 +64,6 @@
         #   }
         # ];
         allowedUDPPorts = [
-          11434
           9943
           9944
           53
@@ -95,16 +94,13 @@
         xkb.variant = "";
       };
 
-      displayManager.sddm.enable = true;
-      displayManager.sddm.wayland.enable = true;
-      desktopManager.plasma6.enable = true;
-
       pipewire = {
         enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
       };
+
       openssh.enable = true;
       resolved.enable = true;
 
