@@ -4,9 +4,11 @@
   ...
 }: {
   # Custom Modules
+  plasma.enable = true;
   neovim.enable = true;
   firefox.enable = true;
   floorp.enable = true;
+  hyprland.enable = false;
 
   home = {
     username = "mdot";

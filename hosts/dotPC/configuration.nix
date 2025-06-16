@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -8,6 +9,9 @@
     ./hardware-configuration.nix
     # ./vfio.nix
   ];
+  options = {
+    gui = lib.mkOption {default = "kde";};
+  };
 
   config = {
     host = "dotPC";

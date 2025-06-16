@@ -10,6 +10,8 @@
       liberation_ttf
       google-fonts
       vistafonts
+      material-symbols
+      ibm-plex
     ]
     ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 }
