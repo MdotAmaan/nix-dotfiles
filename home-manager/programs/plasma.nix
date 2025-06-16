@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: {
@@ -13,6 +14,22 @@
       workspace = {
         #iconTheme = "Papirus-Dark";
         #lookAndFeel = "org.kde.breezedark.desktop";
+      };
+
+      hotkeys.commands = {
+        nix-config = {
+          name = "Open nix config";
+          comment = "Opens the nix config directory with neovide";
+          key = "Meta+Shift+C";
+          command = "neovide ~/nix-dotfiles/.";
+        };
+
+        hyperhdr = {
+          name = "Launch HyperHDR";
+          comment = "Launches HyperHDR";
+          key = "Meta+Shift+H";
+          command = "hyperhdr";
+        };
       };
 
       shortcuts = {
@@ -52,6 +69,8 @@
           "karousel-window-move-right" = "Meta+Right";
           "karousel-column-width-decrease" = "Meta+[";
           "karousel-column-width-increase" = "Meta+]";
+          "karousel-columns-width-equalize" = "Meta+=";
+
           "karousel-window-toggle-floating" = "Meta+W";
           "karousel-focus-end" = "Meta+/";
           "karousel-focus-start" = "Meta+H";
@@ -76,6 +95,8 @@
           "Windows"."NextFocusPrefersMouse" = "true";
 
           "Script-karousel" = {
+            "resizeNeighborColumn" = true;
+            "skipSwitcher" = false;
             "gapsInnerHorizontal" = 7;
             "gapsInnerVertical" = 7;
             "gapsOuterBottom" = 7;
@@ -84,7 +105,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                     
+            "windowRules" = ''                       
               [{        
                 "class": "Gnuplot",
                 "tile": false
@@ -149,5 +170,9 @@
         "kscreenlockerrc"."Daemon"."Timeout" = 20; # Set screen timeout to 20 minutes
       };
     };
+
+    home.packages = with pkgs; [
+      kde-rounded-corners
+    ];
   };
 }
