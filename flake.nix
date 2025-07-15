@@ -37,7 +37,7 @@
       url = "github:gmodena/nix-flatpak/?ref=v0.6.0";
     };
 
-    nvf.url = "github:notashelf/nvf";
+    nvf.url = "github:notashelf/nvf?ref=pull/956/merge";
 
     # Hoyo Launchers
     aagl = {
@@ -81,7 +81,7 @@
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix
           {
-            hoyo.enable = true;
+            hoyo.enable = false;
             sunshine.enable = true;
             zerotier.enable = false;
             tailscale.enable = false;
