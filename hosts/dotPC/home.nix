@@ -22,6 +22,7 @@
         blender-hip
         # kicad
         freecad-wayland
+        openscad
         audacity
         kdePackages.kdenlive
         # Game stuff
@@ -51,6 +52,7 @@
         kdePackages.filelight
         lazygit
         # logseq
+        jstest-gtk
         obsidian
         fastfetch
         obs-studio
@@ -64,7 +66,7 @@
       ]
       ++ [
         pkgs-unstable.orca-slicer
-        pkgs-unstable.grayjay
+        # pkgs-unstable.grayjay
         # pkgs-unstable.freecad
       ];
 

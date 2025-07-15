@@ -5,6 +5,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
 
+      departure-mono
       poppins
       fira-code
       liberation_ttf

@@ -3,7 +3,7 @@
   pkgs,
   config,
   # osConfig,
-  # pkgs-unstable,
+  pkgs-unstable,
   inputs,
   ...
 }: {
@@ -14,10 +14,13 @@
   config = lib.mkIf config.hyprland.enable {
     home.packages = with pkgs;
       [
+        aubio
         bluez-tools
+        btop
         brightnessctl
         cava
         ddcutil
+        dart-sass
         wlogout
         gammastep
         fish
@@ -27,29 +30,53 @@
         foot
         fuzzel
         imagemagick
+        inotify-tools
+        lm_sensors
+        libnotify
+        libpulse
+        papirus-icon-theme
         socat
+        slurp
+        swappy
         trash-cli
         wayfreeze
         wl-screenrec
         jq
         xdg-user-dirs
+        qt5ct
+        qt6ct
+
+        hyprlock
 
         python313Packages.materialyoucolor
         python313Packages.pyaudio
+        python313Packages.pillow
         python313Packages.numpy
       ]
       ++ [
         inputs.quickshell.packages."x86_64-linux".default
-        # pkgs-unstable.app2unit
+        pkgs-unstable.app2unit
       ];
 
     programs = {
-      hyprlock = {
-        enable = true;
-      };
+      # hyprlock = {
+      #   enable = true;
+      # };
     };
 
     services = {
+      cliphist = {
+        enable = true;
+      };
+
+      gnome-keyring = {
+        enable = true;
+      };
+
+      polkit-gnome = {
+        enable = true;
+      };
+
       hypridle = {
         enable = true;
 
@@ -64,6 +91,11 @@
             {
               timeout = 360; # 6 mins
               on-timeout = "loginctl lock-session";
+            }
+            {
+              timeout = 1000; # 16 mins
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
             }
             # {
             #   timeout = 600; # 10 mins

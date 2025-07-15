@@ -21,7 +21,7 @@
           name = "Open nix config";
           comment = "Opens the nix config directory with neovide";
           key = "Meta+Shift+C";
-          command = "neovide ~/nix-dotfiles/.";
+          command = "neovide /home/mdot/nix-dotfiles/.";
         };
 
         hyperhdr = {
@@ -105,7 +105,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                       
+            "windowRules" = ''                 
               [{        
                 "class": "Gnuplot",
                 "tile": false
