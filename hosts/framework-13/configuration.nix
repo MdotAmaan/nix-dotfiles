@@ -121,6 +121,11 @@
     };
 
     programs = {
+      appimage = {
+        enabe = true;
+        binfmt = true;
+      };
+
       nix-ld.enable = true;
       nix-ld.libraries = with pkgs; [
         stdenv.cc.cc.lib
