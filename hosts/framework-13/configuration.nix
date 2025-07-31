@@ -122,7 +122,7 @@
 
     programs = {
       appimage = {
-        enabe = true;
+        enable = true;
         binfmt = true;
       };
 
