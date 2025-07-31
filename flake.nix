@@ -37,7 +37,7 @@
       url = "github:gmodena/nix-flatpak/?ref=v0.6.0";
     };
 
-    nvf.url = "github:notashelf/nvf?ref=pull/956/merge";
+    nvf.url = "github:notashelf/nvf";
 
     # Hoyo Launchers
     aagl = {
