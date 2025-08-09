@@ -3,7 +3,16 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
+    # Make sure the module targets the same kernel as your system is using.
+    kernel = config.boot.kernelPackages.kernel;
+  };
+  amdgpu-ignore-ctx-privileges = builtins.fetchurl {
+    url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
+    sha256 = "sha256:0ya6b43m0ncjbyi6vyq3ipwwx6yj24cw8m167bd6ikwvdz5yi887";
+  };
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -18,6 +27,11 @@
     gui = "kde";
 
     boot = {
+      extraModulePackages = [
+        (amdgpu-kernel-module.overrideAttrs (_: {
+          patches = [amdgpu-ignore-ctx-privileges];
+        }))
+      ];
       kernelParams = ["intel_iommu=on"];
       loader = {
         systemd-boot.enable = true;
@@ -54,6 +68,8 @@
         '';
         checkReversePath = false; # Get wireguard to work
         allowedTCPPorts = [
+          3240
+          #ALVR
           9943
           9944
           53
@@ -112,6 +128,13 @@
     };
 
     programs = {
+      corectrl.enable = true;
+      gamemode.enable = true;
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
+
       appimage = {
         enable = true;
         binfmt = true;
@@ -143,6 +166,7 @@
       cargo
       darkly
       nur.repos.shadowrz.klassy-qt6
+      linuxPackages.usbip
       qalculate-qt
       aspell
       aspellDicts.en
