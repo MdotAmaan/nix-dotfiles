@@ -25,9 +25,12 @@
         openscad
         audacity
         kdePackages.kdenlive
+        xournalpp
         # Game stuff
         prismlauncher
 
+        godotPackages_4_3.godot
+        brave
         # TODO: Remove later and replace with dev shells
         libcxxStdenv
         clang-tools
@@ -52,7 +55,6 @@
         kdePackages.filelight
         lazygit
         # logseq
-        jstest-gtk
         obsidian
         fastfetch
         obs-studio
@@ -62,11 +64,12 @@
         yt-dlp
         tmux
         kdePackages.krdc
-        # orca-slicer
+        orca-slicer
+        protonvpn-gui
       ]
       ++ [
-        pkgs-unstable.orca-slicer
-        # pkgs-unstable.grayjay
+        # pkgs-unstable.orca-slicer
+        # pkgs-unstable.alvr
         # pkgs-unstable.freecad
       ];
 

@@ -2,6 +2,7 @@
   imports = [
     ./hoyo.nix
     ./alvr.nix
+    ./direnv.nix
     ./hyprland.nix
     ./kde.nix
     # ./orca-slicer.nix
