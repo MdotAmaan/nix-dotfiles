@@ -34,6 +34,8 @@
         cmake
         libgcc
 
+        gnirehtet
+        xournalpp
         android-tools
         zathura
         texliveMedium
