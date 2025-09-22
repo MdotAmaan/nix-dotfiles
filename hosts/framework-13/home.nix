@@ -36,7 +36,7 @@
 
         gnirehtet
         xournalpp
-        android-tools
+        # android-tools
         zathura
         texliveMedium
         jdk21
@@ -64,7 +64,7 @@
         # orca-slicer
       ]
       ++ [
-        pkgs-unstable.grayjay
+        # pkgs-unstable.grayjay
         pkgs-unstable.orca-slicer
       ];
 
