@@ -5,6 +5,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +50,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-xr,
     nixos-hardware,
     nixpkgs-unstable,
     nvf,
@@ -76,6 +78,7 @@
 
         modules = [
           nur.modules.nixos.default
+          nixpkgs-xr.nixosModules.nixpkgs-xr
           nix-flatpak.nixosModules.nix-flatpak
           aagl.nixosModules.default
           ./nixos/default.nix
