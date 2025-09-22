@@ -57,7 +57,6 @@ in {
     networking = {
       hostName = config.host;
       networkmanager.enable = true;
-
       firewall = {
         enable = true;
         # Enable multicast ports to discover local devices

@@ -34,7 +34,9 @@
         cmake
         libgcc
 
-        android-tools
+        gnirehtet
+        xournalpp
+        # android-tools
         zathura
         texliveMedium
         jdk21
@@ -62,7 +64,7 @@
         # orca-slicer
       ]
       ++ [
-        pkgs-unstable.grayjay
+        # pkgs-unstable.grayjay
         pkgs-unstable.orca-slicer
       ];
 

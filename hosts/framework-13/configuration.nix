@@ -121,6 +121,7 @@
     };
 
     programs = {
+      adb.enable = true;
       appimage = {
         enable = true;
         binfmt = true;
