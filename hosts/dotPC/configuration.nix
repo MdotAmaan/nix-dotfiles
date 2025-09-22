@@ -129,6 +129,7 @@ in {
 
     programs = {
       corectrl.enable = true;
+      # envision.enable = true;
       gamemode.enable = true;
       gamescope = {
         enable = true;
@@ -155,6 +156,13 @@ in {
 
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
+    services.wivrn = {
+      enable = true;
+      openFirewall = true;
+
+      defaultRuntime = true;
+      autoStart = true;
+    };
 
     environment.systemPackages = with pkgs; [
       wget
@@ -167,11 +175,14 @@ in {
       darkly
       nur.repos.shadowrz.klassy-qt6
       linuxPackages.usbip
+      wlx-overlay-s
       qalculate-qt
       aspell
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
+
+      wayvr-dashboard
     ];
 
     systemd.targets = {
