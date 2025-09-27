@@ -52,7 +52,10 @@ in {
       # });
     };
 
-    virtualisation.docker.enable = true;
+    virtualisation = {
+      docker.enable = true;
+      waydroid.enable = true;
+    };
 
     networking = {
       hostName = config.host;
