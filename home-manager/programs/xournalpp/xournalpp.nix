@@ -10,6 +10,6 @@
   home.file."${config.home.homeDirectory}/.config/xournalpp/plugins/vi-xournalpp/" = {
     enable = true;
     recursive = true;
-    source = ./vi-xournalpp;
+    source = config.lib.file.mkOutOfStoreSymlink ./vi-xournalpp;
   };
 }

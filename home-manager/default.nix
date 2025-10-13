@@ -4,7 +4,6 @@
     ./programs/neovim.nix
     ./programs/firefox.nix
     ./programs/floorp.nix
-    ./programs/hyprland/hyprland.nix
     ./programs/lf/lf.nix
     ./programs/okular.nix
     ./programs/kitty.nix

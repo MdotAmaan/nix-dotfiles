@@ -1,0 +1,3 @@
+[submodule "home-manager/programs/xournalpp/vi-xournalpp"]
+	path = home-manager/programs/xournalpp/vi-xournalpp
+	url = https://github.com/lryffel/vi-xournalpp

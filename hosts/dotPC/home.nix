@@ -8,7 +8,6 @@
   neovim.enable = true;
   firefox.enable = true;
   floorp.enable = true;
-  hyprland.enable = false;
 
   home = {
     username = "mdot";
@@ -25,7 +24,6 @@
         openscad
         audacity
         kdePackages.kdenlive
-        xournalpp
         # Game stuff
         prismlauncher
         bs-manager
