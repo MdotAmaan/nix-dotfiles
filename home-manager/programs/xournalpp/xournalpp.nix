@@ -6,10 +6,8 @@
   home.packages = with pkgs; [
     xournalpp
   ];
-
   home.file."${config.home.homeDirectory}/.config/xournalpp/plugins/vi-xournalpp/" = {
-    enable = true;
     recursive = true;
-    source = config.lib.file.mkOutOfStoreSymlink ./vi-xournalpp;
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}nix-dotfiles/home-manager/programs/xournalpp/vim-xournalpp/";
   };
 }
