@@ -65,7 +65,7 @@
         yt-dlp
         tmux
         kdePackages.krdc
-        orca-slicer
+        # orca-slicer
         protonvpn-gui
       ]
       ++ [
