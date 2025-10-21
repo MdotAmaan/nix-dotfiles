@@ -154,7 +154,7 @@ keybindings = {
 	},
 	page = {
 		description = "Page mode",
-		buttons = { "b", "p" },
+		buttons = { "p" },
 		modes = { "tool" },
 		call = function()
 			currentMode = "page"
@@ -222,7 +222,7 @@ keybindings = {
 	},
 	resize = {
 		description = "Resize mode",
-		buttons = { "<Shift>F" },
+		buttons = { "d" },
 		modes = { "tool" },
 		call = function()
 			currentMode = "resize"
@@ -244,7 +244,7 @@ keybindings = {
 	},
 	zoomIn = {
 		description = "Zoom in",
-		buttons = { "greater", "<Shift>greater", "plus", "<Shift>plus" },
+		buttons = { "equal" },
 		modes = { "tool" },
 		call = clickZoomIn,
 	},
@@ -264,19 +264,19 @@ keybindings = {
 	},
 	fine = {
 		description = "Fine",
-		buttons = { "s" },
+		buttons = { "r" },
 		modes = { "resize" },
 		call = clickFine,
 	},
 	medium = {
 		description = "Medium",
-		buttons = { "d" },
+		buttons = { "s" },
 		modes = { "resize" },
 		call = clickMedium,
 	},
 	thick = {
 		description = "Thick",
-		buttons = { "f" },
+		buttons = { "t" },
 		modes = { "resize" },
 		call = clickThick,
 	},
