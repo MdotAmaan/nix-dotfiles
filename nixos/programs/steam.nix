@@ -25,6 +25,7 @@
           ];
       };
 
+      protontricks.enable = true;
       enable = true;
       remotePlay.openFirewall = true;
     };
