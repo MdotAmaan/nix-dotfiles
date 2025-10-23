@@ -55,7 +55,6 @@
         # logseq
         obsidian
         fastfetch
-        obs-studio
         unzip
         distrobox
         yt-dlp

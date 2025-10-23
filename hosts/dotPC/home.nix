@@ -56,7 +56,6 @@
         # logseq
         obsidian
         fastfetch
-        obs-studio
         libcap
         unzip
         distrobox

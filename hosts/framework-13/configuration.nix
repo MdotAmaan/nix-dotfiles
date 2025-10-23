@@ -84,6 +84,11 @@
     };
 
     hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
+
       framework.laptop13.audioEnhancement = {
         enable = true;
         rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stere";
