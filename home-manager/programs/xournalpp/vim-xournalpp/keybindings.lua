@@ -244,7 +244,7 @@ keybindings = {
 	},
 	zoomIn = {
 		description = "Zoom in",
-		buttons = { "greater", "<Shift>greater", "plus", "<Shift>plus" },
+		buttons = { "equal" },
 		modes = { "tool" },
 		call = clickZoomIn,
 	},
