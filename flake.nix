@@ -111,7 +111,7 @@
             steam.enable = true;
             zerotier.enable = false;
             tailscale.enable = false;
-            sunshine.enable = true;
+            sunshine.enable = false;
             protonmail-bridge.enable = false;
             # orca-slicer.enable = true;
           }

@@ -84,10 +84,10 @@
     };
 
     hardware = {
-      graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
+      # graphics = {
+      #   enable = true;
+      #   enable32Bit = true;
+      # };
 
       framework.laptop13.audioEnhancement = {
         enable = true;
@@ -140,11 +140,6 @@
         # add missing dynamic libraries here instead of system
       ];
       partition-manager.enable = true;
-      weylus = {
-        enable = true;
-        openFirewall = true;
-        users = ["mdot"];
-      };
     };
 
     services.pulseaudio.enable = false;
