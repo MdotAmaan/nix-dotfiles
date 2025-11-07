@@ -21,7 +21,7 @@
         # kicad
         freecad-wayland
         audacity
-
+        kdePackages.qtmultimedia
         python3
         kdePackages.kdenlive
         # Game stuff

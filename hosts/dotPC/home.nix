@@ -18,6 +18,7 @@
       [
         inkscape
         krita
+        qtmultimedia
         blender-hip
         # kicad
         freecad-wayland
