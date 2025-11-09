@@ -25,7 +25,7 @@
         audacity
         kdePackages.kdenlive
         # Game stuff
-        prismlauncher
+        # prismlauncher
         bs-manager
 
         godotPackages_4_3.godot

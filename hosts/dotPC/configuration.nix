@@ -52,6 +52,13 @@ in {
       # });
     };
 
+    swapDevices = [
+      {
+        device = "/var/lib/swapfile";
+        size = 16 * 1024;
+      }
+    ];
+
     virtualisation = {
       docker.enable = true;
       waydroid.enable = true;
