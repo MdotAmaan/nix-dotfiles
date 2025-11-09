@@ -18,6 +18,7 @@
         inkscape
         krita
         blender-hip
+        lightburn
         # kicad
         freecad-wayland
         audacity
