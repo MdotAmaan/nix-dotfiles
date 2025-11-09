@@ -70,6 +70,7 @@
           "karousel-column-width-decrease" = "Meta+[";
           "karousel-column-width-increase" = "Meta+]";
           "karousel-columns-width-equalize" = "Meta+=";
+          "karousel-grid-scroll-focused" = "Meta+Shift+C";
 
           "karousel-window-toggle-floating" = "Meta+W";
           "karousel-focus-end" = "Meta+/";
@@ -105,7 +106,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                 
+            "windowRules" = ''                         
               [{        
                 "class": "Gnuplot",
                 "tile": false
