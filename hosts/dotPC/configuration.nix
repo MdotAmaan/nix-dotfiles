@@ -109,6 +109,7 @@ in {
     };
 
     hardware = {
+      keyboard.qmk.enable = true;
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
     };
@@ -183,7 +184,6 @@ in {
       cargo
       darkly
       nur.repos.shadowrz.klassy-qt6
-      linuxPackages.usbip
       wlx-overlay-s
       qalculate-qt
       aspell
@@ -192,6 +192,9 @@ in {
       aspellDicts.en-science
 
       wayvr-dashboard
+
+      opencomposite
+      xrizer
     ];
 
     systemd.targets = {
