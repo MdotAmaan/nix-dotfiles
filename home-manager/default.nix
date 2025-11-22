@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./programs/obs-studio.nix
     ./programs/plasma.nix
     ./programs/neovim.nix
     ./programs/firefox.nix

@@ -18,6 +18,7 @@
       [
         inkscape
         krita
+        qtmultimedia
         blender-hip
         # kicad
         freecad-wayland
@@ -59,7 +60,6 @@
         # logseq
         obsidian
         fastfetch
-        obs-studio
         libcap
         unzip
         distrobox

@@ -84,6 +84,11 @@
     };
 
     hardware = {
+      # graphics = {
+      #   enable = true;
+      #   enable32Bit = true;
+      # };
+
       framework.laptop13.audioEnhancement = {
         enable = true;
         rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stere";
@@ -135,11 +140,6 @@
         # add missing dynamic libraries here instead of system
       ];
       partition-manager.enable = true;
-      weylus = {
-        enable = true;
-        openFirewall = true;
-        users = ["mdot"];
-      };
     };
 
     services.pulseaudio.enable = false;

@@ -18,10 +18,11 @@
         inkscape
         krita
         blender-hip
+        lightburn
         # kicad
         freecad-wayland
         audacity
-
+        kdePackages.qtmultimedia
         python3
         kdePackages.kdenlive
         # Game stuff
@@ -55,7 +56,6 @@
         # logseq
         obsidian
         fastfetch
-        obs-studio
         unzip
         distrobox
         yt-dlp

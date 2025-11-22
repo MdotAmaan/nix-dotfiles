@@ -111,7 +111,7 @@
             steam.enable = true;
             zerotier.enable = false;
             tailscale.enable = false;
-            sunshine.enable = true;
+            sunshine.enable = false;
             protonmail-bridge.enable = false;
             # orca-slicer.enable = true;
           }
@@ -137,7 +137,7 @@
         modules = [
           ./home-manager/default.nix
           ./hosts/dotPC/home.nix
-          inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.plasma-manager.homeModules.plasma-manager
           inputs.nvf.homeManagerModules.default
         ];
       };
@@ -158,7 +158,7 @@
         modules = [
           ./home-manager/default.nix
           ./hosts/framework-13/home.nix
-          inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.plasma-manager.homeModules.plasma-manager
           inputs.nvf.homeManagerModules.default
         ];
       };
