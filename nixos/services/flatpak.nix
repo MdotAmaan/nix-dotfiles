@@ -2,6 +2,11 @@
   services.flatpak = {
     enable = true;
 
+    overrides = {
+      global.Environment = {
+        GTK_THEME = "Breeze:dark";
+      };
+    };
     remotes = [
       {
         name = "flathub";
