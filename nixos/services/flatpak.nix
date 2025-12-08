@@ -4,7 +4,7 @@
 
     overrides = {
       global.Environment = {
-        GTK_THEME = "Breeze:dark";
+        GTK_THEME = "Adwaita:dark";
       };
     };
     remotes = [
