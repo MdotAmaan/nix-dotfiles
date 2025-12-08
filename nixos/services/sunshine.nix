@@ -17,12 +17,36 @@
         openFirewall = true;
         applications.apps = [
           {
-            name = "Tab Session";
+            name = "1440p 16:9";
             prep-cmd = [
               {
                 # TODO: Add conditions for laptop / desktop
-                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1680x1050@160";
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.2560x1440@60";
                 undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
+              }
+            ];
+            exclude-global-prep-cmd = "false";
+            auto-detach = "true";
+          }
+          {
+            name = "1080p 16:10";
+            prep-cmd = [
+              {
+                # TODO: Add conditions for laptop / desktop
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1920x1200@160";
+                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
+              }
+            ];
+            exclude-global-prep-cmd = "false";
+            auto-detach = "true";
+          }
+          {
+            name = "1080p 16:9";
+            prep-cmd = [
+              {
+                # TODO: Add conditions for laptop / desktop
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1920x1080@120";
+                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1920x1080@120";
               }
             ];
             exclude-global-prep-cmd = "false";

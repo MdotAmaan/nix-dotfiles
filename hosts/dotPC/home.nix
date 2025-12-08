@@ -29,7 +29,6 @@
         # prismlauncher
         bs-manager
         xrizer
-
         vial
 
         godotPackages_4_3.godot
