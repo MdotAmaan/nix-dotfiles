@@ -81,7 +81,7 @@
 
         # Application Launchers
         "obsidian.desktop"."_launch" = "Meta+L";
-        "floorp.desktop"."_launch" = "Meta+F";
+        "services/one.ablaze.floorp.desktop"."_launch" = "Meta+F";
         "services/konsole.desktop"."_launch" = "Meta+T";
         "org.kde.dolphin.desktop"."_launch" = "Meta+X";
         "systemsettings.desktop"."_launch" = ["Tools" "Meta+S"];
@@ -106,7 +106,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                         
+            "windowRules" = ''                   
               [{        
                 "class": "Gnuplot",
                 "tile": false
@@ -144,11 +144,11 @@
                 "tile": false
               },
               {
-                "class": "moe.launcher.the-honkers-railway-launcher",
+                "caption": "The Honkers Railway Launcher",
                 "tile": false
               },
               {
-                "class": "moe.launcher.an-anime-game-launcher",
+                "caption": "An Anime Game Launcher",
                 "tile": false
               },
               {
@@ -163,7 +163,12 @@
               {
                 "class": "org.kde.plasma.emojier",
                 "tile": false 
-              }]'';
+              },
+              {
+                "class": "steamwebhelper steam",
+                "tile": false 
+              }
+              ]'';
           };
         };
 

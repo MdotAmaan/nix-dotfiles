@@ -57,7 +57,6 @@ in {
       networkmanager.enable = true;
       firewall = {
         enable = true;
-        # Enable multicast ports to discover local devices
         extraCommands = ''
           iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
           iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -97,6 +96,7 @@ in {
     };
 
     hardware = {
+      opentabletdriver.enable = true;
       keyboard.qmk.enable = true;
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
@@ -127,6 +127,7 @@ in {
 
     programs = {
       corectrl.enable = true;
+      # xppen-enable = true;
       # envision.enable = true;
       gamemode.enable = true;
       gamescope = {

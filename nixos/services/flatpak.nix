@@ -4,7 +4,7 @@
 
     overrides = {
       global.Environment = {
-        GTK_THEME = "Adwaita:dark";
+        # GTK_THEME = "Adwaita:dark";
       };
     };
     remotes = [
@@ -14,13 +14,13 @@
       }
     ];
     packages = [
-      "one.ablaze.floorp"
-      "moe.launcher.an-anime-game-launcher"
-      "moe.launcher.the-honkers-railway-launcher"
-      "org.gnome.Platform//45"
-      "com.usebottles.bottles"
-      "io.mrarm.mcpelauncher"
-      "io.mango3d.LycheeSlicer"
+      # "one.ablaze.floorp"
+      # "moe.launcher.an-anime-game-launcher"
+      # "moe.launcher.the-honkers-railway-launcher"
+      # "org.gnome.Platform//45"
+      # "com.usebottles.bottles"
+      # "io.mrarm.mcpelauncher"
+      # "io.mango3d.LycheeSlicer"
     ];
   };
 }
