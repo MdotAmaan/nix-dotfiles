@@ -66,7 +66,7 @@
       ]
       ++ [
         # pkgs-unstable.grayjay
-        pkgs-unstable.orca-slicer
+        # pkgs-unstable.orca-slicer
       ];
 
     sessionVariables = {
