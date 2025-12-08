@@ -1,6 +1,5 @@
 {
   imports = [
-    ./hoyo.nix
     ./alvr.nix
     ./direnv.nix
     ./kde.nix
@@ -9,6 +8,6 @@
     ./ssh.nix
     ./localsend.nix
     ./nh.nix
-    ./zsh.nix
+    ./zsh/zsh.nix
   ];
 }

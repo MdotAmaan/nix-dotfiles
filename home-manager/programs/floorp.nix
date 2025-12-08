@@ -7,7 +7,7 @@
     floorp.enable = lib.mkEnableOption "Enables Floorp";
   };
 
-  config = lib.mkIf config.firefox.enable {
+  config = lib.mkIf config.floorp.enable {
     programs.floorp = {
       enable = true;
       policies = {

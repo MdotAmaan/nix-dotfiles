@@ -7,7 +7,7 @@
   plasma.enable = true;
   neovim.enable = true;
   firefox.enable = true;
-  floorp.enable = true;
+  floorp.enable = false;
 
   home = {
     username = "mdot";
@@ -18,7 +18,7 @@
       [
         inkscape
         krita
-        qtmultimedia
+        kdePackages.qtmultimedia
         blender-hip
         # kicad
         freecad-wayland
@@ -26,8 +26,10 @@
         audacity
         kdePackages.kdenlive
         # Game stuff
-        prismlauncher
+        # prismlauncher
         bs-manager
+        xrizer
+        vial
 
         godotPackages_4_3.godot
         brave
@@ -84,4 +86,23 @@
   services.easyeffects = {
     enable = true;
   };
+  #  xdg.configFile."openvr/openvrpaths.vrpath".text = ''
+  #    {
+  #      "config" :
+  #      [
+  #        "~/.local/share/Steam/config"
+  #      ],
+  #      "external_drivers" : null,
+  #      "jsonid" : "vrpathreg",
+  #      "log" :
+  #      [
+  #        "~/.local/share/Steam/logs"
+  #      ],
+  #      "runtime" :
+  #      [
+  #        "${pkgs.opencomposite}/lib/opencomposite"
+  #      ],
+  #      "version" : 1
+  #    }
+  #  '';
 }
