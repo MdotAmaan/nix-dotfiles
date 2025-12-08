@@ -1,6 +1,5 @@
 {
   imports = [
-    ./hoyo.nix
     ./alvr.nix
     ./direnv.nix
     ./kde.nix

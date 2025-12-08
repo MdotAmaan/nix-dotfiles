@@ -3,11 +3,11 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur = {
@@ -22,11 +22,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lightly.url = "github:Bali10050/Darkly";
 
     nixos-hardware = {
@@ -39,12 +34,6 @@
     };
 
     nvf.url = "github:notashelf/nvf";
-
-    # Hoyo Launchers
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -58,7 +47,6 @@
     home-manager,
     plasma-manager,
     nix-flatpak,
-    aagl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -80,17 +68,15 @@
           nur.modules.nixos.default
           nixpkgs-xr.nixosModules.nixpkgs-xr
           nix-flatpak.nixosModules.nix-flatpak
-          aagl.nixosModules.default
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix
           {
-            hoyo.enable = false;
             sunshine.enable = true;
             zerotier.enable = false;
             tailscale.enable = false;
             steam.enable = true;
             protonmail-bridge.enable = true;
-            alvr.enable = true;
+            alvr.enable = false;
             # orca-slicer.enable = false;
           }
         ];
@@ -103,11 +89,9 @@
           nur.modules.nixos.default
           nix-flatpak.nixosModules.nix-flatpak
           nixos-hardware.nixosModules.framework-13-7040-amd
-          aagl.nixosModules.default
           ./nixos/default.nix
           ./hosts/framework-13/configuration.nix
           {
-            hoyo.enable = true;
             steam.enable = true;
             zerotier.enable = false;
             tailscale.enable = false;
