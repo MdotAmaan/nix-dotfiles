@@ -28,9 +28,13 @@
 
     git = {
       enable = true;
-      userName = "MdotAmaan";
-      userEmail = "mdotamaan@protonmail.com";
-      extraConfig = {
+
+      settings = {
+        user = {
+          name = "MdotAmaan";
+          email = "mdotamaan@protonmail.com";
+        };
+
         init.defaultBranch = "main";
         pull.rebase = false;
       };

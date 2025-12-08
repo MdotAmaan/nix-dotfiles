@@ -12,21 +12,11 @@
         name = "flathub";
         location = "https://flathub.org/repo/flathub.flatpakrepo";
       }
-      {
-        name = "launcher.moe";
-        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
-      }
     ];
     packages = [
-      {
-        appId = "moe.launcher.the-honkers-railway-launcher";
-        origin = "launcher.moe";
-      }
-      {
-        appId = "moe.launcher.an-anime-game-launcher";
-        origin = "launcher.moe";
-      }
-
+      "one.ablaze.floorp"
+      "moe.launcher.an-anime-game-launcher"
+      "moe.launcher.the-honkers-railway-launcher"
       "org.gnome.Platform//45"
       "com.usebottles.bottles"
       "io.mrarm.mcpelauncher"

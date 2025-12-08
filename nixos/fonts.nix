@@ -10,7 +10,7 @@
       fira-code
       liberation_ttf
       google-fonts
-      vistafonts
+      vista-fonts
       material-symbols
       ibm-plex
     ]

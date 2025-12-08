@@ -5,7 +5,7 @@
 }: {
   neovim.enable = true;
   firefox.enable = true;
-  floorp.enable = true;
+  floorp.enable = false;
   plasma.enable = true;
 
   home = {
