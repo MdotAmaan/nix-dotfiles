@@ -10,6 +10,10 @@
       plugins = ["git" "autojump"];
       theme = "agnoster";
     };
+    shellAliases = {
+      ll = "ls -l";
+      nixup = ./update-flakes.zsh;
+    };
   };
 
   fonts.packages = with pkgs; [

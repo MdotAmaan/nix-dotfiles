@@ -9,6 +9,6 @@
     ./ssh.nix
     ./localsend.nix
     ./nh.nix
-    ./zsh.nix
+    ./zsh/zsh.nix
   ];
 }
