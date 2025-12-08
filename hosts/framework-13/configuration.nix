@@ -93,7 +93,7 @@
         enable = true;
         rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stere";
       };
-
+      keyboard.qmk.enable = true;
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
     };

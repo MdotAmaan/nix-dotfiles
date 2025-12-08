@@ -15,6 +15,7 @@
 
     packages = with pkgs;
       [
+        vial
         inkscape
         krita
         blender-hip
