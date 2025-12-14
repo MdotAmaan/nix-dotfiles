@@ -15,6 +15,7 @@
 
     packages = with pkgs;
       [
+        vial
         inkscape
         krita
         blender-hip
@@ -65,7 +66,7 @@
       ]
       ++ [
         # pkgs-unstable.grayjay
-        pkgs-unstable.orca-slicer
+        # pkgs-unstable.orca-slicer
       ];
 
     sessionVariables = {
