@@ -126,6 +126,7 @@ in {
     };
 
     programs = {
+      xppen.enable = false;
       corectrl.enable = true;
       # xppen-enable = true;
       # envision.enable = true;

@@ -106,7 +106,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''                   
+            "windowRules" = ''             
               [{        
                 "class": "Gnuplot",
                 "tile": false
@@ -162,6 +162,10 @@
               },    
               {
                 "class": "org.kde.plasma.emojier",
+                "tile": false 
+              },
+              {
+                "class": "PenTablet",
                 "tile": false 
               },
               {
