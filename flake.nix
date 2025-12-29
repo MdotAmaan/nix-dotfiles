@@ -10,6 +10,8 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -93,6 +95,7 @@
           ./hosts/framework-13/configuration.nix
           {
             steam.enable = true;
+            minecraft-server.enable = true;
             zerotier.enable = false;
             tailscale.enable = false;
             sunshine.enable = false;
