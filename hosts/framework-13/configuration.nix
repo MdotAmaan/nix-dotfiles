@@ -57,6 +57,8 @@
         '';
         checkReversePath = false; # Get wireguard to work
         allowedTCPPorts = [
+          19132
+          25565
           9943
           9944
           53
@@ -70,6 +72,8 @@
         #   }
         # ];
         allowedUDPPorts = [
+          19132
+          25565
           9943
           9944
           53
@@ -93,6 +97,10 @@
         enable = true;
         rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stere";
       };
+
+      sane.enable = true;
+      sane.extraBackends = [pkgs.epsonscan2];
+
       keyboard.qmk.enable = true;
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
@@ -111,7 +119,6 @@
 
       displayManager.sddm.enable = true;
       desktopManager.plasma6.enable = true;
-      displayManager.sddm.wayland.enable = true;
       pipewire = {
         enable = true;
         alsa.enable = true;
@@ -122,7 +129,19 @@
       openssh.enable = true;
       resolved.enable = true;
 
-      printing.enable = true;
+      avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
+
+      printing = {
+        enable = true;
+        drivers = with pkgs; [
+          cups-filters
+          cups-browsed
+        ];
+      };
     };
 
     programs = {
@@ -147,6 +166,7 @@
 
     environment.systemPackages = with pkgs; [
       wget
+      epsonscan2
       wl-clipboard
       home-manager
       ripgrep

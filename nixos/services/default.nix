@@ -6,6 +6,5 @@
     ./sunshine.nix
     ./tailscale.nix
     ./zerotier.nix
-    ./minecraft.nix
   ];
 }

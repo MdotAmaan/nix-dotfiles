@@ -37,6 +37,8 @@
         "docker"
         "adbusers"
         "kvm"
+        "scanner"
+        "lp"
       ];
       openssh.authorizedKeys.keys = [
         # SSH public Keys
