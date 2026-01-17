@@ -14,12 +14,13 @@
     nixpkgs.overlays = [inputs.nix-minecraft.overlay];
 
     services.minecraft-servers = {
-      enable = true;
+      enable = false;
       eula = true;
 
       servers = {
         cool-server-1 = {
           enable = true;
+          openFirewall = true;
           package = pkgs.fabricServers.fabric-1_21_11;
           # jvmOpts = "-Xms4092M -Xmx4092M -XX:+UseG1GC";
 

@@ -20,6 +20,7 @@
         krita
         blender-hip
         lightburn
+        plasma-panel-colorizer
         # kicad
         freecad-wayland
         audacity
@@ -28,6 +29,7 @@
         kdePackages.kdenlive
         # Game stuff
         prismlauncher
+        exfatprogs
 
         # TODO: Remove later and replace with dev shells
         libcxxStdenv
