@@ -4,69 +4,67 @@
   ...
 }: {
   # Custom Modules
-  plasma.enable = true;
   neovim.enable = true;
   firefox.enable = true;
   floorp.enable = false;
+  plasma.enable = true;
+  niri.enable = true;
 
   home = {
     username = "mdot";
     homeDirectory = "/home/mdot";
     stateVersion = "23.11";
 
-    packages = with pkgs;
-      [
-        alacritty
-        inkscape
-        krita
-        kdePackages.qtmultimedia
-        pkgsRocm.blender
-        # kicad
-        freecad-wayland
-        openscad
-        audacity
-        kdePackages.kdenlive
-        # Game stuff
-        # prismlauncher
-        bs-manager
+    packages = with pkgs; [
+      alacritty
+      inkscape
+      krita
+      klassy
+      kdePackages.qtmultimedia
+      pkgsRocm.blender
+      # kicad
+      freecad-wayland
+      openscad
+      audacity
+      kdePackages.kdenlive
+      # Game stuff
+      # prismlauncher
+      bs-manager
 
-        vial
+      vial
 
-        godotPackages_4_3.godot
-        # TODO: Remove later and replace with dev shells
-        libcxxStdenv
-        cmake
-        # libgcc
+      godotPackages_4_3.godot
+      # TODO: Remove later and replace with dev shells
+      libcxxStdenv
+      cmake
+      # libgcc
 
-        android-tools
-        zathura
-        texliveMedium
-        jdk21
-        #  python311Packages.west
-        thunderbird
-        hyperhdr
-        libreoffice-qt
-        qbittorrent
-        vlc
-        # pureref
-        kdePackages.qtwebsockets
-        kdePackages.filelight
-        lazygit
-        # logseq
-        obsidian
-        fastfetch
-        libcap
-        unzip
-        distrobox
-        yt-dlp
-        tmux
-        kdePackages.krdc
-        # orca-slicer
-        protonvpn-gui
-      ]
-      ++ [
-        pkgs-unstable.klassy
-      ];
+      android-tools
+      zathura
+      texliveMedium
+      jdk21
+      #  python311Packages.west
+      thunderbird
+      hyperhdr
+      libreoffice-qt
+      qbittorrent
+      vlc
+      kdePackages.qtwebsockets
+      kdePackages.filelight
+      lazygit
+      obsidian
+      fastfetch
+      libcap
+      unzip
+      distrobox
+      yt-dlp
+      tmux
+      kdePackages.krdc
+      protonvpn-gui
+    ];
+    # ++ [
+    #   pkgs-unstable.klassy
+    # ];
 
     sessionVariables = {
       EDITOR = "neovide";

@@ -165,11 +165,15 @@
     security.rtkit.enable = true;
 
     environment.systemPackages = with pkgs; [
+      arduino-ide
       wget
       epsonscan2
+      p7zip
+      unzip
       wl-clipboard
       home-manager
       ripgrep
+      tesseract
       fd
       sshfs
       cargo

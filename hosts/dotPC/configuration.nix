@@ -133,11 +133,6 @@ in {
     virtualisation.spiceUSBRedirection.enable = true;
 
     programs = {
-      niri = {
-        enable = true;
-        package = pkgs.niri-unstable;
-      };
-
       xppen.enable = false;
       corectrl.enable = true;
       # xppen-enable = true;
@@ -181,9 +176,6 @@ in {
       autoStart = true;
     };
 
-    # Get Apps to show up in KDE apps outside of KDE itself
-    environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
-
     environment.systemPackages = with pkgs; [
       platformio
       arduino-ide
@@ -214,11 +206,6 @@ in {
       aspellDicts.en-science
 
       wayvr
-
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      kdePackages.qt6ct
-      xwayland-satellite
-      cliphist
     ];
 
     systemd.targets = {

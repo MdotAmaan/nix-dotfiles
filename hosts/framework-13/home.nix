@@ -7,6 +7,7 @@
   firefox.enable = true;
   floorp.enable = false;
   plasma.enable = true;
+  niri.enable = true;
 
   home = {
     username = "mdot";
@@ -58,7 +59,6 @@
         # logseq
         obsidian
         fastfetch
-        unzip
         distrobox
         yt-dlp
         tmux

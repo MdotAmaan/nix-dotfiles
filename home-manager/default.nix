@@ -3,6 +3,7 @@
     ./programs/obs-studio.nix
     ./programs/plasma.nix
     ./programs/neovim.nix
+    ./programs/niri/niri.nix
     ./programs/firefox.nix
     ./programs/floorp.nix
     ./programs/lf/lf.nix

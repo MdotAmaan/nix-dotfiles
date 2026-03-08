@@ -72,6 +72,9 @@
       NIXOS_OZONE_WL = "1";
     };
 
+    # Get Apps to show up in KDE apps outside of KDE itself
+    environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
     programs = {
       gnupg.agent = {
         enable = true;

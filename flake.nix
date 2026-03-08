@@ -42,7 +42,13 @@
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
+    };
+
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nvf.url = "github:notashelf/nvf";
@@ -80,7 +86,6 @@
           nur.modules.nixos.default
           nixpkgs-xr.nixosModules.nixpkgs-xr
           nix-flatpak.nixosModules.nix-flatpak
-          niri.nixosModules.niri
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix
           {
@@ -133,6 +138,8 @@
         modules = [
           ./home-manager/default.nix
           ./hosts/dotPC/home.nix
+          niri.homeModules.niri
+          inputs.noctalia.homeModules.default
           inputs.plasma-manager.homeModules.plasma-manager
           inputs.nvf.homeManagerModules.default
         ];
@@ -154,6 +161,8 @@
         modules = [
           ./home-manager/default.nix
           ./hosts/framework-13/home.nix
+          niri.homeModules.niri
+          inputs.noctalia.homeModules.default
           inputs.plasma-manager.homeModules.plasma-manager
           inputs.nvf.homeManagerModules.default
         ];
