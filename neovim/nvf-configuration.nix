@@ -1,6 +1,5 @@
 {
   config.vim = {
-    # TODO: Uncomment when this is fixed upstream
     viAlias = true;
     vimAlias = true;
 
@@ -112,6 +111,13 @@
         silent = true;
         desc = "Toggle Neo-tree";
       }
+      {
+        key = "<leader>bd";
+        mode = ["n"];
+        action = ":bd<CR>";
+        silent = true;
+        desc = "Close Buffer";
+      }
     ];
 
     lsp = {
@@ -142,14 +148,14 @@
       # rust.enable = true;
       # markdown.enable = true;
       bash.enable = true;
-      # clang = {
-      #   enable = true;
-      #   dap.enable = true;
-      # };
+      clang = {
+        enable = true;
+        dap.enable = true;
+      };
       # css.enable = true;
       # html.enable = true;
       # sql.enable = true;
-      # java.enable = true;
+      java.enable = true;
       # kotlin.enable = true;
       # ts.enable = true;
       # go.enable = true;
@@ -183,6 +189,7 @@
         enable = true;
         setupOpts = {
           setupOpts.enable_cursor_hijack = true;
+          close_if_last_window = true;
         };
       };
     };
