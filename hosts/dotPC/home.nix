@@ -16,10 +16,11 @@
 
     packages = with pkgs;
       [
+        alacritty
         inkscape
         krita
         kdePackages.qtmultimedia
-        blender-hip
+        pkgsRocm.blender
         # kicad
         freecad-wayland
         openscad
@@ -28,17 +29,14 @@
         # Game stuff
         # prismlauncher
         bs-manager
-        xrizer
+
         vial
 
         godotPackages_4_3.godot
-        brave
         # TODO: Remove later and replace with dev shells
         libcxxStdenv
-        clang-tools
-        clang
         cmake
-        libgcc
+        # libgcc
 
         android-tools
         zathura
@@ -48,12 +46,10 @@
         thunderbird
         hyperhdr
         libreoffice-qt
-        element-desktop
         qbittorrent
         vlc
         # pureref
         kdePackages.qtwebsockets
-        ungoogled-chromium
         kdePackages.filelight
         lazygit
         # logseq
@@ -69,9 +65,7 @@
         protonvpn-gui
       ]
       ++ [
-        # pkgs-unstable.orca-slicer
-        # pkgs-unstable.alvr
-        # pkgs-unstable.freecad
+        pkgs-unstable.klassy
       ];
 
     sessionVariables = {

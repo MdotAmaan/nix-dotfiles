@@ -12,7 +12,7 @@
     };
     shellAliases = {
       ll = "ls -l";
-      nixup = ./update-flakes.zsh;
+      nixup = "/home/mdot/nix-dotfiles/nixos/programs/zsh/update-flakes.zsh";
     };
   };
 

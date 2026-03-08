@@ -53,7 +53,6 @@
         vlc
         # pureref
         kdePackages.qtwebsockets
-        ungoogled-chromium
         kdePackages.filelight
         lazygit
         # logseq

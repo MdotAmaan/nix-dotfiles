@@ -106,7 +106,7 @@
             "gapsOuterTop" = 7;
             "manualResizeStep" = 300;
 
-            "windowRules" = ''             
+            "windowRules" = ''                     
               [{        
                 "class": "Gnuplot",
                 "tile": false
@@ -182,7 +182,7 @@
     };
 
     home.packages = with pkgs; [
-      kde-rounded-corners
+      # kde-rounded-corners
     ];
   };
 }
