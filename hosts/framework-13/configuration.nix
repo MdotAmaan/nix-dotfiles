@@ -117,7 +117,7 @@
         xkb.variant = "";
       };
 
-      displayManager.sddm.enable = true;
+      displayManager.plasma-login-manager.enable = true;
       desktopManager.plasma6.enable = true;
       pipewire = {
         enable = true;
@@ -175,7 +175,6 @@
       cargo
       kdePackages.plymouth-kcm
       darkly
-      nur.repos.shadowrz.klassy-qt6
       qalculate-qt
       aspell
       aspellDicts.en

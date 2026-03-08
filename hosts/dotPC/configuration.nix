@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -26,6 +27,7 @@ in {
     host = "dotPC";
     gui = "kde";
 
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
     boot = {
       #     extraModulePackages = [
       #       (amdgpu-kernel-module.overrideAttrs (_: {
@@ -125,7 +127,17 @@ in {
       printing.enable = true;
     };
 
+    programs.virt-manager.enable = true;
+    users.groups.libvirtd.members = ["mdot"];
+    virtualisation.libvirtd.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+
     programs = {
+      niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
+
       xppen.enable = false;
       corectrl.enable = true;
       # xppen-enable = true;
@@ -143,19 +155,24 @@ in {
 
       nix-ld.enable = true;
       nix-ld.libraries = with pkgs; [
-        stdenv.cc.cc.lib
+        # stdenv.cc.cc.lib
         zlib
         libGL
         # add missing dynamic libraries here instead of system
       ];
 
       partition-manager.enable = true;
-      adb.enable = true;
       kdeconnect.enable = true;
     };
 
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
+
+    services.udev.packages = with pkgs; [
+      platformio-core.udev
+      openocd
+    ];
+
     services.wivrn = {
       enable = true;
       openFirewall = true;
@@ -164,7 +181,24 @@ in {
       autoStart = true;
     };
 
+    # Get Apps to show up in KDE apps outside of KDE itself
+    environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
     environment.systemPackages = with pkgs; [
+      platformio
+      arduino-ide
+
+      python3
+      rustup
+      espup
+      vscode-fhs
+      tesseract
+      android-tools
+      p7zip
+      linuxHeaders
+      clang-tools
+      clang
+      glibc
       wget
       wl-clipboard
       home-manager
@@ -173,18 +207,18 @@ in {
       sshfs
       cargo
       darkly
-      nur.repos.shadowrz.klassy-qt6
-      wlx-overlay-s
       qalculate-qt
       aspell
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
 
-      wayvr-dashboard
+      wayvr
 
-      opencomposite
-      xrizer
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      kdePackages.qt6ct
+      xwayland-satellite
+      cliphist
     ];
 
     systemd.targets = {
