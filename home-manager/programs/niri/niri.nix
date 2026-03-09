@@ -10,12 +10,12 @@
   };
 
   config = lib.mkIf config.niri.enable {
-    nixpkgs.overlays = [inputs.niri.overlays.niri];
     programs = {
-      niri = {
-        enable = true;
-        package = pkgs.niri-unstable;
-      };
+      # Uncomment once #1643 is resolved
+      # niri = {
+      #   enable = true;
+      #   package = pkgs.niri-unstable;
+      # };
 
       noctalia-shell = {
         enable = true;

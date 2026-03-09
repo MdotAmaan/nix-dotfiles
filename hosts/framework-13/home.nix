@@ -19,7 +19,7 @@
         vial
         inkscape
         krita
-        blender-hip
+        pkgsRocm.blender
         lightburn
         plasma-panel-colorizer
         # kicad

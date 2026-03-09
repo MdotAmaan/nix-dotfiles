@@ -333,6 +333,8 @@ binds {
     Mod+L hotkey-overlay-title="Run an Application: Obsidian" { spawn "obsidian"; }
     Mod+X hotkey-overlay-title="Run an Application: Dolphin" { spawn "dolphin"; }
 
+    Mod+Shift+C hotkey-overlay-title="Open nix config" { spawn "neovide" "~/nix-dotfiles"; }
+
     Alt+Space hotkey-overlay-title="Run an Application: KRunner" { spawn "krunner"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -344,18 +346,17 @@ binds {
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteInput"; }
     XF86AudioPlay        allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
     // but you need to manually put each argument in separate "" quotes.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
-
+    XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.

@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  # inputs,
+  inputs,
   ...
 }: {
   imports = [
@@ -11,6 +11,7 @@
   config = {
     host = "dotFW";
 
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
     virtualisation.docker.enable = true;
 
     boot = {
@@ -117,7 +118,7 @@
         xkb.variant = "";
       };
 
-      displayManager.plasma-login-manager.enable = true;
+      # displayManager.plasma-login-manager.enable = true;
       desktopManager.plasma6.enable = true;
       pipewire = {
         enable = true;
@@ -145,7 +146,11 @@
     };
 
     programs = {
-      adb.enable = true;
+      niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
+
       appimage = {
         enable = true;
         binfmt = true;
@@ -165,6 +170,7 @@
     security.rtkit.enable = true;
 
     environment.systemPackages = with pkgs; [
+      android-tools
       arduino-ide
       wget
       epsonscan2

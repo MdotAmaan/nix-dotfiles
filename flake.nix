@@ -108,6 +108,8 @@
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./nixos/default.nix
           ./hosts/framework-13/configuration.nix
+
+          niri.nixosModules.niri
           {
             steam.enable = true;
             minecraft-server.enable = true;
@@ -138,7 +140,6 @@
         modules = [
           ./home-manager/default.nix
           ./hosts/dotPC/home.nix
-          niri.homeModules.niri
           inputs.noctalia.homeModules.default
           inputs.plasma-manager.homeModules.plasma-manager
           inputs.nvf.homeManagerModules.default
