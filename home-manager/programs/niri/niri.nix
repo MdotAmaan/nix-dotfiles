@@ -31,8 +31,14 @@
     ];
 
     # Niri config
-    home.file."${config.home.homeDirectory}/.config/niri/config.kdl" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./config.kdl;
+    home.file = {
+      "${config.home.homeDirectory}/.config/niri/config.kdl" = {
+        source = config.lib.file.mkOutOfStoreSymlink ./config.kdl;
+      };
+
+      "${config.home.homeDirectory}/.config/alacritty/alacritty.toml" = {
+        source = config.lib.file.mkOutOfStoreSymlink ./alacritty.toml;
+      };
     };
   };
 }
