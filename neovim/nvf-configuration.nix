@@ -38,8 +38,8 @@
 
     theme = {
       enable = true;
-      name = "gruvbox";
-      style = "dark";
+      name = "onedark";
+      style = "warmer";
     };
 
     visuals = {

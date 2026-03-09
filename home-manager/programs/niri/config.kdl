@@ -8,7 +8,7 @@
 // https://yalter.github.io/niri/Configuration:-Input
 
 
-spawn-at-startup "noctalia-shell"
+spawn-sh-at-startup "noctalia-shell"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
@@ -53,6 +53,7 @@ input {
         // accel-speed 0.2
         // accel-profile "flat"
         scroll-method "two-finger"
+        scroll-factor 0.8
         // disabled-on-external-mouse
     }
 
@@ -180,7 +181,7 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        // on
+        on
 
         // By default, the shadow draws only around its window, and not behind it.
         // Uncomment this setting to make the shadow draw behind its window.
@@ -211,7 +212,7 @@ layout {
         offset x=0 y=5
 
         // You can also change the shadow color and opacity.
-        color "#0007"
+        color "#000A"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -248,13 +249,6 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
-// This option will also fix border/focus ring drawing behind some semitransparent windows.
-// After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
-
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
@@ -272,20 +266,6 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
-}
-
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
 }
 
 debug {
@@ -325,6 +305,7 @@ binds {
 
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle";}
     Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+S { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
@@ -332,11 +313,12 @@ binds {
     Mod+C hotkey-overlay-title="Run an Application: thunderbird" { spawn "thunderbird"; }
     Mod+L hotkey-overlay-title="Run an Application: Obsidian" { spawn "obsidian"; }
     Mod+X hotkey-overlay-title="Run an Application: Dolphin" { spawn "dolphin"; }
-
-    Mod+Shift+C hotkey-overlay-title="Open nix config" { spawn "neovide" "~/nix-dotfiles"; }
-
     Alt+Space hotkey-overlay-title="Run an Application: KRunner" { spawn "krunner"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+
+    Mod+Alt+C hotkey-overlay-title="Open nix config" { spawn-sh "neovide ~/nix-dotfiles"; }
+
+    Super+Shift+L hotkey-overlay-title="Lock the Screen & Suspend" \
+      { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -363,6 +345,7 @@ binds {
     Mod+Return repeat=false { toggle-overview; }
 
     Alt+F4 repeat=false { close-window; }
+    Mod+Q repeat=false { close-window; }
 
     Mod+N  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -552,7 +535,7 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
+    Mod+Shift+S { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
@@ -568,7 +551,7 @@ binds {
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
+    Ctrl+Alt+Delete { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
