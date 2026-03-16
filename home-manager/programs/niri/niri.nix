@@ -26,6 +26,8 @@
 
     home.packages = with pkgs; [
       alacritty
+
+      kdePackages.qtstyleplugin-kvantum
       kdePackages.qt6ct
       xwayland-satellite
     ];
@@ -33,7 +35,7 @@
     # Niri config
     home.file = {
       "${config.home.homeDirectory}/.config/niri/config.kdl" = {
-        source = config.lib.file.mkOutOfStoreSymlink ./config.kdl;
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-dotfiles/home-manager/programs/niri/config.kdl";
       };
 
       "${config.home.homeDirectory}/.config/alacritty/alacritty.toml" = {
