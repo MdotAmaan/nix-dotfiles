@@ -88,20 +88,6 @@
   #   );
   # in "${themePackage}/share/color-schemes/${colorSchemeSlug}.colors";
 
-  stylix = {
-    enable = false;
-    autoEnable = false;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/woodland.yaml";
-    targets = {
-      kde = {
-        enable = true;
-        widgetStyle = "Breeze";
-      };
-      qt.enable = true;
-      btop.enable = true;
-    };
-  };
-
   # Services
   services.syncthing.enable = true;
 }

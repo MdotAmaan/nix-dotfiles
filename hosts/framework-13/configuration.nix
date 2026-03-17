@@ -150,7 +150,6 @@
         enable = true;
         package = pkgs.niri-unstable;
       };
-      evolution.enable = true;
       appimage = {
         enable = true;
         binfmt = true;
