@@ -150,7 +150,6 @@
         enable = true;
         package = pkgs.niri-unstable;
       };
-
       appimage = {
         enable = true;
         binfmt = true;
@@ -161,6 +160,7 @@
         stdenv.cc.cc.lib
         zlib
         libGL
+        avrdude
         # add missing dynamic libraries here instead of system
       ];
       partition-manager.enable = true;
@@ -172,6 +172,8 @@
     environment.systemPackages = with pkgs; [
       android-tools
       arduino-ide
+      vscode-fhs
+      platformio
       wget
       epsonscan2
       p7zip
