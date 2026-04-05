@@ -4,16 +4,7 @@
   lib,
   pkgs,
   ...
-}: let
-  amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
-    # Make sure the module targets the same kernel as your system is using.
-    kernel = config.boot.kernelPackages.kernel;
-  };
-  amdgpu-ignore-ctx-privileges = builtins.fetchurl {
-    url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
-    sha256 = "sha256:0ya6b43m0ncjbyi6vyq3ipwwx6yj24cw8m167bd6ikwvdz5yi887";
-  };
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -29,11 +20,6 @@ in {
 
     nixpkgs.overlays = [inputs.niri.overlays.niri];
     boot = {
-      #     extraModulePackages = [
-      #       (amdgpu-kernel-module.overrideAttrs (_: {
-      #         patches = [amdgpu-ignore-ctx-privileges];
-      #       }))
-      #     ];
       kernelParams = ["intel_iommu=on"];
       loader = {
         systemd-boot.enable = true;
@@ -127,16 +113,15 @@ in {
       printing.enable = true;
     };
 
-    programs.virt-manager.enable = true;
     users.groups.libvirtd.members = ["mdot"];
     virtualisation.libvirtd.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
 
     programs = {
+      niri.enable = true;
       xppen.enable = false;
       corectrl.enable = true;
       # xppen-enable = true;
-      # envision.enable = true;
       gamemode.enable = true;
       gamescope = {
         enable = true;
@@ -156,6 +141,7 @@ in {
         # add missing dynamic libraries here instead of system
       ];
 
+      virt-manager.enable = true;
       partition-manager.enable = true;
       kdeconnect.enable = true;
     };
@@ -172,7 +158,6 @@ in {
       enable = true;
       openFirewall = true;
 
-      defaultRuntime = true;
       autoStart = true;
     };
 
