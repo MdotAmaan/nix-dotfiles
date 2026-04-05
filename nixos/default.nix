@@ -68,7 +68,6 @@
     };
 
     environment.variables = {
-      SSH_ASKPASS_REQUIRE = "prefer";
       NIXOS_OZONE_WL = "1";
     };
 
