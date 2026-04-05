@@ -38,8 +38,8 @@
 
     theme = {
       enable = true;
-      name = "onedark";
-      style = "warmer";
+      name = "gruvbox";
+      style = "dark";
     };
 
     visuals = {
@@ -51,7 +51,7 @@
       cinnamon-nvim = {
         enable = true;
         setupOpts = {
-          keymaps.basic = true;
+          keymaps.basic = false;
           keymaps.extra = false;
 
           options = {
@@ -144,24 +144,33 @@
       enableTreesitter = true;
       enableExtraDiagnostics = true;
 
+      arduino.enable = true;
+
       nix.enable = true;
       # rust.enable = true;
-      # markdown.enable = true;
+      markdown.enable = true;
       bash.enable = true;
       clang = {
         enable = true;
         dap.enable = true;
       };
-      # css.enable = true;
-      # html.enable = true;
+      css.enable = true;
+      html.enable = true;
       # sql.enable = true;
       java.enable = true;
+      json.enable = true;
+      just.enable = true;
       # kotlin.enable = true;
-      # ts.enable = true;
+      toml.enable = true;
+      ts.enable = true;
       # go.enable = true;
-      # lua.enable = true;
+      lua.enable = true;
+      make.enable = true;
       # zig.enable = true;
       python.enable = true;
+      qml.enable = true;
+      xml.enable = true;
+      yaml.enable = true;
       # typst.enable = true;
       # dart.enable = true;
     };
@@ -184,12 +193,27 @@
       };
     };
 
+    # mini = {
+    #   files = {
+    #     enable = true;
+    #     setupOpts = {
+    #       mappings = {
+    #         go_in = "<RIGHT>";
+    #         go_out = "<LEFT>";
+    #       };
+    #
+    #       root = "vim.fn.getcwd";
+    #       windows.preview = true;
+    #     };
+    #   };
+    # };
+
     filetree = {
       neo-tree = {
         enable = true;
         setupOpts = {
-          setupOpts.enable_cursor_hijack = true;
-          close_if_last_window = true;
+          # hijack_netrw_behavior = "disabled";
+          # hijack_netrw = false;
         };
       };
     };

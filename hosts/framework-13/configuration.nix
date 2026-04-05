@@ -118,8 +118,6 @@
         xkb.variant = "";
       };
 
-      # displayManager.plasma-login-manager.enable = true;
-      desktopManager.plasma6.enable = true;
       pipewire = {
         enable = true;
         alsa.enable = true;
