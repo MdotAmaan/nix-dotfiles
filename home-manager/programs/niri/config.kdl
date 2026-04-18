@@ -13,7 +13,8 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
 environment {
-  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_QPA_PLATFORMTHEME "kde"
+  QT_QPA_PLATFORMTHEME_QT6 "kde"
   QT_QPA_PLATFORM "wayland"
   DISPLAY ":0"
 }

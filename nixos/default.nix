@@ -68,7 +68,10 @@
     };
 
     environment.variables = {
+      QT_QPA_PLATFORMTHEME = "kde";
+      QT_QPA_PLATFORMTHEME_QT6 = "kde";
       NIXOS_OZONE_WL = "1";
+      NIXPKGS_QT6_QML_IMPORT_PATH = "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml";
     };
 
     # Get Apps to show up in KDE apps outside of KDE itself

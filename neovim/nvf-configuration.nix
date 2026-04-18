@@ -212,6 +212,8 @@
       neo-tree = {
         enable = true;
         setupOpts = {
+          setupOpts.enable_cursor_hijack = true;
+          close_if_last_window = true;
           # hijack_netrw_behavior = "disabled";
           # hijack_netrw = false;
         };
