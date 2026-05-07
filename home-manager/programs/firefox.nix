@@ -9,6 +9,7 @@
 
   config = lib.mkIf config.firefox.enable {
     programs.firefox = {
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       enable = true;
       policies = {
         DontCheckDefaultBrowser = true;

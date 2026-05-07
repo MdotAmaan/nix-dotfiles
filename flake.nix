@@ -84,7 +84,7 @@
 
         modules = [
           nur.modules.nixos.default
-          nixpkgs-xr.nixosModules.nixpkgs-xr
+          # nixpkgs-xr.nixosModules.nixpkgs-xr
           nix-flatpak.nixosModules.nix-flatpak
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix
@@ -93,7 +93,7 @@
             zerotier.enable = false;
             tailscale.enable = false;
             steam.enable = true;
-            protonmail-bridge.enable = true;
+            protonmail-bridge.enable = false;
             alvr.enable = false;
           }
         ];

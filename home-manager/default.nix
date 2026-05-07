@@ -28,6 +28,7 @@
     home-manager.enable = true;
 
     git = {
+      signing.format = "openpgp";
       enable = true;
 
       settings = {
