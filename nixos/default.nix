@@ -19,8 +19,8 @@
   config = {
     nix = {
       settings = {
-        experimental-features = "nix-command flakes";
-        nix-path = config.nix.nixPath;
+        experimental-features = ["nix-command flakes"];
+        # nix-path = config.nix.settings.nixPath;
         always-allow-substitutes = true;
       };
       channel.enable = false;

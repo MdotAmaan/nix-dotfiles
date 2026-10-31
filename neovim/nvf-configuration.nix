@@ -165,12 +165,12 @@
       # ts.enable = true;
       # go.enable = true;
       # lua.enable = true;
-      # make.enable = true;
+      make.enable = true;
       # zig.enable = true;
       # python.enable = true;
       # qml.enable = true;
       # xml.enable = true;
-      # yaml.enable = true;
+      yaml.enable = true;
       # typst.enable = true;
       # dart.enable = true;
     };

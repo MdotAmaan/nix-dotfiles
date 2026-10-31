@@ -16,6 +16,10 @@
 
     boot = {
       loader = {
+        kernelPackages = pkgs.linuxPackages_latest;
+        extraModprobeConfig = ''
+          options cfg80211 ieee80211_regdom=US
+        '';
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
@@ -168,6 +172,7 @@
     security.rtkit.enable = true;
 
     environment.systemPackages = with pkgs; [
+      iw
       android-tools
       arduino-ide
       vscode-fhs

@@ -9,7 +9,7 @@
   firefox.enable = true;
   floorp.enable = false;
   plasma.enable = true;
-  niri.enable = true;
+  niri.enable = false;
 
   home = {
     username = "mdot";
@@ -24,25 +24,25 @@
       kdePackages.qtmultimedia
       pkgsRocm.blender
       # kicad
-      freecad-wayland
-      openscad
-      audacity
+      # freecad-wayland
+      # openscad
+      # audacity
       kdePackages.kdenlive
       # Game stuff
-      # prismlauncher
+      prismlauncher
       bs-manager
 
-      vial
+      # vial
 
-      godotPackages_4_3.godot
+      # godotPackages_4_3.godot
       # TODO: Remove later and replace with dev shells
       libcxxStdenv
       cmake
       # libgcc
 
       android-tools
-      zathura
-      texliveMedium
+      # zathura
+      # texliveMedium
       jdk21
       #  python311Packages.west
       thunderbird
@@ -52,6 +52,9 @@
       vlc
       kdePackages.qtwebsockets
       kdePackages.filelight
+      kdePackages.krdc
+      kdePackages.karousel
+      kde-rounded-corners
       lazygit
       obsidian
       fastfetch
@@ -59,8 +62,8 @@
       unzip
       distrobox
       # yt-dlp
-      tmux
-      kdePackages.krdc
+      # tmux
+
       proton-vpn
     ];
     # ++ [
@@ -79,28 +82,28 @@
   services.easyeffects = {
     enable = true;
   };
-
-  xdg.configFile."openxr/1/active_runtime.json".source = "${pkgs.monado}/share/openxr/1/openxr_monado.json";
-
-  xdg.configFile."openvr/openvrpaths.vrpath".text = let
-    steam = "${config.xdg.dataHome}/Steam";
-  in
-    builtins.toJSON {
-      version = 1;
-      jsonid = "vrpathreg";
-
-      external_drivers = null;
-      config = ["${steam}/config"];
-
-      log = ["${steam}/logs"];
-
-      runtime = [
-        "${pkgs.xrizer}/lib/xrizer"
-        # OR
-        #"${pkgs.opencomposite}/lib/opencomposite"
-      ];
-    };
-
+  #
+  # xdg.configFile."openxr/1/active_runtime.json".source = "${pkgs.monado}/share/openxr/1/openxr_monado.json";
+  #
+  # xdg.configFile."openvr/openvrpaths.vrpath".text = let
+  #   steam = "${config.xdg.dataHome}/Steam";
+  # in
+  #   builtins.toJSON {
+  #     version = 1;
+  #     jsonid = "vrpathreg";
+  #
+  #     external_drivers = null;
+  #     config = ["${steam}/config"];
+  #
+  #     log = ["${steam}/logs"];
+  #
+  #     runtime = [
+  #       "${pkgs.xrizer}/lib/xrizer"
+  #       # OR
+  #       #"${pkgs.opencomposite}/lib/opencomposite"
+  #     ];
+  #   };
+  #
   #  xdg.configFile."openvr/openvrpaths.vrpath".text = ''
   #    {
   #      "config" :

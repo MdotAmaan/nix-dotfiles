@@ -8,7 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # ./vfio.nix
+    # ./vfio.ni
   ];
   options = {
     gui = lib.mkOption {default = "kde";};
@@ -18,9 +18,29 @@
     host = "dotPC";
     gui = "kde";
 
-    nixpkgs.overlays = [inputs.niri.overlays.niri];
+    nixpkgs.overlays = [
+      inputs.niri.overlays.niri
+      # (final: prev: {
+      #   opentabletdriver = prev.opentabletdriver.overrideAttrs (old: rec {
+      #     version = "0.6.7";
+      #     src = prev.fetchFromGitHub {
+      #       owner = "OpenTabletDriver";
+      #       repo = "OpenTabletDriver";
+      #       tag = "v${version}";
+      #       hash = "sha256-jL3d1DjY9n85BrO6ajZVvJMHmPYfxng4YE25s/9hfGA="; # replace
+      #     };
+      #   });
+      # })
+    ];
     boot = {
       kernelParams = ["intel_iommu=on"];
+      # Steam frame stuff
+      kernelPackages = pkgs.linuxPackages_latest;
+      extraModprobeConfig = ''
+        options cfg80211 ieee80211_regdom=US
+      '';
+
+      initrd.kernelModules = ["amdgpu"];
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
@@ -37,14 +57,14 @@
 
     virtualisation = {
       docker.enable = true;
-      waydroid.enable = true;
+      waydroid.enable = false;
     };
 
     networking = {
       hostName = config.host;
       networkmanager.enable = true;
       firewall = {
-        enable = true;
+        enable = false;
         extraCommands = ''
           iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
           iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
@@ -53,10 +73,12 @@
         checkReversePath = false; # Get wireguard to work
         allowedTCPPorts = [
           3240
+          3080 # Librechat
           #ALVR
           9943
           9944
           53
+          8089
           25565 # Minecraft Java
         ];
         # allowedTCPPortRanges = [
@@ -84,7 +106,12 @@
     };
 
     hardware = {
-      opentabletdriver.enable = true;
+      amdgpu.overdrive.enable = true;
+      enableRedistributableFirmware = true;
+      opentabletdriver = {
+        enable = true;
+        # package = use overlay here maybe?;
+      };
       keyboard.qmk.enable = true;
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
@@ -107,6 +134,18 @@
         pulse.enable = true;
       };
 
+      ollama = {
+        enable = false;
+        package = pkgs.ollama-rocm;
+        host = "0.0.0.0";
+      };
+
+      librechat = {
+        enable = false;
+        enableLocalDB = true;
+        openFirewall = true;
+        credentialsFile = /home/mdot/.librechat.env;
+      };
       openssh.enable = true;
       resolved.enable = true;
 
@@ -118,15 +157,14 @@
     virtualisation.spiceUSBRedirection.enable = true;
 
     programs = {
-      niri.enable = true;
+      niri.enable = false;
       xppen.enable = false;
-      corectrl.enable = true;
       # xppen-enable = true;
       gamemode.enable = true;
-      gamescope = {
-        enable = true;
-        capSysNice = true;
-      };
+      # gamescope = {
+      #   enable = true;
+      #   capSysNice = true;
+      # };
 
       appimage = {
         enable = true;
@@ -141,7 +179,7 @@
         # add missing dynamic libraries here instead of system
       ];
 
-      virt-manager.enable = true;
+      virt-manager.enable = false;
       partition-manager.enable = true;
       kdeconnect.enable = true;
     };
@@ -154,20 +192,46 @@
       openocd
     ];
 
-    services.wivrn = {
+    services.udev.extraRules = ''
+      SUBSYSTEM=="tty", KERNEL=="ttyACM*", ATTRS{idVendor}=="346e", ACTION=="add", MODE="0666", TAG+="uaccess"
+    ''; # Moza boxflat udev rules
+
+    services.lact = {
       enable = true;
+    };
+
+    services.wivrn = {
+      enable = false;
       openFirewall = true;
 
       autoStart = true;
     };
 
+    services.monado = {
+      enable = false;
+      defaultRuntime = true;
+    };
+
+    #    jovian = {
+    # steam = {
+    #   enable = true;
+    #   desktopSession = "plasma";
+    #   user = "mdot";
+    # };
+    # hardware.has.amd.gpu = true;
+    #    };
+
+    systemd.user.services.monado.environment = {
+      STEAMVR_LH_ENABLE = "1";
+      XRT_COMPOSITOR_COMPUTE = "1";
+    };
+
     environment.systemPackages = with pkgs; [
+      iw # Needed for steam frame
       platformio
-      arduino-ide
+      boxflat
 
       python3
-      rustup
-      espup
       vscode-fhs
       tesseract
       android-tools
@@ -187,8 +251,6 @@
       qalculate-qt
       aspell
       aspellDicts.en
-      aspellDicts.en-computers
-      aspellDicts.en-science
 
       wayvr
     ];

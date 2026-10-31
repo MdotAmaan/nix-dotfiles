@@ -10,7 +10,7 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS?ref=development";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     nur = {
@@ -43,13 +43,13 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.follows = "noctalia-qs";
+      # inputs.noctalia-qs.follows = "noctalia-qs";
     };
 
-    noctalia-qs = {
-      url = "github:noctalia-dev/noctalia-qs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # noctalia-qs = {
+    #   url = "github:noctalia-dev/noctalia-qs";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nvf.url = "github:notashelf/nvf";
   };
@@ -58,6 +58,7 @@
     self,
     nixpkgs,
     nixpkgs-xr,
+    jovian,
     nixos-hardware,
     nixpkgs-unstable,
     nvf,
@@ -84,6 +85,7 @@
 
         modules = [
           nur.modules.nixos.default
+          jovian.nixosModules.default
           # nixpkgs-xr.nixosModules.nixpkgs-xr
           nix-flatpak.nixosModules.nix-flatpak
           ./nixos/default.nix

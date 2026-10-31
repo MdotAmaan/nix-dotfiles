@@ -21,8 +21,8 @@
             prep-cmd = [
               {
                 # TODO: Add conditions for laptop / desktop
-                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.2560x1440@160";
-                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-2.mode.2560x1440@160";
+                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-2.mode.3440x1440@160";
               }
             ];
             exclude-global-prep-cmd = "false";
@@ -33,8 +33,8 @@
             prep-cmd = [
               {
                 # TODO: Add conditions for laptop / desktop
-                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1920x1200@160";
-                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-2.mode.1920x1200@160";
+                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-2.mode.3440x1440@160";
               }
             ];
             exclude-global-prep-cmd = "false";
@@ -45,8 +45,8 @@
             prep-cmd = [
               {
                 # TODO: Add conditions for laptop / desktop
-                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.1920x1080@160";
-                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-3.mode.3440x1440@160";
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-2.mode.1920x1080@160";
+                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-2.mode.3440x1440@160";
               }
             ];
             exclude-global-prep-cmd = "false";
