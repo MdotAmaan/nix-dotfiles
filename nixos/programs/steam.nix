@@ -9,29 +9,13 @@
   };
   config = lib.mkIf config.steam.enable {
     programs.steam = {
-      package = pkgs.steam.override {
-        extraPkgs = pkgs':
-          with pkgs'; [
-            libXcursor
-            libXi
-            libXinerama
-            libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib # Provides libstdc++.so.6
-            libkrb5
-            keyutils
-          ];
-      };
-
-      gamescopeSession.enable = true;
+      # gamescopeSession.enable = true;
       protontricks.enable = true;
       enable = true;
       remotePlay.openFirewall = true;
     };
     environment.systemPackages = with pkgs; [
-      gamescope-wsi # HDR won't work without this
+      # gamescope-wsi # HDR won't work without this
     ];
   };
 }

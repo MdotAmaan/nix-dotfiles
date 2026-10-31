@@ -17,7 +17,7 @@
       #   package = pkgs.niri-unstable;
       # };
 
-      noctalia-shell = {
+      noctalia = {
         enable = true;
       };
     };
@@ -39,7 +39,7 @@
       };
 
       "${config.home.homeDirectory}/.config/alacritty/alacritty.toml" = {
-        source = config.lib.file.mkOutOfStoreSymlink ./alacritty.toml;
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-dotfiles/home-manager/programs/niri/alacritty.toml";
       };
     };
   };
