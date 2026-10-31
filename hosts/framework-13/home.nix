@@ -10,7 +10,7 @@
   firefox.enable = true;
   floorp.enable = false;
   plasma.enable = true;
-  niri.enable = true;
+  niri.enable = false;
 
   home = {
     username = "mdot";
