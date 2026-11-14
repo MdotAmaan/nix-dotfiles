@@ -91,7 +91,7 @@
           ./nixos/default.nix
           ./hosts/dotPC/configuration.nix
           {
-            sunshine.enable = true;
+            sunshine.enable = false;
             zerotier.enable = false;
             tailscale.enable = false;
             steam.enable = true;
@@ -114,7 +114,7 @@
           niri.nixosModules.niri
           {
             steam.enable = true;
-            minecraft-server.enable = true;
+            minecraft-server.enable = false;
             zerotier.enable = false;
             tailscale.enable = false;
             sunshine.enable = false;
