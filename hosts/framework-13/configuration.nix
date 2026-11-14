@@ -15,11 +15,11 @@
     virtualisation.docker.enable = true;
 
     boot = {
+      extraModprobeConfig = ''
+        options cfg80211 ieee80211_regdom=US
+      '';
+      kernelPackages = pkgs.linuxPackages_latest;
       loader = {
-        kernelPackages = pkgs.linuxPackages_latest;
-        extraModprobeConfig = ''
-          options cfg80211 ieee80211_regdom=US
-        '';
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
@@ -35,7 +35,6 @@
 
       # Enable "Silent Boot"
       consoleLogLevel = 0;
-      initrd.verbose = false;
       kernelParams = [
         "quiet"
         "splash"
@@ -149,7 +148,7 @@
 
     programs = {
       niri = {
-        enable = true;
+        enable = false;
         package = pkgs.niri-unstable;
       };
       appimage = {
@@ -193,8 +192,6 @@
       qalculate-qt
       aspell
       aspellDicts.en
-      aspellDicts.en-computers
-      aspellDicts.en-science
     ];
 
     system.stateVersion = "24.11";
